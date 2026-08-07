@@ -82,6 +82,7 @@ import {
   Calendar,
   Download,
   Upload,
+  TrendingUp,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { AiFillPushpin, AiOutlinePushpin } from "react-icons/ai";
@@ -8845,7 +8846,7 @@ function GroupApp({
                           </div>
 
                           {/* Botão Configurar Partida destacado acima da lista de jogadores */}
-                          <div className="w-full flex justify-center">
+                          <div className="w-full flex justify-start">
                             <motion.button
                               onClick={() => {
                                 setShouldPulseConfig(false);
@@ -8999,19 +9000,10 @@ function GroupApp({
                                           }
                                         />
                                       ) : (
-                                        <h4 className="text-sm font-semibold capitalize text-zinc-900 dark:text-white truncate max-w-[120px] leading-tight">
+                                        <h4 className="text-sm font-semibold capitalize text-zinc-900 dark:text-white truncate max-w-[140px] leading-tight">
                                           {player.name.toLowerCase()}
                                         </h4>
                                       )}
-                                      
-                                      {player.addedVia === "whatsapp" && (
-                                        <span className="text-amber-500 bg-amber-500/10 p-0.5 rounded-full flex shrink-0">
-                                          <CiStopwatch size={10} />
-                                        </span>
-                                      )}
-                                      <div className="w-4 h-4 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
-                                        <Star size={8} className="text-zinc-400 dark:text-zinc-500" />
-                                      </div>
                                     </div>
 
                                     {/* Position Tag / Subtitle */}
@@ -10762,13 +10754,10 @@ function GroupApp({
                                   {/* Top Half: Team A (Green Background) */}
                                   <div className="relative h-10 sm:h-12 w-full bg-[#1b4323] flex items-end px-2 sm:px-3 pt-2 pb-0">
                                     {/* Team Badge Top Left */}
-                                    <div className="absolute top-1 left-1.5 sm:left-2 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded-md border border-white/10 shadow-sm">
+                                    <div className="absolute top-1 left-1.5 sm:left-2 z-20 flex items-center justify-center bg-black/60 backdrop-blur-md p-1 rounded-md border border-white/10 shadow-sm">
                                       <div className="w-3.5 h-3.5 flex items-center justify-center shrink-0" style={{ color: colorA }}>
                                         <IconA size={11} />
                                       </div>
-                                      <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-emerald-300">
-                                        {teamA?.name || "TIME A"}
-                                      </span>
                                     </div>
 
                                     {/* Goal markers for Team A on top edge */}
@@ -10824,13 +10813,10 @@ function GroupApp({
                                   {/* Bottom Half: Team B (Dark Blue/Indigo Background) */}
                                   <div className="relative h-10 sm:h-12 w-full bg-[#1b253b] flex items-start px-2 sm:px-3 pb-2 pt-0">
                                     {/* Team Badge Bottom Left */}
-                                    <div className="absolute bottom-1 left-1.5 sm:left-2 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded-md border border-white/10 shadow-sm">
+                                    <div className="absolute bottom-1 left-1.5 sm:left-2 z-20 flex items-center justify-center bg-black/60 backdrop-blur-md p-1 rounded-md border border-white/10 shadow-sm">
                                       <div className="w-3.5 h-3.5 flex items-center justify-center shrink-0" style={{ color: colorB }}>
                                         <IconB size={11} />
                                       </div>
-                                      <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-indigo-300">
-                                        {teamB?.name || "TIME B"}
-                                      </span>
                                     </div>
 
                                     {/* Goal markers for Team B on bottom edge */}
@@ -13635,7 +13621,7 @@ function GroupApp({
                               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                                 {/* Saldo Líquido Card */}
                                 <div
-                                  className={`p-4 transition-all col-span-2 lg:col-span-1 order-1 lg:order-none overflow-hidden relative ${
+                                  className={`p-2.5 sm:p-3 transition-all col-span-2 lg:col-span-1 order-1 lg:order-none overflow-hidden relative ${
                                     isPrintMode
                                       ? "bg-white border-zinc-300 border rounded-none"
                                       : "bg-gradient-to-br from-zinc-100 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 rounded-2xl shadow-sm backdrop-blur-xl"
@@ -13647,48 +13633,94 @@ function GroupApp({
                                       <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-[40px] pointer-events-none" />
                                     </>
                                   )}
-                                  <div className="flex justify-between items-center mb-1">
-                                    <p
-                                      className={`text-[9px] font-black uppercase tracking-widest ${isPrintMode ? "text-zinc-600" : "text-black/60 dark:text-white/50"}`}
-                                    >
-                                      Saldo em Caixa
-                                    </p>
-                                    {!isPrintMode && (
-                                      <button
-                                        onClick={() => {
-                                          if (players.filter((p) => p.addedVia !== "whatsapp").length === 0) {
-                                            setToast({
-                                              message:
-                                                "Adicione jogadores para detalhar despesas",
-                                              type: "info",
-                                            });
-                                            setTimeout(
-                                              () => setToast(null),
-                                              3000,
-                                            );
-                                            return;
-                                          }
-                                          setIsPrintMode(true);
-                                        }}
-                                        className="text-black/50 dark:text-white/40 hover:text-[#34d399] transition-colors"
-                                        title="Gerar Print"
+                                  <div className="flex flex-col items-start gap-1 relative z-10 w-full">
+                                    {/* Top Header Row with Title on Left and Eye Icon on Right */}
+                                    <div className="flex items-center justify-between w-full">
+                                      <p
+                                        className={`text-[9px] font-black uppercase tracking-widest ${isPrintMode ? "text-zinc-600" : "text-black/60 dark:text-white/50"}`}
                                       >
-                                        <Eye size={14} />
-                                      </button>
+                                        Saldo em Caixa
+                                      </p>
+                                      {!isPrintMode && (
+                                        <button
+                                          onClick={() => {
+                                            if (players.filter((p) => p.addedVia !== "whatsapp").length === 0) {
+                                              setToast({
+                                                message:
+                                                  "Adicione jogadores para detalhar despesas",
+                                                type: "info",
+                                              });
+                                              setTimeout(
+                                                () => setToast(null),
+                                                3000,
+                                              );
+                                              return;
+                                            }
+                                            setIsPrintMode(true);
+                                          }}
+                                          className="text-black/50 dark:text-white/40 hover:text-[#34d399] transition-colors"
+                                          title="Gerar Print"
+                                        >
+                                          <Eye size={14} />
+                                        </button>
+                                      )}
+                                    </div>
+
+                                    {/* Circular Gauge Graphic aligned to the left */}
+                                    {!isPrintMode && (
+                                      <div className="relative shrink-0 flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 my-1">
+                                        <div className="absolute inset-0 rounded-full bg-[#181d2a] dark:bg-[#121623] border border-black/10 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5">
+                                          <svg viewBox="0 0 120 120" className="w-full h-full transform -rotate-90">
+                                            <defs>
+                                              <linearGradient id="gauge-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stopColor="#2ea625" />
+                                                <stop offset="50%" stopColor="#34d399" />
+                                                <stop offset="100%" stopColor="#59b823" />
+                                              </linearGradient>
+                                            </defs>
+                                            {/* Background ring */}
+                                            <circle
+                                              cx="60"
+                                              cy="60"
+                                              r="46"
+                                              stroke="currentColor"
+                                              strokeWidth="10"
+                                              className="text-black/10 dark:text-white/15"
+                                              fill="none"
+                                            />
+                                            {/* Progress arc */}
+                                            <circle
+                                              cx="60"
+                                              cy="60"
+                                              r="46"
+                                              stroke="url(#gauge-ring-grad)"
+                                              strokeWidth="10"
+                                              strokeLinecap="round"
+                                              fill="none"
+                                              strokeDasharray={2 * Math.PI * 46}
+                                              strokeDashoffset={2 * Math.PI * 46 * 0.25}
+                                            />
+                                          </svg>
+
+                                          {/* Centered value */}
+                                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-0.5 pointer-events-none z-0">
+                                            <span className="text-[8px] font-medium text-zinc-500 dark:text-zinc-400 tracking-wide leading-none mb-0.5">
+                                              R$
+                                            </span>
+                                            <span className="text-xs sm:text-sm font-black text-[#2ea625] dark:text-[#34d399] tracking-tight leading-tight">
+                                              <AnimatedCounter value={netBalance >= 0 ? netBalance : 0} />,00
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {isPrintMode && (
+                                      <p className="text-lg sm:text-xl font-black text-black mt-1">
+                                        R$ <AnimatedCounter value={netBalance} />,00
+                                      </p>
                                     )}
                                   </div>
-                                  <p
-                                    className={`text-lg sm:text-xl lg:text-2xl font-black w-fit ${
-                                      isPrintMode
-                                        ? "text-black"
-                                        : netBalance >= 0
-                                          ? "text-transparent bg-clip-text bg-gradient-to-r from-[#59b823] via-[#75c628] to-[#25660e]"
-                                          : "text-red-400"
-                                    }`}
-                                  >
-                                    R$ <AnimatedCounter value={netBalance} />
-                                    ,00
-                                  </p>
                                 </div>
 
                                 {/* Arrecadação Card */}
@@ -13807,7 +13839,7 @@ function GroupApp({
                                           className={`text-lg sm:text-xl font-black w-fit ${
                                             isPrintMode
                                               ? "text-black"
-                                              : "text-transparent bg-clip-text bg-gradient-to-r from-[#59b823] via-[#75c628] to-[#25660e]"
+                                              : "text-[#2ea625] dark:text-[#59b823]"
                                           }`}
                                         >
                                           R$ {totalRevenue},00
@@ -13863,7 +13895,7 @@ function GroupApp({
                                       className={`text-[9px] font-black uppercase tracking-widest ${
                                         isPrintMode
                                           ? "text-zinc-600"
-                                          : "text-red-400"
+                                          : "text-red-500 dark:text-red-400"
                                       }`}
                                     >
                                       Despesas
@@ -13873,7 +13905,7 @@ function GroupApp({
                                     className={`text-lg sm:text-xl font-black mb-2 ${
                                       isPrintMode
                                         ? "text-black"
-                                        : "text-zinc-900 dark:text-white"
+                                        : "text-red-500 dark:text-red-400"
                                     }`}
                                   >
                                     R$ {totalExpenses},00
@@ -14019,86 +14051,6 @@ function GroupApp({
                                     </div>
                                   ))
                                 )}
-                              </div>
-                            </div>
-                          )}
-                          {!isPrintPaymentsOnly && (
-                            <div className="w-full mt-4 mb-4">
-                              <h3 className="text-[10px] font-black uppercase tracking-widest text-zinc-900 dark:text-white mb-2 ml-1">
-                                Resumo Mensal ({selectedYear})
-                              </h3>
-                              <div className="h-64 w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl p-4 pointer-events-none select-none">
-                                <ResponsiveContainer width="100%" height="100%">
-                                  <BarChart
-                                    data={MONTHS.map((month) => {
-                                      const rev = (payments || []).reduce(
-                                        (acc, p) =>
-                                          p.year === selectedYear
-                                            ? acc + (p.months[month] || 0)
-                                            : acc,
-                                        0,
-                                      );
-                                      const exp = (expenses || [])
-                                        .filter((e) => {
-                                          const d = new Date(e.date);
-                                          return (
-                                            d.getFullYear() === selectedYear &&
-                                            d.getMonth() ===
-                                              MONTHS.indexOf(month)
-                                          );
-                                        })
-                                        .reduce(
-                                          (acc, e) => acc + (e.amount || 0),
-                                          0,
-                                        );
-                                      return {
-                                        name: month,
-                                        Receitas: rev,
-                                        Despesas: exp,
-                                      };
-                                    })}
-                                    margin={{
-                                      top: 10,
-                                      right: 10,
-                                      left: -20,
-                                      bottom: 0,
-                                    }}
-                                  >
-                                    <CartesianGrid
-                                      strokeDasharray="3 3"
-                                      stroke="#888888"
-                                      opacity={0.2}
-                                      vertical={false}
-                                    />
-                                    <XAxis
-                                      dataKey="name"
-                                      axisLine={false}
-                                      tickLine={false}
-                                      tick={{ fontSize: 10, fill: "#888" }}
-                                    />
-                                    <YAxis
-                                      axisLine={false}
-                                      tickLine={false}
-                                      tick={{ fontSize: 10, fill: "#888" }}
-                                      tickFormatter={(val) => `R${val}`}
-                                    />
-                                    <Legend
-                                      wrapperStyle={{ fontSize: "10px" }}
-                                    />
-                                    <Bar
-                                      dataKey="Receitas"
-                                      fill="#34d399"
-                                      radius={[4, 4, 0, 0]}
-                                      name="Receitas"
-                                    />
-                                    <Bar
-                                      dataKey="Despesas"
-                                      fill="#f87171"
-                                      radius={[4, 4, 0, 0]}
-                                      name="Despesas"
-                                    />
-                                  </BarChart>
-                                </ResponsiveContainer>
                               </div>
                             </div>
                           )}
