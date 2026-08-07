@@ -1,0 +1,201 @@
+8283-                                className="text-white shrink-0"
+8284-                              />
+8285-                              <p className="text-[10px] font-bold text-white leading-tight tracking-wider">
+8286-                                Você precisa criar uma pelada no botão acima
+8287-                                para continuar.
+8288-                              </p>
+8289-                            </motion.div>
+8290-                          )}
+8291-
+8292-                           {scheduledMatches.length > 0 && (
+8293-                            <div className="space-y-4">
+8294-                              {scheduledMatches.map((match) => {
+8295-                                return (
+8296-                                  <motion.div
+8297-                                    key={match.id}
+8298-                                    initial={{ opacity: 0, y: 10 }}
+8299-                                    animate={{ opacity: 1, y: 0 }}
+8300-                                    className="relative overflow-hidden rounded-2xl bg-black/20 border border-white/10 shadow-sm backdrop-blur-md p-2 sm:p-2.5 flex items-center justify-between cursor-pointer hover:bg-black/30 transition-all duration-200"
+8301-                                    onClick={() => {
+8302-                                      setSelectedMatchId(match.id);
+8303-                                      setCurrentScreen("players");
+8304-                                      setShowAddPlayerSection(true);
+8305-                                    }}
+8306-                                  >
+8307-                                    {/* Circle emblem with white background */}
+8308-                                    <div className="flex items-center gap-3 flex-1 min-w-0">
+8309-                                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center p-0.5 shadow-sm shrink-0 overflow-hidden border border-white/20">
+8310-                                        {match.imageUrl ? (
+8311-                                          <img
+8312-                                            src={match.imageUrl}
+8313-                                            className="w-full h-full object-cover rounded-full"
+8314-                                            referrerPolicy="no-referrer"
+8315-                                          />
+8316-                                        ) : (
+8317-                                          <div className="w-full h-full rounded-full bg-zinc-100 flex items-center justify-center text-emerald-800">
+8318-                                            <GiSoccerBall size={24} />
+8319-                                          </div>
+8320-                                        )}
+8321-                                      </div>
+8322-
+8323-                                      {/* Text column left aligned */}
+8324-                                      <div className="flex flex-col text-left min-w-0">
+8325-                                        <h4 className="text-white text-[14px] sm:text-[15px] font-extrabold tracking-tight leading-none truncate capitalize">
+8326-                                          {match.name || "Perna de Pau"}
+8327-                                        </h4>
+8328-                                        <p className="text-[9px] sm:text-[10px] font-bold tracking-widest text-zinc-300 mt-1.5 uppercase leading-none">
+8329-                                          {formatMatchDateImageStyle(match.date, match.time)}
+8330-                                        </p>
+8331-                                      </div>
+8332-                                    </div>
+8333-
+8334-                                    {/* Buttons Column */}
+8335-                                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0" onClick={(e) => e.stopPropagation()}>
+8336-                                      <button
+8337-                                        onClick={(e) => {
+8338-                                          e.stopPropagation();
+8339-                                          setEditingMatchId(match.id);
+8340-                                          setNewMatchName(match.name);
+8341-                                          setNewMatchTime(match.time);
+8342-                                          setNewMatchImage(match.imageUrl || "");
+8343-                                          const days = [
+8344-                                            "Domingo",
+8345-                                            "Segunda",
+8346-                                            "Terça",
+8347-                                            "Quarta",
+8348-                                            "Quinta",
+8349-                                            "Sexta",
+8350-                                            "Sábado",
+8351-                                          ];
+8352-                                          const date = new Date(match.date);
+8353-                                          setNewMatchDay(days[date.getDay()]);
+8354-                                          setShowScheduleModal(true);
+8355-                                        }}
+8356-                                        className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center border border-white/5 hover:scale-105 active:scale-95 transition-all shadow-sm"
+8357-                                        title="Editar"
+8358-                                      >
+8359-                                        <Pencil size={14} />
+8360-                                      </button>
+8361-                                      <button
+8362-                                        onClick={(e) => {
+8363-                                          e.stopPropagation();
+8364-                                          setMatchToDelete(match);
+8365-                                        }}
+8366-                                        className="w-8 h-8 rounded-full bg-[#fa5252]/10 hover:bg-[#fa5252]/20 text-[#ff6b6b] flex items-center justify-center border border-[#fa5252]/10 hover:scale-105 active:scale-95 transition-all shadow-sm"
+8367-                                        title="Excluir"
+8368-                                      >
+8369-                                        <Trash2 size={14} />
+8370-                                      </button>
+8371-                                      <ChevronRight size={16} className="text-white/40 ml-1" />
+8372-                                    </div>
+8373-                                  </motion.div>
+8374-                                );
+8375-                              })}
+8376-                            </div>
+8377-                          )}
+8378-                        </div>
+8379-                      </div>
+8380-
+8381-                      {/* Alert Banner / Tip */}
+8382-                    </motion.div>
+8383-                  ) : (
+8384-                    <motion.div
+8385-                      key="management-view"
+8386-                      initial={{ opacity: 0, y: 10 }}
+8387-                      animate={{ opacity: 1, y: 0 }}
+8388-                      exit={{ opacity: 0, y: -10 }}
+8389-                      transition={{ duration: 0.2 }}
+8390-                      className="space-y-4"
+8391-                    >
+8392-                      <div className="space-y-4">
+8393-                        <div className="bg-gradient-to-br from-[#144011] via-[#20661b] to-[#2ea625] backdrop-blur-xl p-3 sm:p-4 rounded-[16px] border border-white/10 space-y-3 sm:space-y-4 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+8394-                          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+8395-                            <div className="flex-1 flex gap-2 sm:gap-3">
+8396-                              <input
+8397-                                type="text"
+8398-                                placeholder="Nome do jogador..."
+8399-                                className={`flex-1 px-4 sm:px-5 py-2 rounded-xl border border-black/10 dark:border-white/10 outline-none transition-all bg-white dark:bg-black/40 text-zinc-900 dark:text-white placeholder-black/40 dark:placeholder-white/40 focus:ring-2 focus:ring-[#2ea625]/50 text-[13px] sm:text-sm font-medium shadow-inner h-[40px]`}
+8400-                                onKeyDown={(e) => {
+8401-                                  if (e.key === "Enter") {
+8402-                                    addPlayer(e.currentTarget.value);
+8403-                                    e.currentTarget.value = "";
+8404-                                  }
+8405-                                }}
+8406-                              />
+8407-                              <button
+8408-                                onClick={handleImportContacts}
+8409-                                className="w-[40px] h-[40px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-[#59b823] rounded-xl shadow-inner hover:bg-black/5 dark:hover:bg-[#2ea625]/10 transition-all active:scale-95 flex items-center justify-center border border-black/10 dark:border-white/10 shrink-0"
+8410-                                title="Importar dos Contatos"
+8411-                              >
+8412-                                <Contact size={18} strokeWidth={1.5} />
+8413-                              </button>
+8414-                              <button
+8415-                                onClick={() => {
+8416-                                  const input = document.querySelector(
+8417-                                    "input",
+8418-                                  ) as HTMLInputElement;
+8419-                                  if (input.value.trim()) {
+8420-                                    addPlayer(input.value);
+8421-                                    input.value = "";
+8422-                                  }
+8423-                                }}
+8424-                                className="w-[40px] h-[40px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-[#59b823] rounded-xl border border-black/10 dark:border-white/10 shadow-inner hover:bg-black/5 dark:hover:bg-[#2ea625]/10 transition-all active:scale-95 flex items-center justify-center shrink-0"
+8425-                              >
+8426-                                <Plus size={20} strokeWidth={1.5} />
+8427-                              </button>
+8428-                            </div>
+8429-                          </div>
+8430-
+8431-                          <div className="relative">
+8432-                            <AnimatePresence>
+8433-                              {isAiProcessing && (
+8434-                                <motion.div
+8435-                                  initial={{ opacity: 0 }}
+8436-                                  animate={{ opacity: 1 }}
+8437-                                  exit={{ opacity: 0 }}
+8438-                                  className="absolute inset-0 bg-[#1E3D2F]/95 backdrop-blur-md z-20 flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 shadow-lg"
+8439-                                >
+8440-                                  <div className="flex gap-1.5">
+8441-                                    {[0, 1, 2].map((i) => (
+8442-                                      <motion.div
+8443-                                        key={i}
+8444-                                        animate={{
+8445-                                          scale: [1, 1.2, 1],
+8446-                                          opacity: [0.5, 1, 0.5],
+8447-                                        }}
+8448-                                        transition={{
+8449-                                          duration: 0.8,
+8450-                                          repeat: Infinity,
+8451-                                          delay: i * 0.2,
+8452-                                        }}
+8453-                                        className="w-1.5 h-1.5 bg-[#53B986] rounded-full shadow-[0_0_8px_rgba(83,185,134,0.5)]"
+8454-                                      />
+8455-                                    ))}
+8456-                                  </div>
+8457-                                  <motion.div
+8458-                                    animate={{ opacity: [0.7, 1, 0.7] }}
+8459-                                    transition={{
+8460-                                      duration: 1.5,
+8461-                                      repeat: Infinity,
+8462-                                    }}
+8463-                                    className="text-[10px] uppercase tracking-wider text-[#53B986] font-bold"
+8464-                                  >
+8465-                                    Adicionando...
+8466-                                  </motion.div>
+8467-
+8468-                                  {/* Background shimmer effect */}
+8469-                                  <motion.div
+8470-                                    animate={{
+8471-                                      x: ["-100%", "100%"],
+8472-                                    }}
+8473-                                    transition={{
+8474-                                      duration: 1.5,
+8475-                                      repeat: Infinity,
+8476-                                      ease: "linear",
+8477-                                    }}
+8478-                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 pointer-events-none"
+8479-                                  />
+8480-                                </motion.div>
+8481-                              )}
+8482-                            </AnimatePresence>
+8483:                            <textarea

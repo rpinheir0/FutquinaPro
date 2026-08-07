@@ -1,0 +1,24 @@
+{
+  "name": "FutQuina - Gestão de Pelada",
+  "short_name": "FutQuina",
+  "description": "A melhor ferramenta para gestão de pelada, times e estatísticas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0e17",
+  "theme_color": "#0b0e17",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icone%20favicone.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icone%20favicone.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

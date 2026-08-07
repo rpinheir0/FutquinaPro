@@ -1,0 +1,56 @@
+5327:  const addBulkPlayers = (text: string) => {
+5328-    setIsAiProcessing(true);
+5329-    setShouldPulseConfig(true);
+5330-
+5331-    setTimeout(() => {
+5332-      const lines = text.split("\n");
+5333-      const newPlayers: Player[] = [];
+5334-
+5335-      // Patterns to ignore: dates (DD/MM, DD-MM), times (HH:MM), common titles/descriptions
+5336-      const ignorePatterns = [
+5337-        /\d{1,2}[\/\-]\d{1,2}/, // Dates
+5338-        /\d{1,2}:\d{2}/, // Times
+5339-        /^(lista|jogadores|convocados|presença|confirmados|futebol|pelada|horário|data|local|valor)/i, // Titles
+5340-        /^\s*$/, // Empty lines
+5341-      ];
+5342-
+5343-      const existingNames = new Set(players.map((p) => p.name.toLowerCase()));
+5344-
+5345-      lines.forEach((line, i) => {
+5346-        // Remove common prefixes: "1.", "1-", "-", "*", "•" but keep numbers that are part of the name
+5347-        let name = line.replace(/^[\d\.\-\*\•\s]+(?=\s|[A-Z])/, "").trim();
+5348-        if (!name) name = line.replace(/^[\d\.\-\*\•\s]+/, "").trim();
+5349-
+5350-        // Check if the line should be ignored
+5351-        const shouldIgnore = ignorePatterns.some((pattern) =>
+5352-          pattern.test(name),
+5353-        );
+5354-
+5355-        if (name && name.length > 1 && !shouldIgnore) {
+5356-          if (existingNames.has(name.toLowerCase())) return;
+5357-          existingNames.add(name.toLowerCase());
+5358-
+5359-          newPlayers.push({
+5360-            id: generateId(),
+5361-            name,
+5362-            goals: 0,
+5363-            assists: 0,
+5364-            isAvailable: true,
+5365-            arrivedAt: Date.now() + i,
+5366-            stars: 3,
+5367-            addedVia: "whatsapp",
+5368-          });
+5369-        }
+5370-      });
+5371-
+5372-      if (newPlayers.length > 0) {
+5373-        setPlayers((prev) => [...prev, ...newPlayers]);
+5374-        setShowWhatsAppInfoModal(true);
+5375-        setSessionPlayerIds((prev) => [
+5376-          ...prev,
+5377-          ...newPlayers.map((p) => p.id),
+5378-        ]);
+5379-      }
+5380-      setIsAiProcessing(false);
+5381-    }, 1500);
+5382-  };
