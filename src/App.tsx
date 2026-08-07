@@ -14421,9 +14421,6 @@ function GroupApp({
               {/* Top Modern Header Banner */}
               <div className="w-full h-8 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#144011] relative overflow-hidden flex items-center justify-between px-4 border-b border-white/10 shadow-inner">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.3),transparent_70%)] pointer-events-none" />
-                <div className="flex items-center gap-1.5 z-10">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-                </div>
               </div>
 
               {/* Header */}
@@ -14837,9 +14834,6 @@ function GroupApp({
               {/* Top Modern Header Banner */}
               <div className="w-full h-8 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#144011] relative overflow-hidden flex items-center justify-between px-4 border-b border-white/10 shadow-inner">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.3),transparent_70%)] pointer-events-none" />
-                <div className="flex items-center gap-1.5 z-10">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-                </div>
               </div>
 
               {/* Header */}
