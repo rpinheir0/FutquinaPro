@@ -2394,23 +2394,35 @@ const SpinningBall = ({
 };
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   // Fallback in case video fails to load or play
   useEffect(() => {
     const timer = setTimeout(onComplete, 8000);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(e => {
+        console.error("Video autoplay failed:", e);
+      });
+    }
+  }, []);
+
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#090b14] overflow-hidden">
       <video
-        src="/splash-animation.mp4"
+        ref={videoRef}
         autoPlay
         muted
         playsInline
         onEnded={onComplete}
         onError={onComplete}
         className="w-full h-full object-cover"
-      />
+      >
+        <source src="/splash-animation.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 };
