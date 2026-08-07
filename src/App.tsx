@@ -8572,7 +8572,7 @@ function GroupApp({
                       transition={{ duration: 0.2 }}
                       className="w-full max-w-md flex flex-col space-y-3.5 bg-gradient-to-br from-[#144011] via-[#1b5017] to-[#0e2c0e] p-4 sm:p-5 rounded-[28px] shadow-xl border border-white/10 my-auto"
                     >
-                      <div className="flex items-center justify-center pb-1 border-b border-white/10 mb-1">
+                      <div className="py-2 px-4 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-xl border border-emerald-500/30 shadow-md flex items-center justify-center mb-1">
                         <FutQuinaLogo size="md" titleColorClass="text-white" />
                       </div>
                       <div className="flex items-center justify-between px-1 pt-1">
@@ -8622,6 +8622,18 @@ function GroupApp({
                             <GiSoccerBall size={180} />
                           </div>
                         </div>
+                        {/* Light Sweep Effect */}
+                        <motion.div
+                          initial={{ x: "-100%" }}
+                          animate={{ x: "200%" }}
+                          transition={{
+                            repeat: Infinity,
+                            duration: 2,
+                            ease: "easeInOut",
+                            repeatDelay: 2,
+                          }}
+                          className="absolute inset-0 z-10 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] pointer-events-none"
+                        />
                         <div className="relative z-10 flex items-center">
                           <div className="flex items-center gap-4">
                             <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-zinc-500 bg-[#111A13] flex items-center justify-center shrink-0 shadow-md">
@@ -8712,7 +8724,7 @@ function GroupApp({
                                   >
                                     {/* Circle emblem matching card background */}
                                     <div className="flex items-center gap-3 flex-1 min-w-0">
-                                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/20 flex items-center justify-center p-0.5 shadow-sm shrink-0 overflow-hidden border border-white/10">
+                                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-500/10 dark:bg-[#121623] border border-emerald-500/20 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5 shrink-0 overflow-hidden relative">
                                         {match.imageUrl ? (
                                           <img
                                             src={match.imageUrl}
@@ -8720,12 +8732,45 @@ function GroupApp({
                                             referrerPolicy="no-referrer"
                                           />
                                         ) : (
-                                          <img
-                                            src="/logo%20oficial.png"
-                                            alt="Logo do aplicativo"
-                                            className="w-full h-full object-cover rounded-full"
-                                            referrerPolicy="no-referrer"
-                                          />
+                                          <>
+                                            <svg viewBox="0 0 120 120" className="w-full h-full transform -rotate-90 absolute inset-0">
+                                              <defs>
+                                                <linearGradient id={`gauge-match-${match.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                                                  <stop offset="0%" stopColor="#2ea625" />
+                                                  <stop offset="50%" stopColor="#34d399" />
+                                                  <stop offset="100%" stopColor="#59b823" />
+                                                </linearGradient>
+                                              </defs>
+                                              <circle
+                                                cx="60"
+                                                cy="60"
+                                                r="46"
+                                                stroke="currentColor"
+                                                strokeWidth="10"
+                                                className="text-emerald-500/20 dark:text-white/15"
+                                                fill="none"
+                                              />
+                                              <motion.circle
+                                                cx="60"
+                                                cy="60"
+                                                r="46"
+                                                stroke={`url(#gauge-match-${match.id})`}
+                                                strokeWidth="10"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                                strokeDasharray={2 * Math.PI * 46}
+                                                initial={{ strokeDashoffset: 2 * Math.PI * 46 }}
+                                                animate={{ strokeDashoffset: 2 * Math.PI * 46 * 0.25 }}
+                                                transition={{ duration: 1.2, ease: "easeOut" }}
+                                              />
+                                            </svg>
+                                            <img
+                                              src="/logo%20oficial.png"
+                                              alt="Logo do aplicativo"
+                                              className="w-6 h-6 sm:w-7 sm:h-7 object-contain rounded-full relative z-10"
+                                              referrerPolicy="no-referrer"
+                                            />
+                                          </>
                                         )}
                                       </div>
 
