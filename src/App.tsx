@@ -8855,7 +8855,7 @@ function GroupApp({
                       </div>
 
                       <div className="space-y-2">
-                        <div className="bg-white/50 dark:bg-[#0b0e17]/50 backdrop-blur-md p-2 rounded-2xl border border-[#2ea625]/30 dark:border-[#59b823]/30 space-y-2 shadow-sm">
+                        <div className="bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-200 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 backdrop-blur-md p-2 rounded-2xl border border-black/10 dark:border-white/10 space-y-2 shadow-sm">
                           <div className="flex flex-col sm:flex-row gap-2">
                             <div className="flex-1 flex gap-2">
                               <input
@@ -13345,7 +13345,7 @@ function GroupApp({
                             return (
                               <div
                                 key={`top-card-${player.id}`}
-                                className="bg-white dark:bg-emerald-950/20 dark:backdrop-blur-xs border border-black/10 dark:border-emerald-500/20 rounded-2xl flex flex-col justify-between overflow-hidden shadow-xs text-center"
+                                className="bg-[#f0f0f0] dark:bg-emerald-950/20 dark:backdrop-blur-xs border border-black/10 dark:border-emerald-500/20 rounded-2xl flex flex-col justify-between overflow-hidden shadow-xs text-center"
                               >
                                 {/* Top part */}
                                 <div className="p-1.5 sm:p-2.5 pb-1 flex flex-col items-center">
