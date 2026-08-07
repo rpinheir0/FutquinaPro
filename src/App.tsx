@@ -9240,7 +9240,7 @@ function GroupApp({
                         </div>
 
                         <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                          <div className="p-3 sm:p-4 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 space-y-3 shadow-xl flex flex-col justify-between">
+                          <div className="p-3 sm:p-4 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 shadow-xl flex flex-col justify-between h-[140px] sm:h-[150px]">
                             <div className="flex items-start justify-between">
                               <div className="flex flex-col pr-2">
                                 <div className="flex items-center gap-1.5 h-6">
@@ -9339,7 +9339,7 @@ function GroupApp({
                             )}
                           </div>
 
-                          <div className="p-3 sm:p-4 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 space-y-3 shadow-xl flex flex-col justify-between">
+                          <div className="p-3 sm:p-4 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 shadow-xl flex flex-col justify-between h-[140px] sm:h-[150px]">
                             <div className="flex items-start justify-between">
                               <div className="flex flex-col pr-2">
                                 <div className="flex items-center gap-1 sm:gap-1.5 h-6">
