@@ -2394,8 +2394,6 @@ const SpinningBall = ({
 };
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
   // Fallback in case video fails to load or play
   useEffect(() => {
     const timer = setTimeout(onComplete, 8000);
@@ -2409,9 +2407,9 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
         autoPlay
         muted
         playsInline
-        onLoadedData={() => setIsVideoLoaded(true)}
         onEnded={onComplete}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+        onError={onComplete}
+        className="w-full h-full object-cover"
       />
     </div>
   );
