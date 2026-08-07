@@ -2455,9 +2455,9 @@ const StatCircularGauge = ({
       shadow: "shadow-zinc-500/40",
     },
     blue: {
-      stroke: "#3b82f6",
-      bg: "bg-blue-500",
-      shadow: "shadow-blue-500/40",
+      stroke: "#2563eb",
+      bg: "bg-blue-600",
+      shadow: "shadow-blue-600/40",
     },
     amber: {
       stroke: "#f59e0b",
@@ -2470,9 +2470,9 @@ const StatCircularGauge = ({
       shadow: "shadow-red-500/40",
     },
     purple: {
-      stroke: "#a855f7",
-      bg: "bg-purple-500",
-      shadow: "shadow-purple-500/40",
+      stroke: "#2563eb",
+      bg: "bg-blue-600",
+      shadow: "shadow-blue-600/40",
     },
   };
 
@@ -2488,7 +2488,7 @@ const StatCircularGauge = ({
             cy="26"
             r={radius}
             className="text-black/15 dark:text-white/15"
-            strokeWidth="4"
+            strokeWidth="2.5"
             stroke="currentColor"
             fill="none"
           />
@@ -2498,7 +2498,7 @@ const StatCircularGauge = ({
             cy="26"
             r={radius}
             stroke={selectedColor.stroke}
-            strokeWidth="4"
+            strokeWidth="2.5"
             fill="none"
             strokeDasharray={circumference}
             initial={{ strokeDashoffset: circumference }}
@@ -14429,7 +14429,7 @@ function GroupApp({
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#34d399]/5 rounded-full -mr-8 -mt-8 blur-xl" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-black/5 dark:bg-white/5 rounded-full -ml-8 -mb-8 blur-lg" />
 
-                <div className="w-20 h-20 mx-auto rounded-full bg-white dark:bg-[#1a1d29] flex items-center justify-center overflow-hidden border-4 border-white dark:border-[#1a1d29] shadow-xl relative z-10 mb-3">
+                <div className="w-20 h-20 mx-auto rounded-full bg-white dark:bg-[#1a1d29] flex items-center justify-center overflow-hidden border-2 border-emerald-500 shadow-md shadow-emerald-500/20 relative z-10 mb-3">
                   {players.find((p) => p.id === showPlayerActionsModal.playerId)
                     ?.photo ? (
                     <img
@@ -14493,7 +14493,7 @@ function GroupApp({
                       )?.matchesPlayed || 0
                     }
                     label="Partidas"
-                    color="purple"
+                    color="blue"
                   />
                 </div>
               </div>
@@ -14656,10 +14656,10 @@ function GroupApp({
 
                           setShowPlayerActionsModal(null);
                         }}
-                        className="w-full h-9 mt-1.5 rounded-xl font-black text-[10px] tracking-widest bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] text-white shadow-lg shadow-emerald-950/30 border border-emerald-500/30 hover:brightness-110 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                        className="w-full h-9 mt-1.5 rounded-xl font-medium text-[10px] tracking-widest bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] text-white shadow-lg shadow-emerald-950/30 border border-emerald-500/30 hover:brightness-110 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                       >
                         <div className="flex items-center gap-2">
-                          <span className="flex items-center border border-white/60 rounded-full w-4 h-4 justify-center text-[9px] font-black leading-none text-white bg-emerald-500/30">
+                          <span className="flex items-center border border-white/60 rounded-full w-4 h-4 justify-center text-[9px] font-bold leading-none text-white bg-emerald-500/30">
                             G
                           </span>
                           <span className="tracking-widest">
@@ -14685,12 +14685,12 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-emerald-500/10 hover:bg-emerald-500/20 active:scale-95 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-[#0e2c0e]/10 dark:bg-[#1b5017]/30 hover:bg-[#1b5017]/20 dark:hover:bg-[#1b5017]/50 active:scale-95 text-[#1b5017] dark:text-emerald-400 border border-emerald-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:rotate-180 transition-transform duration-500 shrink-0">
                           <GiCycle size={22} />
                         </span>
-                        <span className="text-xs font-black tracking-wide">Substituir</span>
+                        <span className="text-xs font-medium tracking-wide">Substituir</span>
                       </button>
                     )}
 
@@ -14711,12 +14711,12 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-teal-500/10 hover:bg-teal-500/20 active:scale-95 text-teal-600 dark:text-teal-400 border border-teal-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-slate-800/10 dark:bg-slate-800/40 hover:bg-slate-800/20 dark:hover:bg-slate-800/60 active:scale-95 text-slate-700 dark:text-slate-300 border border-slate-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:translate-x-0.5 transition-transform shrink-0">
                           <GiPlayerNext size={22} />
                         </span>
-                        <span className="text-xs font-black tracking-wide">Mover</span>
+                        <span className="text-xs font-medium tracking-wide">Mover</span>
                       </button>
                     )}
 
@@ -14776,10 +14776,10 @@ function GroupApp({
 
                           setShowPlayerActionsModal(null);
                         }}
-                        className="py-2.5 px-2 bg-amber-500/10 hover:bg-amber-500/20 active:scale-95 text-amber-600 dark:text-amber-400 border border-amber-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-amber-950/10 dark:bg-amber-950/40 hover:bg-amber-950/20 dark:hover:bg-amber-950/60 active:scale-95 text-amber-800 dark:text-amber-300 border border-amber-700/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <UserX size={22} className="group-hover:scale-110 transition-transform shrink-0" />
-                        <span className="text-xs font-black tracking-wide">Ausente</span>
+                        <span className="text-xs font-medium tracking-wide">Ausente</span>
                       </button>
                     )}
 
@@ -14790,23 +14790,23 @@ function GroupApp({
                           setSwappingPlayerId(null);
                           setShowPlayerActionsModal(null);
                         }}
-                        className="py-2.5 px-2 bg-rose-500/10 hover:bg-rose-500/20 active:scale-95 text-rose-500 border border-rose-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="shrink-0">
                           <GiCancel size={22} />
                         </span>
-                        <span className="text-xs font-black tracking-wide">Cancelar</span>
+                        <span className="text-xs font-medium tracking-wide">Cancelar</span>
                       </button>
                     )}
 
                     <button
                       onClick={() => setShowPlayerActionsModal(null)}
-                      className="py-2.5 px-2 bg-zinc-500/10 hover:bg-zinc-500/20 active:scale-95 text-zinc-600 dark:text-zinc-300 border border-zinc-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                      className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                     >
                       <span className="group-hover:rotate-90 transition-transform duration-300 shrink-0">
                         <GiCancel size={22} />
                       </span>
-                      <span className="text-xs font-black tracking-wide">Fechar</span>
+                      <span className="text-xs font-medium tracking-wide">Fechar</span>
                     </button>
                   </div>
                 </div>
@@ -14842,7 +14842,7 @@ function GroupApp({
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#34d399]/5 rounded-full -mr-8 -mt-8 blur-xl" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-black/5 dark:bg-white/5 rounded-full -ml-8 -mb-8 blur-lg" />
 
-                <div className="w-20 h-20 mx-auto rounded-full bg-white dark:bg-[#1a1d29] flex items-center justify-center overflow-hidden border-4 border-white dark:border-[#1a1d29] shadow-xl relative z-10 mb-3">
+                <div className="w-20 h-20 mx-auto rounded-full bg-white dark:bg-[#1a1d29] flex items-center justify-center overflow-hidden border-2 border-emerald-500 shadow-md shadow-emerald-500/20 relative z-10 mb-3">
                   {players.find((p) => p.id === showQueuePlayerModal.playerId)
                     ?.photo ? (
                     <img
@@ -14896,7 +14896,7 @@ function GroupApp({
                       )?.matchesPlayed || 0
                     }
                     label="Partidas"
-                    color="purple"
+                    color="blue"
                   />
                 </div>
               </div>
@@ -14950,9 +14950,9 @@ function GroupApp({
 
                               setShowQueuePlayerModal(null);
                             }}
-                            className="col-span-2 w-full h-9 rounded-xl font-black text-[10px] tracking-widest bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] text-white shadow-lg shadow-emerald-950/30 border border-emerald-500/30 hover:brightness-110 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                            className="col-span-2 w-full h-9 rounded-xl font-medium text-[10px] tracking-widest bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] text-white shadow-lg shadow-emerald-950/30 border border-emerald-500/30 hover:brightness-110 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                           >
-                            <span className="flex items-center border border-white/60 rounded-full w-4 h-4 justify-center text-[9px] font-black leading-none text-white bg-emerald-500/30">
+                            <span className="flex items-center border border-white/60 rounded-full w-4 h-4 justify-center text-[9px] font-bold leading-none text-white bg-emerald-500/30">
                               G
                             </span>
                             {players.find(
@@ -14972,12 +14972,12 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-emerald-500/10 hover:bg-emerald-500/20 active:scale-95 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-[#0e2c0e]/10 dark:bg-[#1b5017]/30 hover:bg-[#1b5017]/20 dark:hover:bg-[#1b5017]/50 active:scale-95 text-[#1b5017] dark:text-emerald-400 border border-emerald-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:rotate-180 transition-transform duration-500 shrink-0">
                           <GiCycle size={22} />
                         </span>
-                        <span className="text-xs font-black tracking-wide">Substituir</span>
+                        <span className="text-xs font-medium tracking-wide">Substituir</span>
                       </button>
 
                       <button
@@ -14994,12 +14994,12 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-teal-500/10 hover:bg-teal-500/20 active:scale-95 text-teal-600 dark:text-teal-400 border border-teal-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-slate-800/10 dark:bg-slate-800/40 hover:bg-slate-800/20 dark:hover:bg-slate-800/60 active:scale-95 text-slate-700 dark:text-slate-300 border border-slate-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:translate-x-0.5 transition-transform shrink-0">
                           <GiPlayerNext size={22} />
                         </span>
-                        <span className="text-xs font-black tracking-wide">Mover</span>
+                        <span className="text-xs font-medium tracking-wide">Mover</span>
                       </button>
 
                       <button
@@ -15031,20 +15031,20 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-amber-500/10 hover:bg-amber-500/20 active:scale-95 text-amber-600 dark:text-amber-400 border border-amber-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-amber-950/10 dark:bg-amber-950/40 hover:bg-amber-950/20 dark:hover:bg-amber-950/60 active:scale-95 text-amber-800 dark:text-amber-300 border border-amber-700/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <UserX size={22} className="group-hover:scale-110 transition-transform shrink-0" />
-                        <span className="text-xs font-black tracking-wide">Ausente</span>
+                        <span className="text-xs font-medium tracking-wide">Ausente</span>
                       </button>
 
                       <button
                         onClick={() => setShowQueuePlayerModal(null)}
-                        className="py-2.5 px-2 bg-zinc-500/10 hover:bg-zinc-500/20 active:scale-95 text-zinc-600 dark:text-zinc-300 border border-zinc-500/20 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:rotate-90 transition-transform duration-300 shrink-0">
                           <GiCancel size={22} />
                         </span>
-                        <span className="text-xs font-black tracking-wide">Fechar</span>
+                        <span className="text-xs font-medium tracking-wide">Fechar</span>
                       </button>
                     </div>
                   ) : (
