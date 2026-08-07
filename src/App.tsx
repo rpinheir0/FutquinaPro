@@ -8807,7 +8807,7 @@ function GroupApp({
                       </div>
 
                       <div className="space-y-2">
-                        <div className="bg-white/50 dark:bg-[#0b0e17]/50 backdrop-blur-md p-2 rounded-2xl border border-black/5 dark:border-white/5 space-y-2 shadow-sm">
+                        <div className="bg-white/50 dark:bg-[#0b0e17]/50 backdrop-blur-md p-2 rounded-2xl border border-[#2ea625]/30 dark:border-[#59b823]/30 space-y-2 shadow-sm">
                           <div className="flex flex-col sm:flex-row gap-2">
                             <div className="flex-1 flex gap-2">
                               <input
