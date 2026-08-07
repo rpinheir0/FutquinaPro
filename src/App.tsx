@@ -13422,9 +13422,26 @@ function GroupApp({
                               {player.isGoalkeeper ? "Goleiro" : "Jogador"}
                             </span>
                             <div className="w-full max-w-[120px] h-1.5 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden mt-1.5 shadow-inner">
-                              <div
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{
+                                  width: `${Math.min(
+                                    (rankingTab === "artilharia"
+                                      ? player.goals
+                                      : rankingTab === "assistencias"
+                                      ? player.assists
+                                      : player.stars || 3) /
+                                      (rankingTab === "artilharia"
+                                        ? Math.max(...sortedRankingPlayers.map((p) => p.goals), 1)
+                                        : rankingTab === "assistencias"
+                                        ? Math.max(...sortedRankingPlayers.map((p) => p.assists), 1)
+                                        : 5) *
+                                      100,
+                                    100
+                                  )}%`,
+                                }}
+                                transition={{ duration: 1, ease: "easeOut" }}
                                 className="h-full rounded-full bg-gradient-to-r from-green-600 via-green-500 to-lime-400"
-                                style={{ width: `${((player.stars || 3) / 5) * 100}%` }}
                               />
                             </div>
                           </div>
@@ -15342,20 +15359,16 @@ function GroupApp({
               animate={{ scale: 1, y: 0 }}
               className="w-full max-w-[280px] p-5 rounded-[20px] bg-[#f1f5f9] dark:bg-[#0b0e17]/95 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white backdrop-blur-xl shadow-2xl"
             >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-12 h-12 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center border border-black/10 dark:border-white/10 shadow-sm relative overflow-hidden shrink-0">
-                  <div className="absolute inset-0 bg-black/5 dark:bg-white/5 rounded-full blur-xl" />
-                  <span className="text-black/80 dark:text-white/80 relative z-10">
-                    <IoIosFootball size={24} />
+              <div className="flex flex-col items-center text-center space-y-3 p-3 bg-white dark:bg-zinc-900 rounded-[24px] border border-zinc-200 dark:border-zinc-800 shadow-xl">
+                <div className="flex items-center justify-center shrink-0">
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    <IoIosFootball size={32} />
                   </span>
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-lg font-black uppercase tracking-tight text-zinc-900 dark:text-white leading-none">
-                    Quem deu a assistência?
-                  </h3>
-                  <p className="text-[9px] font-medium leading-relaxed text-black/60 dark:text-white/50 uppercase tracking-widest">
-                    GOL DE{" "}
+                  <p className="text-[8px] font-normal leading-relaxed text-black/60 dark:text-white/50 tracking-wide">
+                    Gol de{" "}
                     {
                       players.find((p) => p.id === showAssistSelection.scorerId)
                         ?.name
@@ -15363,7 +15376,7 @@ function GroupApp({
                   </p>
                 </div>
 
-                <div className="w-full grid grid-cols-1 gap-2 max-h-60 overflow-y-auto pr-1 custom-scrollbar">
+                <div className="w-full grid grid-cols-1 gap-1.5 max-h-60 overflow-y-auto pr-1 custom-scrollbar">
                   <motion.button
                     initial={{ x: -10, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -15376,7 +15389,7 @@ function GroupApp({
                       registerGoal(team, showAssistSelection.scorerId);
                       setShowAssistSelection(null);
                     }}
-                    className="w-full h-10 rounded-xl border border-black/10 dark:border-white/10 transition-all text-center flex items-center justify-center bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:bg-white/10 group shadow-sm shrink-0"
+                    className="w-full h-9 rounded-full border border-black/10 dark:border-white/10 transition-all text-center flex items-center justify-center bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:bg-white/10 group shadow-sm shrink-0"
                   >
                     <span className="text-[9px] font-black uppercase tracking-widest text-black/70 dark:text-white/60 group-hover:text-zinc-900 dark:text-white">
                       Sem Assistência
@@ -15413,9 +15426,9 @@ function GroupApp({
                             );
                             setShowAssistSelection(null);
                           }}
-                          className="w-full p-2.5 rounded-xl border border-black/10 dark:border-[#1e2540] transition-all text-left group flex items-center gap-3 bg-black/5 dark:bg-[#0f1324] hover:bg-black/10 dark:hover:bg-[#151a30] shrink-0"
+                          className="w-full p-1.5 rounded-full border border-black/10 dark:border-[#1e2540] transition-all text-left group flex items-center gap-2 bg-black/5 dark:bg-[#0f1324] hover:bg-black/10 dark:hover:bg-[#151a30] shrink-0"
                         >
-                          <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden border border-black/5 dark:border-zinc-700 bg-black/5 dark:bg-zinc-800 shrink-0 shadow-inner">
+                          <div className="w-7 h-7 rounded-full flex items-center justify-center overflow-hidden border border-black/5 dark:border-zinc-700 bg-black/5 dark:bg-zinc-800 shrink-0 shadow-inner">
                             {player?.photo ? (
                               <img
                                 src={player.photo}
@@ -15426,21 +15439,18 @@ function GroupApp({
                             ) : (
                               <div className="w-full h-full flex items-center justify-center">
                                 <span className="text-black/20 dark:text-zinc-300">
-                                  <IoPersonOutline size={14} />
+                                  <IoPersonOutline size={12} />
                                 </span>
                               </div>
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="text-[7px] font-black text-black/30 dark:text-zinc-400 uppercase tracking-widest mb-0.5">
-                              Garçom
-                            </div>
                             <div className="text-[10px] font-black uppercase truncate text-zinc-900 dark:text-white group-hover:text-black dark:group-hover:text-white">
                               {player?.name}
                             </div>
                           </div>
-                          <div className="w-6 h-6 rounded-full bg-black/5 dark:bg-zinc-800 border border-black/10 dark:border-zinc-700 flex items-center justify-center text-black/50 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-all shrink-0">
-                            <PiPlusBold size={10} />
+                          <div className="w-5 h-5 rounded-full bg-black/5 dark:bg-zinc-800 border border-black/10 dark:border-zinc-700 flex items-center justify-center text-black/50 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-all shrink-0">
+                            <PiPlusBold size={8} />
                           </div>
                         </motion.button>
                       );
