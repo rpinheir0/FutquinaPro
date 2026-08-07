@@ -2394,41 +2394,25 @@ const SpinningBall = ({
 };
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  // Fallback in case video fails to load or play
   useEffect(() => {
-    const timer = setTimeout(onComplete, 3000);
+    const timer = setTimeout(onComplete, 8000);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-[3000] flex flex-col items-center justify-center bg-[#f1f5f9] dark:bg-[#0b0e17]">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center gap-4"
-      >
-        <motion.img
-          src="/logo%20oficial.png"
-          alt="FutQuina Logo"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-24 h-24 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
-        />
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col items-center"
-        >
-          <span className="text-3xl uppercase tracking-tighter text-zinc-900 dark:text-white font-black leading-none">
-            FutQuina
-          </span>
-          <span className="text-[10px] text-black/60 dark:text-white/50 tracking-[0.2em] mt-1 uppercase font-bold">
-            Gestão de pelada
-          </span>
-        </motion.div>
-      </motion.div>
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#090b14] overflow-hidden">
+      <video
+        src="/splash-animation.mp4"
+        autoPlay
+        muted
+        playsInline
+        onLoadedData={() => setIsVideoLoaded(true)}
+        onEnded={onComplete}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+      />
     </div>
   );
 };
@@ -17974,6 +17958,8 @@ function AnimatedNumber({ value }: { value: number }) {
 
 // --- Main App Component ---
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
   // Directly enter the control panel (no "Nova Partida" page)
   const [currentGroupId] = useState<string>(() => {
     const saved = safeLocalStorage.getItem("futquina_current_group_id_offline");
@@ -17996,5 +17982,21 @@ export default function App() {
     );
   }, [currentGroupId]);
 
-  return <GroupApp groupId={currentGroupId} onBackToHome={() => {}} />;
+  return (
+    <>
+      <AnimatePresence>
+        {showSplash && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 z-[9999]"
+          >
+            <SplashScreen onComplete={() => setShowSplash(false)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <GroupApp groupId={currentGroupId} onBackToHome={() => {}} />
+    </>
+  );
 }
