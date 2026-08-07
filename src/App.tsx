@@ -8805,14 +8805,14 @@ function GroupApp({
                         </p>
                       </div>
 
-                      <div className="space-y-4">
-                        <div className="bg-gradient-to-br from-[#144011] via-[#20661b] to-[#2ea625] dark:bg-zinc-900 dark:from-transparent dark:via-transparent dark:to-transparent backdrop-blur-xl p-3 sm:p-4 rounded-[16px] border border-white/10 dark:border-white/10 space-y-3 sm:space-y-4 shadow-[0_0_15px_rgba(59,130,246,0.1)] dark:shadow-none">
-                          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                            <div className="flex-1 flex gap-2 sm:gap-3">
+                      <div className="space-y-2">
+                        <div className="bg-white/50 dark:bg-[#0b0e17]/50 backdrop-blur-md p-2 rounded-2xl border border-black/5 dark:border-white/5 space-y-2 shadow-sm">
+                          <div className="flex flex-col sm:flex-row gap-2">
+                            <div className="flex-1 flex gap-2">
                               <input
                                 type="text"
                                 placeholder="Nome do jogador..."
-                                className={`flex-1 px-4 sm:px-5 py-2 rounded-xl border border-black/10 dark:border-white/10 outline-none transition-all bg-white dark:bg-black/40 text-zinc-900 dark:text-white placeholder-black/40 dark:placeholder-white/40 focus:ring-2 focus:ring-[#2ea625]/50 text-[13px] sm:text-sm font-medium shadow-inner h-[40px]`}
+                                className={`flex-1 px-3 sm:px-4 py-1.5 rounded-[14px] border border-black/5 dark:border-white/10 outline-none transition-all bg-white dark:bg-black/40 text-zinc-900 dark:text-white placeholder-black/40 dark:placeholder-white/40 focus:ring-2 focus:ring-[#2ea625]/50 text-xs font-medium shadow-inner h-[36px]`}
                                 onKeyDown={(e) => {
                                   if (e.key === "Enter") {
                                     addPlayer(e.currentTarget.value);
@@ -8822,10 +8822,10 @@ function GroupApp({
                               />
                               <button
                                 onClick={handleImportContacts}
-                                className="w-[40px] h-[40px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-white rounded-xl shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center border border-black/10 dark:border-white/10 shrink-0"
+                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-white rounded-[14px] shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center border border-black/5 dark:border-white/10 shrink-0"
                                 title="Importar dos Contatos"
                               >
-                                <Contact size={18} strokeWidth={1.5} />
+                                <Contact size={16} strokeWidth={1.5} />
                               </button>
                               <button
                                 onClick={() => {
@@ -8837,15 +8837,15 @@ function GroupApp({
                                     input.value = "";
                                   }
                                 }}
-                                className="w-[40px] h-[40px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-white rounded-xl border border-black/10 dark:border-white/10 shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center shrink-0"
+                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-white rounded-[14px] border border-black/5 dark:border-white/10 shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center shrink-0"
                               >
-                                <Plus size={20} strokeWidth={1.5} />
+                                <Plus size={18} strokeWidth={1.5} />
                               </button>
                             </div>
                           </div>
 
                           {/* Botão Configurar Partida destacado acima da lista de jogadores */}
-                          <div className="w-full flex justify-center mt-2">
+                          <div className="w-full flex justify-center">
                             <motion.button
                               onClick={() => {
                                 setShouldPulseConfig(false);
@@ -8872,10 +8872,10 @@ function GroupApp({
                                   ? { repeat: Infinity, duration: 1.5 }
                                   : {}
                               }
-                              className="w-full max-w-sm h-9 bg-[#2ea625] dark:bg-[#59b823] text-white text-[10px] font-black uppercase tracking-wider rounded-lg shadow-sm hover:opacity-90 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer"
+                              className="w-auto px-6 h-8 bg-[#2ea625] dark:bg-[#59b823] text-white text-[9px] font-black uppercase tracking-widest rounded-xl shadow-sm hover:opacity-90 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer"
                             >
                               <span className="text-white flex items-center shrink-0">
-                                <PiGearBold size={14} />
+                                <PiGearBold size={12} />
                               </span>
                               <span>CONFIGURAR PARTIDA</span>
                             </motion.button>
@@ -8927,12 +8927,12 @@ function GroupApp({
                               </div>
                             </div>
                           ) : (
-                            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                               {visiblePlayers.map((player) => (
                                 <motion.div
                                   layout
                                   key={`player-list-dash-switch-${player.id}`}
-                                  className="bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-xl flex flex-col justify-center items-center overflow-hidden shadow-sm text-center relative cursor-pointer hover:scale-[1.02] active:scale-95 transition-all text-zinc-900 dark:text-white min-h-[135px] sm:min-h-[165px] w-full max-w-[150px] mx-auto"
+                                  className="bg-white dark:bg-[#12151c] border border-black/5 dark:border-white/5 rounded-[20px] flex flex-col justify-between items-center overflow-hidden shadow-sm relative cursor-pointer hover:scale-[1.02] active:scale-95 transition-all text-zinc-900 dark:text-white p-3 sm:p-4 w-full mx-auto"
                                   onClick={() => {
                                     if (editingPlayerId !== player.id) {
                                       setPlayerManagementModal(player);
@@ -8940,21 +8940,22 @@ function GroupApp({
                                   }}
                                 >
                                   {/* Top section containing photo and name info */}
-                                  <div className="p-3.5 sm:p-5 flex flex-col items-center justify-center w-full relative">
-                                    {player.addedVia === "whatsapp" && (
-                                      <button
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          setShowWhatsAppInfoModal(true);
-                                        }}
-                                        className="absolute top-2 right-2 rounded-full p-1 flex items-center justify-center z-10 text-amber-500"
-                                      >
-                                        <CiStopwatch size={16} />
-                                      </button>
-                                    )}
-                                    {/* Centered Avatar (Icone Person) */}
-                                    <div className="relative mx-auto flex items-center justify-center">
-                                      <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full border border-black/10 dark:border-white/10 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shrink-0">
+                                  <div className="flex flex-col items-center justify-center w-full relative">
+                                    {/* Top Indicators */}
+                                    <div className="absolute top-0 right-0 flex items-center gap-1">
+                                      {player.addedVia === "whatsapp" && (
+                                        <span className="text-amber-500 bg-amber-500/10 p-1 rounded-full">
+                                          <CiStopwatch size={12} />
+                                        </span>
+                                      )}
+                                      <div className="w-6 h-6 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center bg-black/5 dark:bg-white/5">
+                                        <Star size={10} className="text-zinc-400 dark:text-zinc-500" />
+                                      </div>
+                                    </div>
+
+                                    {/* Glowing Avatar */}
+                                    <div className="relative mx-auto flex items-center justify-center mt-2 mb-3">
+                                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.5)]">
                                         {player.photo ? (
                                           <img
                                             src={player.photo}
@@ -8963,21 +8964,22 @@ function GroupApp({
                                             referrerPolicy="no-referrer"
                                           />
                                         ) : (
-                                          <span className="text-zinc-600 dark:text-zinc-400 flex items-center justify-center">
-                                            <IoPersonOutline size={16} />
+                                          <span className="text-emerald-500 flex items-center justify-center">
+                                            <IoPersonOutline size={24} />
                                           </span>
                                         )}
                                       </div>
-                                      {/* Star overlay if goalkeeper or pro */}
+                                      
+                                      {/* Extra indicators over avatar (optional) */}
                                       {player.isGoalkeeper && (
-                                        <span className="absolute -bottom-0.5 -right-0.5 bg-zinc-800 text-white dark:bg-zinc-700 p-0.5 rounded-full border border-white/40 text-[7px] flex items-center justify-center">
+                                        <span className="absolute -bottom-1 -right-1 bg-zinc-800 text-white dark:bg-zinc-700 p-1 rounded-full border border-emerald-500 text-[8px] flex items-center justify-center shadow-md">
                                           <span className="animate-spin-slow flex items-center justify-center">
                                             <GiSoccerBall size={10} />
                                           </span>
                                         </span>
                                       )}
                                       {orgProData[player.id] && !player.isGoalkeeper && (
-                                        <span className="absolute -top-0.5 -right-0.5 bg-yellow-500 text-white p-0.5 rounded-full border border-white/40 text-[7px] flex items-center justify-center">
+                                        <span className="absolute -top-1 -right-1 bg-yellow-500 text-white p-1 rounded-full border border-yellow-300 text-[8px] flex items-center justify-center shadow-md">
                                           <span className="animate-bounce flex items-center justify-center">
                                             <GiCrown size={10} />
                                           </span>
@@ -8985,24 +8987,13 @@ function GroupApp({
                                       )}
                                     </div>
 
-                                    {/* Star Rating directly under the avatar */}
-                                    <div className="flex gap-0.5 shrink-0 items-center justify-center mt-1.5">
-                                      {[1, 2, 3, 4, 5].map((star) => (
-                                        <Star
-                                          key={`star-dash-m-switch-${player.id}-${star}`}
-                                          size={6}
-                                          className={`${(player.stars || 3) >= star ? "fill-yellow-400 text-yellow-400" : "text-black/10 dark:text-white/10"}`}
-                                        />
-                                      ))}
-                                    </div>
-
                                     {/* Player Name */}
-                                    <div className="w-full text-center mt-2">
+                                    <div className="w-full text-center mt-1">
                                       {editingPlayerId === player.id ? (
                                         <input
                                           autoFocus
                                           defaultValue={player.name}
-                                          className="w-full bg-black/10 dark:bg-white/10 border-b border-blue-500 outline-none text-[9px] font-medium py-0.5 px-1 rounded-none text-zinc-900 dark:text-white text-center"
+                                          className="w-full bg-black/10 dark:bg-white/10 border-b border-blue-500 outline-none text-[11px] font-medium py-0.5 px-1 rounded-none text-zinc-900 dark:text-white text-center"
                                           onClick={(e) => e.stopPropagation()}
                                           onKeyDown={(e) => {
                                             if (e.key === "Enter")
@@ -9021,17 +9012,34 @@ function GroupApp({
                                           }
                                         />
                                       ) : (
-                                        <h4 className="text-[11px] sm:text-xs font-black capitalize text-zinc-900 dark:text-white truncate max-w-full leading-none">
+                                        <h4 className="text-sm font-medium capitalize text-zinc-900 dark:text-white truncate max-w-full leading-tight">
                                           {player.name.toLowerCase()}
                                         </h4>
                                       )}
                                     </div>
 
                                     {/* Position Tag / Subtitle */}
-                                    <span className="text-[7px] sm:text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mt-1 leading-none">
-                                      {player.isGoalkeeper ? "Goleiro" : ""}
+                                    <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 mt-0.5 leading-none">
+                                      {player.isGoalkeeper ? "Goleiro" : "Jogador"}
                                     </span>
                                   </div>
+
+                                  {/* Stats Row */}
+                                  <div className="w-full flex justify-between items-center mt-4 pt-3 border-t border-black/5 dark:border-white/5 px-2">
+                                    <div className="flex flex-col items-center">
+                                      <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.matchesPlayed || 0}</span>
+                                      <span className="text-[9px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none">Jogos</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                      <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.goals || 0}</span>
+                                      <span className="text-[9px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none">Gols</span>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                      <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.assists || 0}</span>
+                                      <span className="text-[9px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none">Assist.</span>
+                                    </div>
+                                  </div>
+
                                 </motion.div>
                               ))}
                             </div>
