@@ -8575,7 +8575,7 @@ function GroupApp({
                       transition={{ duration: 0.2 }}
                       className="w-full max-w-md flex flex-col space-y-3.5 bg-gradient-to-br from-[#144011] via-[#1b5017] to-[#0e2c0e] p-4 sm:p-5 rounded-[28px] shadow-xl border border-white/10 my-auto"
                     >
-                      <div className="py-2 px-4 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-xl border border-emerald-500/30 shadow-md flex items-center justify-center mb-1">
+                      <div className="py-1.5 px-3 bg-gradient-to-r from-[#0e2c0e] via-[#133d10] to-[#0e2c0e] rounded-xl border border-emerald-500/20 shadow-sm flex items-center justify-center mb-0.5">
                         <FutQuinaLogo size="md" titleColorClass="text-white" />
                       </div>
                       <div className="flex items-center justify-between px-1 pt-1">
@@ -8894,8 +8894,33 @@ function GroupApp({
                           </div>
                         </div>
 
-                        {/* Botão Configurar Partida fora da div, abaixo dela */}
-                        <div className="w-full">
+                        {/* Stats Jogadores & Saldo acima do botão Configurar Partida */}
+                        <div className="grid grid-cols-2 gap-2 relative z-10 mt-2 mb-2">
+                          {/* Jogadores Stat */}
+                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
+                            <div className="flex items-center gap-2">
+                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
+                                <Users size={13} />
+                              </div>
+                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Jogadores</span>
+                            </div>
+                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">{visiblePlayers.length}</span>
+                          </div>
+
+                          {/* Caixa Stat */}
+                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
+                            <div className="flex items-center gap-2">
+                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
+                                <Wallet size={13} />
+                              </div>
+                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Saldo</span>
+                            </div>
+                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">R$ {currentNetBalance}</span>
+                          </div>
+                        </div>
+
+                        {/* Botão Configurar Partida */}
+                        <div className="w-full mb-2">
                           <motion.button
                             onClick={() => {
                               setShouldPulseConfig(false);
@@ -8929,30 +8954,6 @@ function GroupApp({
                             </span>
                             <span>CONFIGURAR PARTIDA</span>
                           </motion.button>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2 relative z-10 mt-2.5 mb-2.5">
-                          {/* Jogadores Stat */}
-                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
-                            <div className="flex items-center gap-2">
-                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
-                                <Users size={13} />
-                              </div>
-                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Jogadores</span>
-                            </div>
-                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">{visiblePlayers.length}</span>
-                          </div>
-
-                          {/* Caixa Stat */}
-                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
-                            <div className="flex items-center gap-2">
-                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
-                                <Wallet size={13} />
-                              </div>
-                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Saldo</span>
-                            </div>
-                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">R$ {currentNetBalance}</span>
-                          </div>
                         </div>
 
                         <section className="w-full relative pt-2">
@@ -8995,7 +8996,7 @@ function GroupApp({
                                 >
                                   {/* Left section containing photo */}
                                   <div className="relative flex items-center justify-center shrink-0">
-                                    <div className="w-12 h-12 rounded-full border-2 border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shadow-none dark:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                                    <div className="w-12 h-12 rounded-full border border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shadow-none dark:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                                       {player.photo ? (
                                         <img
                                           src={player.photo}
@@ -9068,15 +9069,15 @@ function GroupApp({
                                   {/* Stats Row */}
                                   <div className="flex items-center gap-2 sm:gap-4 shrink-0 pr-1 ml-2">
                                     <div className="flex flex-col items-center min-w-[28px]">
-                                      <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.matchesPlayed || 0}</span>
+                                      <span className="text-xs font-bold text-zinc-900 dark:text-white leading-none">{player.matchesPlayed || 0}</span>
                                       <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Jogos</span>
                                     </div>
                                     <div className="flex flex-col items-center min-w-[28px]">
-                                      <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.goals || 0}</span>
+                                      <span className="text-xs font-bold text-zinc-900 dark:text-white leading-none">{player.goals || 0}</span>
                                       <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Gols</span>
                                     </div>
                                     <div className="flex flex-col items-center min-w-[28px]">
-                                      <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.assists || 0}</span>
+                                      <span className="text-xs font-bold text-zinc-900 dark:text-white leading-none">{player.assists || 0}</span>
                                       <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Assist.</span>
                                     </div>
                                   </div>
@@ -10176,7 +10177,11 @@ function GroupApp({
                                 />
                               )}
                               <div
-                                className={`w-10 h-10 rounded-full bg-transparent flex items-center justify-center overflow-hidden border border-black/10 dark:border-white/10`}
+                                className={`w-10 h-10 rounded-full bg-transparent flex items-center justify-center overflow-hidden border transition-colors ${
+                                  p.isAvailable
+                                    ? "border-[#2ea625] dark:border-[#59b823]"
+                                    : "border-black/10 dark:border-white/10"
+                                }`}
                               >
                                 {p.photo ? (
                                   <img
@@ -10189,7 +10194,7 @@ function GroupApp({
                                   <span
                                     className={
                                       (p.isAvailable
-                                        ? "text-black/80 dark:text-white/80"
+                                        ? "text-[#2ea625] dark:text-[#59b823]"
                                         : "text-black/50 dark:text-white/40") +
                                       " flex items-center shrink-0"
                                     }
@@ -12057,7 +12062,7 @@ function GroupApp({
                                       return;
                                     }
                                   }}
-                                  className={`p-4 rounded-2xl border transition-all relative min-h-[110px] flex flex-col justify-center overflow-hidden ${
+                                  className={`p-2.5 sm:p-3 rounded-2xl border transition-all relative min-h-0 flex flex-col justify-center overflow-hidden ${
                                     movingPlayers && isSelectingDestination
                                       ? "cursor-pointer hover:opacity-90"
                                       : "cursor-default"
@@ -12410,7 +12415,7 @@ function GroupApp({
                                   {!isCurrent &&
                                     t.playerIds.length <
                                       match.config.playersPerTeam && (
-                                      <div className="absolute top-4 left-0 right-0 flex justify-center z-10 pointer-events-none">
+                                      <div className="absolute top-2 left-0 right-0 flex justify-center z-10 pointer-events-none">
                                         <div className="flex items-center gap-1.5 pointer-events-auto">
                                           <span className="text-[10px] font-bold text-black/50 dark:text-white/40 uppercase tracking-widest">
                                             Falta{" "}
@@ -12485,7 +12490,7 @@ function GroupApp({
                                       t.playerIds.length <
                                         match.config.playersPerTeam
                                         ? "pt-0 relative z-20"
-                                        : "pt-14 relative z-20"
+                                        : "pt-8 relative z-20"
                                     }
                                   >
                                     <motion.div
