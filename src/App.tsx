@@ -12604,7 +12604,7 @@ function GroupApp({
                                                                 .playersPerTeam,
                                                         )
                                                       ? "bg-[#53B986]/10 text-[#53B986] animate-pulse shadow-sm shadow-[#53B986]/10"
-                                                      : `border group shadow-sm ${isCurrent ? "bg-gradient-to-r from-[#59b823] via-[#75c628] to-[#25660e] text-zinc-900 dark:text-white border-transparent" : "text-zinc-900 dark:text-white bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 hover:bg-black/10 dark:bg-white/10 hover:border-black/20 dark:border-white/20"}`
+                                                      : `border group shadow-sm ${isCurrent ? "bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] text-white border-emerald-500/30 shadow-md" : "text-zinc-900 dark:text-white bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 hover:bg-black/10 dark:bg-white/10 hover:border-black/20 dark:border-white/20"}`
                                                 }`}
                                                 style={{
                                                   backgroundColor: !(
@@ -12636,13 +12636,13 @@ function GroupApp({
                                                 }}
                                               >
                                                 <div
-                                                  className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 overflow-hidden border ${isCurrent ? "border-black/20 dark:border-white/20 bg-black/5 dark:bg-white/5 text-zinc-900 dark:text-white shadow-inner" : "border-black/20 dark:border-white/20 bg-black/10 dark:bg-white/10"}`}
+                                                  className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 overflow-hidden border ${isCurrent ? "border-white/30 bg-white/10 text-white shadow-inner" : "border-black/20 dark:border-white/20 bg-black/10 dark:bg-white/10"}`}
                                                 >
                                                   {p.isGoalkeeper &&
                                                   orgProSettings.allowFixedGoalkeeper !==
                                                     false ? (
                                                     <div
-                                                      className={`flex items-center justify-center shrink-0 rounded-full w-4 h-4 text-[7px] font-black leading-none ${isCurrent ? "text-zinc-900 dark:text-white" : "text-black/50 dark:text-white/40"}`}
+                                                      className={`flex items-center justify-center shrink-0 rounded-full w-4 h-4 text-[7px] font-black leading-none ${isCurrent ? "text-white" : "text-black/50 dark:text-white/40"}`}
                                                     >
                                                       G
                                                     </div>
@@ -12654,7 +12654,7 @@ function GroupApp({
                                                     ></img>
                                                   ) : (
                                                     <span
-                                                      className={`flex items-center shrink-0 ${isCurrent ? "text-zinc-900 dark:text-white/90" : "text-black/50 dark:text-white/40"}`}
+                                                      className={`flex items-center shrink-0 ${isCurrent ? "text-white" : "text-black/50 dark:text-white/40"}`}
                                                     >
                                                       <IoPersonOutline
                                                         size={10}
@@ -12664,7 +12664,7 @@ function GroupApp({
                                                 </div>
                                                 <div className="flex flex-col items-start overflow-hidden">
                                                   <span
-                                                    className={`text-[10px] font-bold tracking-tight capitalize truncate leading-none ${isCurrent ? "text-zinc-900 dark:text-zinc-800" : "text-black/90 dark:text-white/90"}`}
+                                                    className={`text-[10px] font-bold tracking-tight capitalize truncate leading-none ${isCurrent ? "text-white" : "text-black/90 dark:text-white/90"}`}
                                                   >
                                                     {p.name.toLowerCase()}
                                                   </span>
@@ -14666,8 +14666,8 @@ function GroupApp({
                             {players.find(
                               (p) => p.id === showPlayerActionsModal.playerId,
                             )?.isGoalkeeper
-                              ? "Goleiro Fixo"
-                              : "Goleiro Fixo"}
+                              ? "Desmarcar Goleiro"
+                              : "Marcar Goleiro"}
                           </span>
                         </div>
                       </button>
@@ -14958,8 +14958,8 @@ function GroupApp({
                             {players.find(
                               (p) => p.id === showQueuePlayerModal.playerId,
                             )?.isGoalkeeper
-                              ? "Goleiro Fixo"
-                              : "Goleiro Fixo"}
+                              ? "Desmarcar Goleiro"
+                              : "Marcar Goleiro"}
                           </button>
                         )}
                       <button
