@@ -1935,73 +1935,75 @@ const PlayerManagementModalComponent = ({
         className="w-full max-w-[320px] bg-white dark:bg-[#0b0e17]/95 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white backdrop-blur-xl rounded-[24px] relative overflow-hidden flex flex-col shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="bg-white dark:bg-white/[0.03] pt-6 pb-4 px-5 text-center relative overflow-hidden flex flex-col items-center">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-[#34d399]/5 rounded-full -mr-8 -mt-8 blur-xl" />
-          <div className="absolute bottom-0 left-0 w-16 h-16 bg-black/5 dark:bg-white/5 rounded-full -ml-8 -mb-8 blur-lg" />
+        <div className="p-3 pb-0">
+          <div className="bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] pt-5 pb-3.5 px-4 text-center relative overflow-hidden flex flex-col items-center rounded-2xl border border-emerald-500/30 shadow-md text-white">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-400/10 rounded-full -mr-8 -mt-8 blur-xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-16 h-16 bg-emerald-500/10 rounded-full -ml-8 -mb-8 blur-lg pointer-events-none" />
 
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 p-1.5 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-full text-black/70 dark:text-white/60 hover:text-zinc-900 dark:text-white transition-all cursor-pointer"
-          >
-            <X size={14} />
-          </button>
+            <button
+              onClick={onClose}
+              className="absolute top-2.5 right-2.5 p-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-white/80 hover:text-white transition-all cursor-pointer z-20"
+            >
+              <X size={14} />
+            </button>
 
-          <div className="relative group mt-1">
-            <div className="w-16 h-16 rounded-full overflow-hidden border border-black/10 dark:border-white/10 shadow-lg bg-[#ebebeb] dark:bg-white/5 flex items-center justify-center relative">
-              {player.photo ? (
-                <img
-                  src={player.photo}
-                  alt={player.name}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
+            <div className="relative group mt-0.5">
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/30 shadow-lg bg-black/20 flex items-center justify-center relative">
+                {player.photo ? (
+                  <img
+                    src={player.photo}
+                    alt={player.name}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-white/70">
+                    <IoPersonOutline size={26} />
+                  </div>
+                )}
+              </div>
+
+              <label className="absolute bottom-0 right-0 w-5 h-5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full flex items-center justify-center cursor-pointer shadow-md transition-all active:scale-95 border border-white/30">
+                <Camera size={10} />
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  onChange={handleFileChange}
                 />
-              ) : (
-                <div className="flex flex-col items-center justify-center text-black/50 dark:text-white/40">
-                  <IoPersonOutline size={28} />
-                </div>
-              )}
+              </label>
             </div>
 
-            <label className="absolute bottom-0 right-0 w-5 h-5 bg-white hover:bg-zinc-100 text-zinc-900 rounded-full flex items-center justify-center cursor-pointer shadow-md transition-all active:scale-95">
-              <Camera size={10} />
-              <input
-                type="file"
-                className="hidden"
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-            </label>
-          </div>
-
-          <div className="w-full mt-2 relative z-10">
-            <div className="text-center w-full">
-              <input
-                type="text"
-                defaultValue={player.name}
-                onBlur={(e) => onUpdateName(player.id, e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    onUpdateName(player.id, e.currentTarget.value);
-                    e.currentTarget.blur();
-                  }
-                }}
-                className="w-full bg-transparent text-sm font-black uppercase tracking-wider text-zinc-900 dark:text-white leading-none text-center outline-none transition-all placeholder:text-black/50 dark:text-white/40 py-0.5"
-              />
-              <div className="flex flex-wrap items-center justify-center gap-0.5 mt-0.5">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={`modal-star-${star}`}
-                    onClick={() =>
-                      onUpdateStars && onUpdateStars(player.id, star)
+            <div className="w-full mt-1.5 relative z-10">
+              <div className="text-center w-full">
+                <input
+                  type="text"
+                  defaultValue={player.name}
+                  onBlur={(e) => onUpdateName(player.id, e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      onUpdateName(player.id, e.currentTarget.value);
+                      e.currentTarget.blur();
                     }
-                    className="transition-all active:scale-95 p-0.5"
-                  >
-                    <Star
-                      size={12}
-                      className={`${(player.stars || 0) >= star ? "fill-yellow-400 text-yellow-400" : "text-black/20 dark:text-white/20"}`}
-                    />
-                  </button>
-                ))}
+                  }}
+                  className="w-full bg-transparent text-sm font-black uppercase tracking-wider text-white leading-none text-center outline-none transition-all placeholder:text-white/50 py-0.5"
+                />
+                <div className="flex flex-wrap items-center justify-center gap-0.5 mt-0.5">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={`modal-star-${star}`}
+                      onClick={() =>
+                        onUpdateStars && onUpdateStars(player.id, star)
+                      }
+                      className="transition-all active:scale-95 p-0.5"
+                    >
+                      <Star
+                        size={12}
+                        className={`${(player.stars || 0) >= star ? "fill-yellow-400 text-yellow-400" : "text-white/30"}`}
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -8336,7 +8338,7 @@ function GroupApp({
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Header */}
-                  <div className="relative px-6 pt-6 pb-4 border-b border-black/10 dark:border-white/10 flex items-center justify-between overflow-hidden">
+                  <div className="relative px-6 pt-6 pb-4 border-b border-black/10 dark:border-white/10 flex items-center justify-end overflow-hidden">
                     {selectedMatchId &&
                       scheduledMatches.find((m) => m.id === selectedMatchId)
                         ?.imageUrl && (
@@ -8349,30 +8351,6 @@ function GroupApp({
                           }}
                         />
                       )}
-                    <button
-                      onClick={() =>
-                        setTheme(theme === "light" ? "dark" : "light")
-                      }
-                      className="relative z-10 flex-1 flex items-center gap-4 text-left group cursor-pointer overflow-hidden"
-                    >
-                      <div className="w-5 h-5 flex items-center justify-center shrink-0 text-zinc-900 dark:text-white group-hover:scale-110 transition-transform">
-                        {theme === "light" ? (
-                          <Moon size={20} />
-                        ) : (
-                          <Sun size={20} />
-                        )}
-                      </div>
-                      <div className="flex-1 flex flex-col truncate">
-                        <span className="text-[14px] font-bold text-zinc-900 dark:text-white tracking-wide">
-                          Tema Visual
-                        </span>
-                        <span className="text-[10px] text-black/50 dark:text-white/40 font-medium">
-                          {theme === "light"
-                            ? "Alternar para modo escuro"
-                            : "Alternar para modo claro"}
-                        </span>
-                      </div>
-                    </button>
                     <button
                       onClick={() => setShowGlobalSettings(false)}
                       className="relative z-10 w-8 h-8 rounded-full shrink-0 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center text-black/70 dark:text-white/60 hover:text-zinc-900 dark:text-white hover:bg-black/10 dark:bg-white/10 active:scale-90 transition-all cursor-pointer"
@@ -8408,7 +8386,7 @@ function GroupApp({
                               alt="Painel de controle"
                             />
                             <div className="flex flex-col">
-                              <span className="text-[14px] font-bold text-zinc-900 dark:text-white tracking-wide">
+                              <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                                 Painel de controle
                               </span>
                               <span className="text-[10px] text-black/50 dark:text-white/40 font-medium">
@@ -8434,11 +8412,36 @@ function GroupApp({
                             alt="Fim da pelada"
                           />
                           <div className="flex flex-col">
-                            <span className="text-[14px] font-bold text-zinc-900 dark:text-white tracking-wide">
+                            <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Fim da pelada
                             </span>
                             <span className="text-[10px] text-black/50 dark:text-white/40 font-medium">
                               Salvar e fechar pelada
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                        className="w-full flex items-center justify-between p-4 hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all group cursor-pointer"
+                      >
+                        <div className="flex items-center gap-4 text-left w-full">
+                          <div className="w-5 h-5 flex items-center justify-center shrink-0 text-zinc-900 dark:text-white group-hover:scale-110 transition-transform">
+                            {theme === "light" ? (
+                              <Moon size={20} />
+                            ) : (
+                              <Sun size={20} />
+                            )}
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
+                              Tema Visual
+                            </span>
+                            <span className="text-[10px] text-black/50 dark:text-white/40 font-medium">
+                              {theme === "light"
+                                ? "Alternar para modo escuro"
+                                : "Alternar para modo claro"}
                             </span>
                           </div>
                         </div>
@@ -8459,7 +8462,7 @@ function GroupApp({
                             alt="Backup"
                           />
                           <div className="flex flex-col">
-                            <span className="text-[14px] font-bold text-zinc-900 dark:text-white tracking-wide">
+                            <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Backup
                             </span>
                             <span className="text-[10px] text-black/50 dark:text-white/40 font-medium">
@@ -8484,7 +8487,7 @@ function GroupApp({
                             alt="Restaurar Backup"
                           />
                           <div className="flex flex-col">
-                            <span className="text-[14px] font-bold text-zinc-900 dark:text-white tracking-wide">
+                            <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Restaurar Backup
                             </span>
                             <span className="text-[10px] text-black/50 dark:text-white/40 font-medium">
@@ -8509,7 +8512,7 @@ function GroupApp({
                             alt="Guia Inicial"
                           />
                           <div className="flex-1 flex flex-col">
-                            <span className="text-[14px] font-bold text-zinc-900 dark:text-white tracking-wide">
+                            <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Guia Inicial
                             </span>
                             <span className="text-[10px] text-black/50 dark:text-white/40 font-medium">
