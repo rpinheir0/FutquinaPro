@@ -8797,6 +8797,15 @@ function GroupApp({
                       transition={{ duration: 0.2 }}
                       className="space-y-4"
                     >
+                      <div className="p-3 sm:p-3.5 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-col gap-0.5 my-2">
+                        <h2 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white leading-none">
+                          GERENCIAMENTO
+                        </h2>
+                        <p className="text-[9px] font-medium text-emerald-100/80 leading-none">
+                          Adicione e gerencie os jogadores da pelada
+                        </p>
+                      </div>
+
                       <div className="space-y-4">
                         <div className="bg-gradient-to-br from-[#144011] via-[#20661b] to-[#2ea625] dark:bg-zinc-900 dark:from-transparent dark:via-transparent dark:to-transparent backdrop-blur-xl p-3 sm:p-4 rounded-[16px] border border-white/10 dark:border-white/10 space-y-3 sm:space-y-4 shadow-[0_0_15px_rgba(59,130,246,0.1)] dark:shadow-none">
                           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
@@ -8891,15 +8900,6 @@ function GroupApp({
                             </div>
                             <span className="text-[8px] font-bold text-black/50 dark:text-white/50 mt-1.5 uppercase tracking-wider leading-none">Saldo</span>
                           </div>
-                        </div>
-
-                        <div className="flex flex-col gap-0.5 mb-2 mt-2">
-                          <h2 className="text-[12px] font-black uppercase tracking-widest text-zinc-900 dark:text-white">
-                            GERENCIAMENTO
-                          </h2>
-                          <p className="text-[9px] font-medium text-black/60 dark:text-white/60">
-                            Adicione e gerencie os jogadores da pelada
-                          </p>
                         </div>
 
                         <section className="w-full relative pt-2">
@@ -9030,7 +9030,7 @@ function GroupApp({
 
                                     {/* Position Tag / Subtitle */}
                                     <span className="text-[7px] sm:text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mt-1 leading-none">
-                                      {player.isGoalkeeper ? "Goleiro" : "Jogador"}
+                                      {player.isGoalkeeper ? "Goleiro" : ""}
                                     </span>
                                   </div>
                                 </motion.div>
