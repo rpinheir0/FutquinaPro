@@ -8892,61 +8892,66 @@ function GroupApp({
                               </button>
                             </div>
                           </div>
-
-                          {/* Botão Configurar Partida destacado acima da lista de jogadores */}
-                          <div className="w-full flex justify-start">
-                            <motion.button
-                              onClick={() => {
-                                setShouldPulseConfig(false);
-                                setCurrentScreen("teams");
-                                setTeamsTab("configuracao");
-                                if (!firstSetupDone) {
-                                  setIsInitialSetupFlow(true);
-                                }
-                              }}
-                              animate={
-                                shouldPulseConfig
-                                  ? {
-                                      scale: [1, 1.02, 1],
-                                      boxShadow: [
-                                        "0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)",
-                                        "0px 10px 15px -3px rgba(52, 211, 153, 0.3), 0px 4px 6px -2px rgba(52, 211, 153, 0.15)",
-                                        "0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)",
-                                      ],
-                                    }
-                                  : {}
-                              }
-                              transition={
-                                shouldPulseConfig
-                                  ? { repeat: Infinity, duration: 1.5 }
-                                  : {}
-                              }
-                              className="w-auto px-6 h-8 bg-[#2ea625] dark:bg-[#59b823] text-white text-[9px] font-black uppercase tracking-widest rounded-xl shadow-sm hover:opacity-90 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 cursor-pointer"
-                            >
-                              <span className="text-white flex items-center shrink-0">
-                                <PiGearBold size={12} />
-                              </span>
-                              <span>CONFIGURAR PARTIDA</span>
-                            </motion.button>
-                          </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 relative z-10 mt-2 mb-2">
+                        {/* Botão Configurar Partida fora da div, abaixo dela */}
+                        <div className="w-full">
+                          <motion.button
+                            onClick={() => {
+                              setShouldPulseConfig(false);
+                              setCurrentScreen("teams");
+                              setTeamsTab("configuracao");
+                              if (!firstSetupDone) {
+                                setIsInitialSetupFlow(true);
+                              }
+                            }}
+                            animate={
+                              shouldPulseConfig
+                                ? {
+                                    scale: [1, 1.02, 1],
+                                    boxShadow: [
+                                      "0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                                      "0px 10px 15px -3px rgba(52, 211, 153, 0.3), 0px 4px 6px -2px rgba(52, 211, 153, 0.15)",
+                                      "0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                                    ],
+                                  }
+                                : {}
+                            }
+                            transition={
+                              shouldPulseConfig
+                                ? { repeat: Infinity, duration: 1.5 }
+                                : {}
+                            }
+                            className="w-full h-9 bg-[#2ea625] dark:bg-[#59b823] text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-sm hover:opacity-90 transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
+                          >
+                            <span className="text-white flex items-center shrink-0">
+                              <PiGearBold size={14} />
+                            </span>
+                            <span>CONFIGURAR PARTIDA</span>
+                          </motion.button>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 relative z-10 mt-2.5 mb-2.5">
                           {/* Jogadores Stat */}
-                          <div className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl py-2 flex flex-col items-center justify-center text-center shadow-sm">
-                            <div className="flex items-center gap-1.5 text-zinc-900 dark:text-white">
-                              <Users size={12} className="opacity-70" />
-                              <span className="text-[13px] font-black tracking-tight leading-none">{visiblePlayers.length}</span>
+                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
+                            <div className="flex items-center gap-2">
+                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
+                                <Users size={13} />
+                              </div>
+                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Jogadores</span>
                             </div>
-                            <span className="text-[8px] font-bold text-black/50 dark:text-white/50 mt-1 uppercase tracking-wider leading-none">Jogadores</span>
+                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">{visiblePlayers.length}</span>
                           </div>
 
                           {/* Caixa Stat */}
-                          <div className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl py-2 flex flex-col items-center justify-center text-center shadow-sm">
-                            <div className="flex flex-col items-center">
-                              <span className="text-[11px] font-black tracking-tight text-zinc-900 dark:text-white leading-none">R$ {currentNetBalance}</span>
+                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
+                            <div className="flex items-center gap-2">
+                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
+                                <Wallet size={13} />
+                              </div>
+                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Saldo</span>
                             </div>
-                            <span className="text-[8px] font-bold text-black/50 dark:text-white/50 mt-1.5 uppercase tracking-wider leading-none">Saldo</span>
+                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">R$ {currentNetBalance}</span>
                           </div>
                         </div>
 
@@ -8990,7 +8995,7 @@ function GroupApp({
                                 >
                                   {/* Left section containing photo */}
                                   <div className="relative flex items-center justify-center shrink-0">
-                                    <div className="w-12 h-12 rounded-full border-2 border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                                    <div className="w-12 h-12 rounded-full border-2 border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shadow-none dark:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                                       {player.photo ? (
                                         <img
                                           src={player.photo}
