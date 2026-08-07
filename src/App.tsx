@@ -13339,20 +13339,20 @@ function GroupApp({
 
                     <div className="flex flex-col gap-1.5">
                       {rankingTab === "geral" && sortedRankingPlayers.length > 0 && (
-                        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6">
+                        <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4">
                           {sortedRankingPlayers.slice(0, 3).map((player, index) => {
                             const place = index + 1;
                             return (
                               <div
                                 key={`top-card-${player.id}`}
-                                className="bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-2xl flex flex-col justify-between overflow-hidden shadow-sm text-center"
+                                className="bg-white dark:bg-emerald-950/20 dark:backdrop-blur-xs border border-black/10 dark:border-emerald-500/20 rounded-2xl flex flex-col justify-between overflow-hidden shadow-xs text-center"
                               >
                                 {/* Top part */}
-                                <div className="p-2 sm:p-4 pb-1 sm:pb-2 flex flex-col items-center">
+                                <div className="p-1.5 sm:p-2.5 pb-1 flex flex-col items-center">
                                   {/* Avatar container with relative overlay */}
-                                  <div className="relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+                                  <div className="relative w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
                                     {/* The avatar circle */}
-                                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-white dark:border-zinc-800 shadow-md relative bg-[#e2e8f0] dark:bg-zinc-800 flex items-center justify-center z-10 shrink-0">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-white dark:border-emerald-500/30 shadow-xs relative bg-[#e2e8f0] dark:bg-emerald-900/30 flex items-center justify-center z-10 shrink-0">
                                       {player.photo ? (
                                         <img
                                           src={player.photo}
@@ -13361,44 +13361,44 @@ function GroupApp({
                                           referrerPolicy="no-referrer"
                                         />
                                       ) : (
-                                        <span className="text-zinc-600 dark:text-zinc-400 flex items-center justify-center">
-                                          <IoPersonOutline size={20} />
+                                        <span className="text-zinc-600 dark:text-emerald-400/70 flex items-center justify-center">
+                                          <IoPersonOutline size={16} />
                                         </span>
                                       )}
                                     </div>
                                   </div>
 
                                   {/* Position number under avatar */}
-                                  <span className="text-[10px] sm:text-xs font-bold text-zinc-400 dark:text-zinc-500 mt-1">
+                                  <span className="text-[9px] sm:text-[10px] font-bold text-zinc-400 dark:text-emerald-400/80 mt-0.5">
                                     {place}
                                   </span>
 
                                   {/* Name */}
-                                  <h4 className="text-[10px] sm:text-xs font-black uppercase text-zinc-900 dark:text-white truncate max-w-full leading-none mt-1">
+                                  <h4 className="text-[9px] sm:text-[11px] font-black uppercase text-zinc-900 dark:text-white truncate max-w-full leading-none mt-0.5">
                                     {player.name}
                                   </h4>
 
                                   {/* Country style label */}
-                                  <span className="text-[7px] sm:text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mt-0.5">
+                                  <span className="text-[7px] sm:text-[8px] font-bold text-zinc-400 dark:text-emerald-200/60 uppercase tracking-wider mt-0.5">
                                     {place === 1 ? "1º Lugar" : place === 2 ? "2º Lugar" : "3º Lugar"}
                                   </span>
                                 </div>
 
                                 {/* Bottom stats split into 2 sections */}
-                                <div className="border-t border-black/5 dark:border-white/5 grid grid-cols-2 bg-black/[0.01] dark:bg-white/[0.01] text-center">
-                                  <div className="p-1 sm:p-2 flex flex-col items-center justify-center border-r border-black/5 dark:border-white/5">
-                                    <span className="text-[10px] sm:text-sm font-black text-zinc-800 dark:text-zinc-100 leading-none">
+                                <div className="border-t border-black/5 dark:border-emerald-500/10 grid grid-cols-2 bg-black/[0.01] dark:bg-emerald-950/40 text-center">
+                                  <div className="p-1 flex flex-col items-center justify-center border-r border-black/5 dark:border-emerald-500/10">
+                                    <span className="text-[10px] sm:text-xs font-black text-zinc-800 dark:text-white leading-none">
                                       {player.goals || 0}
                                     </span>
-                                    <span className="text-[6px] sm:text-[8px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mt-0.5">
+                                    <span className="text-[6px] sm:text-[7px] font-bold text-zinc-400 dark:text-emerald-300/60 uppercase tracking-widest mt-0.5">
                                       GOLS
                                     </span>
                                   </div>
-                                  <div className="p-1 sm:p-2 flex flex-col items-center justify-center">
-                                    <span className="text-[10px] sm:text-sm font-black text-blue-400 leading-none">
+                                  <div className="p-1 flex flex-col items-center justify-center">
+                                    <span className="text-[10px] sm:text-xs font-black text-blue-500 dark:text-blue-400 leading-none">
                                       {player.assists || 0}
                                     </span>
-                                    <span className="text-[6px] sm:text-[8px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mt-0.5">
+                                    <span className="text-[6px] sm:text-[7px] font-bold text-zinc-400 dark:text-emerald-300/60 uppercase tracking-widest mt-0.5">
                                       ASS
                                     </span>
                                   </div>
