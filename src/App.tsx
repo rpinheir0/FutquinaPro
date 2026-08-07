@@ -13621,7 +13621,7 @@ function GroupApp({
                               <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                                 {/* Saldo Líquido Card */}
                                 <div
-                                  className={`p-2.5 sm:p-3 transition-all col-span-2 lg:col-span-1 order-1 lg:order-none overflow-hidden relative ${
+                                  className={`p-3.5 sm:p-4 transition-all col-span-2 lg:col-span-1 order-1 lg:order-none overflow-hidden relative ${
                                     isPrintMode
                                       ? "bg-white border-zinc-300 border rounded-none"
                                       : "bg-gradient-to-br from-zinc-100 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 rounded-2xl shadow-sm backdrop-blur-xl"
@@ -13629,18 +13629,21 @@ function GroupApp({
                                 >
                                   {!isPrintMode && (
                                     <>
-                                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#dce3ee] dark:bg-blue-500/10 rounded-full blur-[40px] pointer-events-none" />
-                                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-[40px] pointer-events-none" />
+                                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#dce3ee] dark:bg-[#34d399]/10 rounded-full blur-[40px] pointer-events-none" />
+                                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#34d399]/5 rounded-full blur-[40px] pointer-events-none" />
                                     </>
                                   )}
-                                  <div className="flex flex-col items-start gap-1 relative z-10 w-full">
+                                  <div className="flex flex-col gap-2 relative z-10 w-full">
                                     {/* Top Header Row with Title on Left and Eye Icon on Right */}
                                     <div className="flex items-center justify-between w-full">
-                                      <p
-                                        className={`text-[9px] font-black uppercase tracking-widest ${isPrintMode ? "text-zinc-600" : "text-black/60 dark:text-white/50"}`}
-                                      >
-                                        Saldo em Caixa
-                                      </p>
+                                      <div className="flex items-center gap-1.5">
+                                        <p
+                                          className={`text-[9px] font-black uppercase tracking-widest ${isPrintMode ? "text-zinc-600" : "text-black/60 dark:text-white/50"}`}
+                                        >
+                                          Saldo em Caixa
+                                        </p>
+                                        <TrendingUp size={14} className="text-[#2ea625] dark:text-[#34d399]" />
+                                      </div>
                                       {!isPrintMode && (
                                         <button
                                           onClick={() => {
@@ -13666,56 +13669,62 @@ function GroupApp({
                                       )}
                                     </div>
 
-                                    {/* Circular Gauge Graphic aligned to the left */}
-                                    {!isPrintMode && (
-                                      <div className="relative shrink-0 flex items-center justify-center w-18 h-18 sm:w-20 sm:h-20 my-1">
-                                        <div className="absolute inset-0 rounded-full bg-[#181d2a] dark:bg-[#121623] border border-black/10 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5">
-                                          <svg viewBox="0 0 120 120" className="w-full h-full transform -rotate-90">
-                                            <defs>
-                                              <linearGradient id="gauge-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stopColor="#2ea625" />
-                                                <stop offset="50%" stopColor="#34d399" />
-                                                <stop offset="100%" stopColor="#59b823" />
-                                              </linearGradient>
-                                            </defs>
-                                            {/* Background ring */}
-                                            <circle
-                                              cx="60"
-                                              cy="60"
-                                              r="46"
-                                              stroke="currentColor"
-                                              strokeWidth="10"
-                                              className="text-black/10 dark:text-white/15"
-                                              fill="none"
-                                            />
-                                            {/* Progress arc */}
-                                            <circle
-                                              cx="60"
-                                              cy="60"
-                                              r="46"
-                                              stroke="url(#gauge-ring-grad)"
-                                              strokeWidth="10"
-                                              strokeLinecap="round"
-                                              fill="none"
-                                              strokeDasharray={2 * Math.PI * 46}
-                                              strokeDashoffset={2 * Math.PI * 46 * 0.25}
-                                            />
-                                          </svg>
-
-                                          {/* Centered value */}
-                                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-0.5 pointer-events-none z-0">
-                                            <span className="text-[8px] font-medium text-zinc-500 dark:text-zinc-400 tracking-wide leading-none mb-0.5">
-                                              R$
-                                            </span>
-                                            <span className="text-xs sm:text-sm font-black text-[#2ea625] dark:text-[#34d399] tracking-tight leading-tight">
-                                              <AnimatedCounter value={netBalance >= 0 ? netBalance : 0} />,00
-                                            </span>
+                                    {/* Content Row: Circular Gauge on Left, Balance Number on Right */}
+                                    {!isPrintMode ? (
+                                      <div className="flex items-center gap-3.5 sm:gap-4 py-0.5">
+                                        {/* Circular Gauge Graphic */}
+                                        <div className="relative shrink-0 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16">
+                                          <div className="absolute inset-0 rounded-full bg-[#181d2a] dark:bg-[#121623] border border-black/10 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5">
+                                            <svg viewBox="0 0 120 120" className="w-full h-full transform -rotate-90">
+                                              <defs>
+                                                <linearGradient id="gauge-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                  <stop offset="0%" stopColor="#2ea625" />
+                                                  <stop offset="50%" stopColor="#34d399" />
+                                                  <stop offset="100%" stopColor="#59b823" />
+                                                </linearGradient>
+                                              </defs>
+                                              {/* Background ring */}
+                                              <circle
+                                                cx="60"
+                                                cy="60"
+                                                r="46"
+                                                stroke="currentColor"
+                                                strokeWidth="10"
+                                                className="text-black/10 dark:text-white/15"
+                                                fill="none"
+                                              />
+                                              {/* Animated Progress arc */}
+                                              <motion.circle
+                                                cx="60"
+                                                cy="60"
+                                                r="46"
+                                                stroke="url(#gauge-ring-grad)"
+                                                strokeWidth="10"
+                                                strokeLinecap="round"
+                                                fill="none"
+                                                strokeDasharray={2 * Math.PI * 46}
+                                                initial={{ strokeDashoffset: 2 * Math.PI * 46 }}
+                                                animate={{ strokeDashoffset: 2 * Math.PI * 46 * 0.25 }}
+                                                transition={{ duration: 1.2, ease: "easeOut" }}
+                                              />
+                                            </svg>
                                           </div>
                                         </div>
-                                      </div>
-                                    )}
 
-                                    {isPrintMode && (
+                                        {/* Balance Number */}
+                                        <div className="flex flex-col justify-center">
+                                          <p
+                                            className={`text-xl sm:text-2xl lg:text-3xl font-black tracking-tight ${
+                                              netBalance >= 0
+                                                ? "text-[#2ea625] dark:text-[#34d399]"
+                                                : "text-red-500 dark:text-red-400"
+                                            }`}
+                                          >
+                                            R$ <AnimatedCounter value={netBalance} />,00
+                                          </p>
+                                        </div>
+                                      </div>
+                                    ) : (
                                       <p className="text-lg sm:text-xl font-black text-black mt-1">
                                         R$ <AnimatedCounter value={netBalance} />,00
                                       </p>
