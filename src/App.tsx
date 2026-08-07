@@ -8927,73 +8927,60 @@ function GroupApp({
                               </div>
                             </div>
                           ) : (
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div className="flex flex-col gap-2">
                               {visiblePlayers.map((player) => (
                                 <motion.div
                                   layout
                                   key={`player-list-dash-switch-${player.id}`}
-                                  className="bg-white dark:bg-[#12151c] border border-black/5 dark:border-white/5 rounded-[20px] flex flex-col justify-between items-center overflow-hidden shadow-sm relative cursor-pointer hover:scale-[1.02] active:scale-95 transition-all text-zinc-900 dark:text-white p-3 sm:p-4 w-full mx-auto"
+                                  className="bg-white dark:bg-[#12151c] border border-black/5 dark:border-white/5 rounded-2xl flex flex-row items-center overflow-hidden shadow-sm relative cursor-pointer hover:scale-[1.02] active:scale-95 transition-all text-zinc-900 dark:text-white p-3 w-full mx-auto"
                                   onClick={() => {
                                     if (editingPlayerId !== player.id) {
                                       setPlayerManagementModal(player);
                                     }
                                   }}
                                 >
-                                  {/* Top section containing photo and name info */}
-                                  <div className="flex flex-col items-center justify-center w-full relative">
-                                    {/* Top Indicators */}
-                                    <div className="absolute top-0 right-0 flex items-center gap-1">
-                                      {player.addedVia === "whatsapp" && (
-                                        <span className="text-amber-500 bg-amber-500/10 p-1 rounded-full">
-                                          <CiStopwatch size={12} />
-                                        </span>
-                                      )}
-                                      <div className="w-6 h-6 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center bg-black/5 dark:bg-white/5">
-                                        <Star size={10} className="text-zinc-400 dark:text-zinc-500" />
-                                      </div>
-                                    </div>
-
-                                    {/* Glowing Avatar */}
-                                    <div className="relative mx-auto flex items-center justify-center mt-2 mb-3">
-                                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.5)]">
-                                        {player.photo ? (
-                                          <img
-                                            src={player.photo}
-                                            alt={player.name}
-                                            className="w-full h-full object-cover"
-                                            referrerPolicy="no-referrer"
-                                          />
-                                        ) : (
-                                          <span className="text-emerald-500 flex items-center justify-center">
-                                            <IoPersonOutline size={24} />
-                                          </span>
-                                        )}
-                                      </div>
-                                      
-                                      {/* Extra indicators over avatar (optional) */}
-                                      {player.isGoalkeeper && (
-                                        <span className="absolute -bottom-1 -right-1 bg-zinc-800 text-white dark:bg-zinc-700 p-1 rounded-full border border-emerald-500 text-[8px] flex items-center justify-center shadow-md">
-                                          <span className="animate-spin-slow flex items-center justify-center">
-                                            <GiSoccerBall size={10} />
-                                          </span>
-                                        </span>
-                                      )}
-                                      {orgProData[player.id] && !player.isGoalkeeper && (
-                                        <span className="absolute -top-1 -right-1 bg-yellow-500 text-white p-1 rounded-full border border-yellow-300 text-[8px] flex items-center justify-center shadow-md">
-                                          <span className="animate-bounce flex items-center justify-center">
-                                            <GiCrown size={10} />
-                                          </span>
+                                  {/* Left section containing photo */}
+                                  <div className="relative flex items-center justify-center shrink-0">
+                                    <div className="w-12 h-12 rounded-full border-2 border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                                      {player.photo ? (
+                                        <img
+                                          src={player.photo}
+                                          alt={player.name}
+                                          className="w-full h-full object-cover"
+                                          referrerPolicy="no-referrer"
+                                        />
+                                      ) : (
+                                        <span className="text-emerald-500 flex items-center justify-center">
+                                          <IoPersonOutline size={20} />
                                         </span>
                                       )}
                                     </div>
+                                    
+                                    {/* Extra indicators over avatar (optional) */}
+                                    {player.isGoalkeeper && (
+                                      <span className="absolute -bottom-1 -right-1 bg-zinc-800 text-white dark:bg-zinc-700 p-1 rounded-full border border-emerald-500 text-[8px] flex items-center justify-center shadow-md">
+                                        <span className="animate-spin-slow flex items-center justify-center">
+                                          <GiSoccerBall size={8} />
+                                        </span>
+                                      </span>
+                                    )}
+                                    {orgProData[player.id] && !player.isGoalkeeper && (
+                                      <span className="absolute -top-1 -right-1 bg-yellow-500 text-white p-1 rounded-full border border-yellow-300 text-[8px] flex items-center justify-center shadow-md">
+                                        <span className="animate-bounce flex items-center justify-center">
+                                          <GiCrown size={8} />
+                                        </span>
+                                      </span>
+                                    )}
+                                  </div>
 
-                                    {/* Player Name */}
-                                    <div className="w-full text-center mt-1">
+                                  {/* Middle section containing name and position */}
+                                  <div className="flex flex-col flex-1 ml-3 text-left justify-center overflow-hidden">
+                                    <div className="flex items-center gap-1.5">
                                       {editingPlayerId === player.id ? (
                                         <input
                                           autoFocus
                                           defaultValue={player.name}
-                                          className="w-full bg-black/10 dark:bg-white/10 border-b border-blue-500 outline-none text-[11px] font-medium py-0.5 px-1 rounded-none text-zinc-900 dark:text-white text-center"
+                                          className="w-full bg-black/10 dark:bg-white/10 border-b border-blue-500 outline-none text-[11px] font-medium py-0.5 px-1 rounded-none text-zinc-900 dark:text-white"
                                           onClick={(e) => e.stopPropagation()}
                                           onKeyDown={(e) => {
                                             if (e.key === "Enter")
@@ -9012,10 +8999,19 @@ function GroupApp({
                                           }
                                         />
                                       ) : (
-                                        <h4 className="text-sm font-medium capitalize text-zinc-900 dark:text-white truncate max-w-full leading-tight">
+                                        <h4 className="text-sm font-semibold capitalize text-zinc-900 dark:text-white truncate max-w-[120px] leading-tight">
                                           {player.name.toLowerCase()}
                                         </h4>
                                       )}
+                                      
+                                      {player.addedVia === "whatsapp" && (
+                                        <span className="text-amber-500 bg-amber-500/10 p-0.5 rounded-full flex shrink-0">
+                                          <CiStopwatch size={10} />
+                                        </span>
+                                      )}
+                                      <div className="w-4 h-4 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
+                                        <Star size={8} className="text-zinc-400 dark:text-zinc-500" />
+                                      </div>
                                     </div>
 
                                     {/* Position Tag / Subtitle */}
@@ -9025,18 +9021,18 @@ function GroupApp({
                                   </div>
 
                                   {/* Stats Row */}
-                                  <div className="w-full flex justify-between items-center mt-4 pt-3 border-t border-black/5 dark:border-white/5 px-2">
-                                    <div className="flex flex-col items-center">
+                                  <div className="flex items-center gap-2 sm:gap-4 shrink-0 pr-1 ml-2">
+                                    <div className="flex flex-col items-center min-w-[28px]">
                                       <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.matchesPlayed || 0}</span>
-                                      <span className="text-[9px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none">Jogos</span>
+                                      <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Jogos</span>
                                     </div>
-                                    <div className="flex flex-col items-center">
+                                    <div className="flex flex-col items-center min-w-[28px]">
                                       <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.goals || 0}</span>
-                                      <span className="text-[9px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none">Gols</span>
+                                      <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Gols</span>
                                     </div>
-                                    <div className="flex flex-col items-center">
+                                    <div className="flex flex-col items-center min-w-[28px]">
                                       <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none">{player.assists || 0}</span>
-                                      <span className="text-[9px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none">Assist.</span>
+                                      <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Assist.</span>
                                     </div>
                                   </div>
 
