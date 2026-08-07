@@ -9185,51 +9185,62 @@ function GroupApp({
                     </div>
                   ) : teamsTab === "configuracao" ? (
                     <div className="space-y-6">
-                      <div className="sticky top-[-1px] z-40 bg-transparent backdrop-blur-md py-4 -mx-2 px-2 sm:-mx-4 sm:px-4 flex justify-between items-center border-b border-black/10 dark:border-white/10">
-                        <h3 className="text-sm font-black uppercase tracking-widest text-zinc-900 dark:text-white">
-                          Configuração
+                      <div className="p-3 sm:p-3.5 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-col gap-0.5 my-2">
+                        <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white leading-none">
+                          CONFIGURAÇÃO
                         </h3>
+                        <p className="text-[9px] font-medium text-emerald-100/80 leading-none">
+                          Defina as regras gerais da partida e tempo de jogo
+                        </p>
                       </div>
 
                       <div className="space-y-6 pb-24">
-                        <div className="grid grid-cols-3 gap-2 sm:gap-4">
-                          <div className="space-y-1">
-                            <label className="text-[8px] font-black uppercase tracking-[0.15em] text-black/60 dark:text-white/50 block text-center mb-1.5">
+                        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                          <div className="p-2 sm:p-2.5 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl flex flex-col items-center justify-between gap-1.5 shadow-sm hover:border-emerald-500/30 transition-all">
+                            <label className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black/60 dark:text-white/60 text-center leading-tight">
                               Tempo (Minutos)
                             </label>
-                            <input
-                              type="number"
-                              defaultValue={match.config.duration}
-                              min={1}
-                              id="tab-match-duration"
-                              className="w-full h-10 px-3 rounded-xl outline-none font-bold bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white placeholder:text-white/30 focus:border-[#2ea625] dark:focus:border-[#59b823] focus:bg-black/10 dark:bg-white/10 transition-all text-center text-xs [color-scheme:dark]"
-                            />
+                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-[#0e2c0e]/10 via-[#1b5017]/20 to-[#2ea625]/10 dark:from-[#0e2c0e]/40 dark:via-[#1b5017]/50 dark:to-[#2ea625]/30 rounded-xl border border-emerald-500/30 p-1">
+                              <input
+                                type="number"
+                                defaultValue={match.config.duration}
+                                min={1}
+                                id="tab-match-duration"
+                                className="w-full h-8 outline-none font-black text-sm sm:text-base text-center bg-transparent text-[#1b5017] dark:text-emerald-400 [color-scheme:dark]"
+                              />
+                            </div>
                           </div>
-                          <div className="space-y-1">
-                            <label className="text-[8px] font-black uppercase tracking-[0.15em] text-black/60 dark:text-white/50 block text-center mb-1.5">
+
+                          <div className="p-2 sm:p-2.5 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl flex flex-col items-center justify-between gap-1.5 shadow-sm hover:border-emerald-500/30 transition-all">
+                            <label className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black/60 dark:text-white/60 text-center leading-tight">
                               Limite de Gols
                             </label>
-                            <input
-                              type="number"
-                              defaultValue={match.config.goalLimit}
-                              min={1}
-                              id="tab-match-goals"
-                              className="w-full h-10 px-3 rounded-xl outline-none font-bold bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white placeholder:text-white/30 focus:border-[#2ea625] dark:focus:border-[#59b823] focus:bg-black/10 dark:bg-white/10 transition-all text-center text-xs [color-scheme:dark]"
-                            />
+                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-[#0e2c0e]/10 via-[#1b5017]/20 to-[#2ea625]/10 dark:from-[#0e2c0e]/40 dark:via-[#1b5017]/50 dark:to-[#2ea625]/30 rounded-xl border border-emerald-500/30 p-1">
+                              <input
+                                type="number"
+                                defaultValue={match.config.goalLimit}
+                                min={1}
+                                id="tab-match-goals"
+                                className="w-full h-8 outline-none font-black text-sm sm:text-base text-center bg-transparent text-[#1b5017] dark:text-emerald-400 [color-scheme:dark]"
+                              />
+                            </div>
                           </div>
+
                           <div
-                            className={`space-y-1 transition-all duration-500 rounded-xl ${isFlashingConfig ? "animate-flash-highlight" : ""}`}
+                            className={`p-2 sm:p-2.5 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl flex flex-col items-center justify-between gap-1.5 shadow-sm hover:border-emerald-500/30 transition-all ${isFlashingConfig ? "animate-flash-highlight" : ""}`}
                           >
-                            <label className="text-[8px] font-black uppercase tracking-[0.15em] text-black/60 dark:text-white/50 block text-center mb-1.5">
-                              Jogadores por Time
+                            <label className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black/60 dark:text-white/60 text-center leading-tight">
+                              Jogadores / Time
                             </label>
-                            <input
-                              type="number"
-                              defaultValue={match.config.playersPerTeam}
-                              min={1}
-                              id="tab-match-players"
-                              className="w-full h-10 px-3 rounded-xl outline-none font-bold bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white placeholder:text-white/30 focus:border-[#2ea625] dark:focus:border-[#59b823] focus:bg-black/10 dark:bg-white/10 transition-all text-center text-xs [color-scheme:dark]"
-                            />
+                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-[#0e2c0e]/10 via-[#1b5017]/20 to-[#2ea625]/10 dark:from-[#0e2c0e]/40 dark:via-[#1b5017]/50 dark:to-[#2ea625]/30 rounded-xl border border-emerald-500/30 p-1">
+                              <input
+                                type="number"
+                                defaultValue={match.config.playersPerTeam}
+                                min={1}
+                                id="tab-match-players"
+                                className="w-full h-8 outline-none font-black text-sm sm:text-base text-center bg-transparent text-[#1b5017] dark:text-emerald-400 [color-scheme:dark]"
+                              />
+                            </div>
                           </div>
                         </div>
 
