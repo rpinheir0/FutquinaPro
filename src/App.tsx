@@ -10677,10 +10677,203 @@ function GroupApp({
                           )}
                         </div>
                       ) : (
-                        <div className="space-y-8 relative pb-12">
+                        <div className="space-y-4 sm:space-y-6 relative pb-12">
                           {match.hasEnded && (
                             <div className="absolute inset-0 z-40 bg-black/10 backdrop-blur-[1px] rounded-2xl pointer-events-auto cursor-default" />
                           )}
+
+                          {/* Match Momentum / Attack Pressure Graph */}
+                          {match.isActive && (() => {
+                            const totalDurationSeconds = (match.config.duration || 10) * 60;
+                            const elapsedSeconds = Math.max(0, Math.min(totalDurationSeconds, totalDurationSeconds - match.timeRemaining));
+                            
+                            // Total bars across graph width
+                            const numBars = 44;
+                            const secondsPerBar = totalDurationSeconds / numBars;
+                            const currentBarIndex = Math.min(numBars - 1, Math.floor(elapsedSeconds / secondsPerBar));
+                            
+                            const bars = Array.from({ length: numBars }).map((_, i) => {
+                              const barStartTime = i * secondsPerBar;
+                              const barEndTime = (i + 1) * secondsPerBar;
+                              const isPastOrCurrent = barStartTime <= elapsedSeconds;
+                              const isCurrent = i === currentBarIndex && !match.isPaused;
+                              
+                              if (!isPastOrCurrent) {
+                                return { teamA: 0, teamB: 0, hasGoalA: false, hasGoalB: false, isPast: false, isCurrent: false };
+                              }
+                              
+                              const eventsInBarA = (match.events || []).filter(
+                                (e) => e.team === "A" && e.timestamp >= barStartTime && e.timestamp < barEndTime
+                              );
+                              const eventsInBarB = (match.events || []).filter(
+                                (e) => e.team === "B" && e.timestamp >= barStartTime && e.timestamp < barEndTime
+                              );
+                              
+                              const hasGoalA = eventsInBarA.length > 0;
+                              const hasGoalB = eventsInBarB.length > 0;
+                              
+                              const seedA = Math.sin(i * 12.9898 + 1.2) * 43758.5453;
+                              const noiseA = (seedA - Math.floor(seedA));
+                              const waveA = 0.35 + 0.35 * Math.sin(i * 0.4) + noiseA * 0.25;
+                              
+                              const seedB = Math.sin(i * 78.233 + 3.4) * 43758.5453;
+                              const noiseB = (seedB - Math.floor(seedB));
+                              const waveB = 0.35 + 0.35 * Math.cos(i * 0.45) + noiseB * 0.25;
+                              
+                              let teamAVal = Math.min(0.95, Math.max(0.12, waveA));
+                              let teamBVal = Math.min(0.95, Math.max(0.12, waveB));
+                              
+                              if (hasGoalA) teamAVal = 0.98;
+                              if (hasGoalB) teamBVal = 0.98;
+                              
+                              if (isCurrent) {
+                                teamAVal = Math.min(0.98, teamAVal + Math.sin(Date.now() / 200) * 0.15);
+                                teamBVal = Math.min(0.98, teamBVal + Math.cos(Date.now() / 200) * 0.15);
+                              }
+                              
+                              return {
+                                teamA: teamAVal,
+                                teamB: teamBVal,
+                                hasGoalA,
+                                hasGoalB,
+                                isPast: true,
+                                isCurrent
+                              };
+                            });
+                            
+                            const teamA = teams[match.teamAIndex];
+                            const teamB = teams[match.teamBIndex];
+                            const IconA = teamA ? getTeamIcon(teamA, "A") : Shirt;
+                            const IconB = teamB ? getTeamIcon(teamB, "B") : Shirt;
+                            
+                            const colorA = (fixedColors.enabled && fixedColors.teamA) || teamA?.color || TEAM_COLORS[0];
+                            const colorB = (fixedColors.enabled && fixedColors.teamB) || teamB?.color || TEAM_COLORS[1];
+
+                            return (
+                              <div className="w-full max-w-3xl mx-auto my-1 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-1.5 sm:p-2 shadow-sm relative overflow-hidden">
+                                {/* Main Graph Box */}
+                                <div className="relative w-full rounded-xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800 bg-[#080d14] flex flex-col">
+                                  {/* Top Half: Team A (Green Background) */}
+                                  <div className="relative h-10 sm:h-12 w-full bg-[#1b4323] flex items-end px-2 sm:px-3 pt-2 pb-0">
+                                    {/* Team Badge Top Left */}
+                                    <div className="absolute top-1 left-1.5 sm:left-2 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded-md border border-white/10 shadow-sm">
+                                      <div className="w-3.5 h-3.5 flex items-center justify-center shrink-0" style={{ color: colorA }}>
+                                        <IconA size={11} />
+                                      </div>
+                                      <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-emerald-300">
+                                        {teamA?.name || "TIME A"}
+                                      </span>
+                                    </div>
+
+                                    {/* Goal markers for Team A on top edge */}
+                                    <div className="absolute top-0.5 left-2 sm:left-3 right-2 sm:right-3 h-3 pointer-events-none z-20 flex justify-between px-1">
+                                      {bars.map((bar, idx) => (
+                                        <div key={`goal-top-${idx}`} className="flex-1 flex justify-center items-center">
+                                          {bar.hasGoalA && (
+                                            <motion.div 
+                                              initial={{ scale: 0 }} 
+                                              animate={{ scale: 1 }} 
+                                              className="w-3 h-3 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md border border-white shrink-0 -mt-0.5"
+                                            >
+                                              <GiSoccerBall size={8} />
+                                            </motion.div>
+                                          )}
+                                        </div>
+                                      ))}
+                                    </div>
+
+                                    {/* Vertical Middle Dividing Line */}
+                                    <div className="absolute inset-y-0 left-1/2 w-[1px] bg-white/20 z-10 pointer-events-none" />
+
+                                    {/* Bars Container for Team A (Extending UPWARDS) */}
+                                    <div className="w-full h-full flex items-end justify-between gap-[1px] sm:gap-[2px] z-10 px-1">
+                                      {bars.map((bar, idx) => (
+                                        <div key={`bar-a-${idx}`} className="flex-1 h-full flex items-end justify-center">
+                                          {bar.isPast ? (
+                                            <div
+                                              className={`w-full rounded-t-[1px] transition-all duration-300 ${
+                                                bar.isCurrent 
+                                                  ? "bg-[#4ade80] shadow-[0_0_6px_#4ade80] animate-pulse" 
+                                                  : bar.hasGoalA 
+                                                  ? "bg-[#4ade80] shadow-[0_0_4px_#4ade80]" 
+                                                  : "bg-[#2ea625] dark:bg-[#59b823]"
+                                              }`}
+                                              style={{ height: `${Math.max(10, bar.teamA * 100)}%` }}
+                                            />
+                                          ) : (
+                                            <div className="w-full h-[1px] bg-white/5 rounded-t-[1px]" />
+                                          )}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+
+                                  {/* Center Horizontal Axis Line */}
+                                  <div className="w-full h-[1px] bg-emerald-500/50 relative z-30 shadow-[0_0_3px_rgba(46,166,37,0.4)] flex justify-between items-center px-2">
+                                    <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#090e17] border border-emerald-500/40 text-[5px] font-black tracking-widest text-emerald-400 px-1 rounded-full z-40">
+                                      {Math.floor(match.config.duration / 2)}'
+                                    </div>
+                                  </div>
+
+                                  {/* Bottom Half: Team B (Dark Blue/Indigo Background) */}
+                                  <div className="relative h-10 sm:h-12 w-full bg-[#1b253b] flex items-start px-2 sm:px-3 pb-2 pt-0">
+                                    {/* Team Badge Bottom Left */}
+                                    <div className="absolute bottom-1 left-1.5 sm:left-2 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md px-1.5 py-0.5 rounded-md border border-white/10 shadow-sm">
+                                      <div className="w-3.5 h-3.5 flex items-center justify-center shrink-0" style={{ color: colorB }}>
+                                        <IconB size={11} />
+                                      </div>
+                                      <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-indigo-300">
+                                        {teamB?.name || "TIME B"}
+                                      </span>
+                                    </div>
+
+                                    {/* Goal markers for Team B on bottom edge */}
+                                    <div className="absolute bottom-0.5 left-2 sm:left-3 right-2 sm:right-3 h-3 pointer-events-none z-20 flex justify-between px-1">
+                                      {bars.map((bar, idx) => (
+                                        <div key={`goal-bot-${idx}`} className="flex-1 flex justify-center items-center">
+                                          {bar.hasGoalB && (
+                                            <motion.div 
+                                              initial={{ scale: 0 }} 
+                                              animate={{ scale: 1 }} 
+                                              className="w-3 h-3 rounded-full bg-indigo-500 text-white flex items-center justify-center shadow-md border border-white shrink-0 -mb-0.5"
+                                            >
+                                              <GiSoccerBall size={8} />
+                                            </motion.div>
+                                          )}
+                                        </div>
+                                      ))}
+                                    </div>
+
+                                    {/* Vertical Middle Dividing Line */}
+                                    <div className="absolute inset-y-0 left-1/2 w-[1px] bg-white/20 z-10 pointer-events-none" />
+
+                                    {/* Bars Container for Team B (Extending DOWNWARDS) */}
+                                    <div className="w-full h-full flex items-start justify-between gap-[1px] sm:gap-[2px] z-10 px-1">
+                                      {bars.map((bar, idx) => (
+                                        <div key={`bar-b-${idx}`} className="flex-1 h-full flex items-start justify-center">
+                                          {bar.isPast ? (
+                                            <div
+                                              className={`w-full rounded-b-[1px] transition-all duration-300 ${
+                                                bar.isCurrent 
+                                                  ? "bg-[#818cf8] shadow-[0_0_6px_#818cf8] animate-pulse" 
+                                                  : bar.hasGoalB 
+                                                  ? "bg-[#818cf8] shadow-[0_0_4px_#818cf8]" 
+                                                  : "bg-[#6366f1]"
+                                              }`}
+                                              style={{ height: `${Math.max(10, bar.teamB * 100)}%` }}
+                                            />
+                                          ) : (
+                                            <div className="w-full h-[1px] bg-white/5 rounded-b-[1px]" />
+                                          )}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })()}
+
                           <div className="sticky top-[-1px] z-40 bg-black/5 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 p-4 sm:p-6 flex flex-row items-center justify-between gap-2 sm:gap-4 rounded-2xl w-full max-w-3xl mx-auto relative overflow-hidden shadow-lg">
                             <div className="flex-1 flex flex-col items-center text-center space-y-2 sm:space-y-4">
                               <button
