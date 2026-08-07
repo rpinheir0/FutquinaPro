@@ -1226,60 +1226,65 @@ const TieBreakerModal = ({
         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -mr-32 -mt-32 animate-pulse" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -ml-32 -mb-32" />
 
-        {/* Header Section */}
-        <div className="pt-10 pb-4 px-6 relative z-10 shrink-0 text-center">
-          <div className="flex flex-col gap-1 items-center">
-            <span className="text-xs font-black text-zinc-900 dark:text-white uppercase tracking-[0.4em]">
+        {/* Compact Header Card with App Theme */}
+        <div className="p-3 sm:p-4 mx-4 sm:mx-6 mt-4 mb-3 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md relative text-white flex flex-col items-center gap-1.5 z-10 shrink-0">
+          {state.type !== "none" && (
+            <button
+              onClick={() => onTypeSelect("none")}
+              className="absolute left-3 top-3 w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all active:scale-90"
+            >
+              <ArrowLeft size={16} />
+            </button>
+          )}
+
+          <div className="flex flex-col gap-0.5 items-center">
+            <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-white">
               Desempate
             </span>
             {state.type === "penalties" && (
-              <span className="text-black/70 dark:text-white/60 text-xs font-medium mt-[-4px]">
+              <span className="text-emerald-100/90 text-[10px] sm:text-xs font-medium">
                 Disputa de pênaltis
               </span>
             )}
           </div>
-          {state.type !== "none" && (
-            <button
-              onClick={() => onTypeSelect("none")}
-              className="absolute right-6 top-10 w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center text-black/70 dark:text-white/60 hover:text-zinc-900 dark:text-white hover:bg-black/10 dark:bg-white/10 transition-all active:scale-90"
-            >
-              <ArrowLeft size={18} />
-            </button>
+
+          {state.type === "none" && !showQueueOrder && (
+            <div className="flex items-center justify-center gap-6 sm:gap-8 w-full pt-1">
+              <div className="flex flex-col items-center">
+                <div
+                  className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center drop-shadow-md"
+                  style={{ color: resolvedColorA }}
+                >
+                  {(() => {
+                    const IconA = getTeamIcon(teamA, "A");
+                    return <IconA size={36} />;
+                  })()}
+                </div>
+              </div>
+
+              <span className="text-white/40 font-black text-sm sm:text-base tracking-widest">
+                VS
+              </span>
+
+              <div className="flex flex-col items-center">
+                <div
+                  className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center drop-shadow-md"
+                  style={{ color: resolvedColorB }}
+                >
+                  {(() => {
+                    const IconB = getTeamIcon(teamB, "B");
+                    return <IconB size={36} />;
+                  })()}
+                </div>
+              </div>
+            </div>
           )}
         </div>
 
         {/* Content Section */}
-        <div className="flex-1 overflow-y-auto p-6 pt-0 relative z-10 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 pt-0 relative z-10 custom-scrollbar">
           {state.type === "none" && !showQueueOrder && (
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="flex-1 flex flex-col items-center">
-                  <div
-                    className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]"
-                    style={{ color: resolvedColorA }}
-                  >
-                    {(() => {
-                      const IconA = getTeamIcon(teamA, "A");
-                      return <IconA size={48} />;
-                    })()}
-                  </div>
-                </div>
-                <div className="text-black/20 dark:text-white/20 font-black text-xl">
-                  VS
-                </div>
-                <div className="flex-1 flex flex-col items-center">
-                  <div
-                    className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]"
-                    style={{ color: resolvedColorB }}
-                  >
-                    {(() => {
-                      const IconB = getTeamIcon(teamB, "B");
-                      return <IconB size={48} />;
-                    })()}
-                  </div>
-                </div>
-              </div>
-
+            <div className="space-y-3">
               <div className="grid grid-cols-1 gap-3">
                 {queueCount >= 2 && (
                   <button
@@ -1295,7 +1300,7 @@ const TieBreakerModal = ({
                       />
                     </div>
                     <div className="flex flex-col">
-                      <span className="font-bold uppercase text-[11px] text-zinc-900 dark:text-white group-hover:text-red-300 transition-colors">
+                      <span className="font-bold text-[11px] text-zinc-900 dark:text-white group-hover:text-red-300 transition-colors">
                         Os dois times deixam a partida
                       </span>
                       <span className="text-[10px] text-black/60 dark:text-white/50 font-medium tracking-tight mt-0.5">
@@ -1322,8 +1327,8 @@ const TieBreakerModal = ({
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-bold uppercase text-[11px] text-zinc-900 dark:text-white group-hover:text-emerald-300 transition-colors">
-                      Disputa de Pênaltis
+                    <span className="font-bold text-[11px] text-zinc-900 dark:text-white group-hover:text-emerald-300 transition-colors">
+                      Disputa de pênaltis
                     </span>
                     <span className="text-[10px] text-black/60 dark:text-white/50 font-medium tracking-tight mt-0.5">
                       Marcar acertos e erros
@@ -1348,8 +1353,8 @@ const TieBreakerModal = ({
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="font-bold uppercase text-[11px] text-zinc-900 dark:text-white group-hover:text-blue-300 transition-colors">
-                      Sorteio Aleatório
+                    <span className="font-bold text-[11px] text-zinc-900 dark:text-white group-hover:text-blue-300 transition-colors">
+                      Sorteio aleatório
                     </span>
                     <span className="text-[10px] text-black/60 dark:text-white/50 font-medium tracking-tight mt-0.5">
                       Roleta da sorte
@@ -10239,112 +10244,115 @@ function GroupApp({
                           ) : (
                             <>
                               {lastMatchResult ? (
-                                <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto mb-2 space-y-4 bg-black/5 dark:bg-white/5 p-6 rounded-xl border border-black/10 dark:border-white/10 shadow-sm backdrop-blur-sm">
-                                  <p className="text-[10px] font-black text-black/60 dark:text-white/50 uppercase tracking-[0.2em]">
-                                    Última Partida
-                                  </p>
-                                  <div className="flex items-center justify-between gap-4 px-2 py-2 w-full">
-                                    <div className="flex-1 flex flex-col items-center text-center space-y-1">
-                                      <div
-                                        className="w-10 h-10 flex items-center justify-center shrink-0 drop-shadow-sm"
-                                        style={{
-                                          color:
-                                            lastMatchResult.teamAColor ||
-                                            teams[lastMatchResult.teamAIndex]
-                                              ?.color ||
-                                            TEAM_COLORS[0],
-                                        }}
-                                      >
-                                        {(() => {
-                                          let IconA =
-                                            TEAM_ICONS[
+                                <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto mb-2 space-y-3 bg-black/5 dark:bg-white/5 p-3 sm:p-4 rounded-2xl border border-black/10 dark:border-white/10 shadow-sm backdrop-blur-sm">
+                                  {/* Compact App-Themed Result Header Card */}
+                                  <div className="w-full p-3 sm:p-4 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md text-white flex flex-col items-center justify-center space-y-2">
+                                    <p className="text-[10px] sm:text-xs font-black text-emerald-100 uppercase tracking-widest">
+                                      Última Partida
+                                    </p>
+                                    <div className="flex items-center justify-between gap-4 px-2 py-1 w-full">
+                                      <div className="flex-1 flex flex-col items-center text-center space-y-1">
+                                        <div
+                                          className="w-10 h-10 flex items-center justify-center shrink-0 drop-shadow-md"
+                                          style={{
+                                            color:
+                                              lastMatchResult.teamAColor ||
                                               teams[lastMatchResult.teamAIndex]
-                                                ?.iconIdx ??
-                                                lastMatchResult.teamAIndex %
-                                                  TEAM_ICONS.length
-                                            ];
-                                          if (
-                                            fixedColors.enabled &&
-                                            fixedColors.teamA &&
-                                            lastMatchResult.teamAColor ===
-                                              fixedColors.teamA
-                                          ) {
-                                            const idx = SHIRT_COLORS.indexOf(
-                                              fixedColors.teamA,
-                                            );
-                                            if (idx !== -1)
-                                              IconA = TEAM_ICONS[idx];
-                                          } else if (
-                                            lastMatchResult.teamAColor &&
-                                            SHIRT_COLORS.indexOf(
-                                              lastMatchResult.teamAColor,
-                                            ) !== -1
-                                          ) {
-                                            const idx = SHIRT_COLORS.indexOf(
-                                              lastMatchResult.teamAColor,
-                                            );
-                                            if (idx !== -1)
-                                              IconA = TEAM_ICONS[idx];
-                                          }
-                                          return <IconA size={24} />;
-                                        })()}
+                                                ?.color ||
+                                              TEAM_COLORS[0],
+                                          }}
+                                        >
+                                          {(() => {
+                                            let IconA =
+                                              TEAM_ICONS[
+                                                teams[lastMatchResult.teamAIndex]
+                                                  ?.iconIdx ??
+                                                  lastMatchResult.teamAIndex %
+                                                    TEAM_ICONS.length
+                                              ];
+                                            if (
+                                              fixedColors.enabled &&
+                                              fixedColors.teamA &&
+                                              lastMatchResult.teamAColor ===
+                                                fixedColors.teamA
+                                            ) {
+                                              const idx = SHIRT_COLORS.indexOf(
+                                                fixedColors.teamA,
+                                              );
+                                              if (idx !== -1)
+                                                IconA = TEAM_ICONS[idx];
+                                            } else if (
+                                              lastMatchResult.teamAColor &&
+                                              SHIRT_COLORS.indexOf(
+                                                lastMatchResult.teamAColor,
+                                              ) !== -1
+                                            ) {
+                                              const idx = SHIRT_COLORS.indexOf(
+                                                lastMatchResult.teamAColor,
+                                              );
+                                              if (idx !== -1)
+                                                IconA = TEAM_ICONS[idx];
+                                            }
+                                            return <IconA size={24} />;
+                                          })()}
+                                        </div>
+                                        <div className="text-3xl sm:text-4xl font-black text-white tabular-nums tracking-tighter leading-none mt-1">
+                                          {lastMatchResult.scoreA}
+                                        </div>
                                       </div>
-                                      <div className="text-4xl font-black text-zinc-900 dark:text-white tabular-nums tracking-tighter leading-none mt-2">
-                                        {lastMatchResult.scoreA}
+
+                                      <div className="text-xs font-black text-emerald-200/80 uppercase tracking-widest">
+                                        vs
                                       </div>
-                                    </div>
 
-                                    <div className="text-sm font-black text-black/50 dark:text-white/40 uppercase tracking-widest">
-                                      vs
-                                    </div>
-
-                                    <div className="flex-1 flex flex-col items-center text-center space-y-1">
-                                      <div
-                                        className="w-10 h-10 flex items-center justify-center shrink-0 drop-shadow-sm"
-                                        style={{
-                                          color:
-                                            lastMatchResult.teamBColor ||
-                                            teams[lastMatchResult.teamBIndex]
-                                              ?.color ||
-                                            TEAM_COLORS[1],
-                                        }}
-                                      >
-                                        {(() => {
-                                          let IconB =
-                                            TEAM_ICONS[
+                                      <div className="flex-1 flex flex-col items-center text-center space-y-1">
+                                        <div
+                                          className="w-10 h-10 flex items-center justify-center shrink-0 drop-shadow-md"
+                                          style={{
+                                            color:
+                                              lastMatchResult.teamBColor ||
                                               teams[lastMatchResult.teamBIndex]
-                                                ?.iconIdx ??
-                                                lastMatchResult.teamBIndex %
-                                                  TEAM_ICONS.length
-                                            ];
-                                          if (
-                                            fixedColors.enabled &&
-                                            fixedColors.teamB &&
-                                            lastMatchResult.teamBColor ===
-                                              fixedColors.teamB
-                                          ) {
-                                            const idx = SHIRT_COLORS.indexOf(
-                                              fixedColors.teamB,
-                                            );
-                                            if (idx !== -1)
-                                              IconB = TEAM_ICONS[idx];
-                                          } else if (
-                                            lastMatchResult.teamBColor &&
-                                            SHIRT_COLORS.indexOf(
-                                              lastMatchResult.teamBColor,
-                                            ) !== -1
-                                          ) {
-                                            const idx = SHIRT_COLORS.indexOf(
-                                              lastMatchResult.teamBColor,
-                                            );
-                                            if (idx !== -1)
-                                              IconB = TEAM_ICONS[idx];
-                                          }
-                                          return <IconB size={24} />;
-                                        })()}
-                                      </div>
-                                      <div className="text-4xl font-black text-zinc-900 dark:text-white tabular-nums tracking-tighter leading-none mt-2">
-                                        {lastMatchResult.scoreB}
+                                                ?.color ||
+                                              TEAM_COLORS[1],
+                                          }}
+                                        >
+                                          {(() => {
+                                            let IconB =
+                                              TEAM_ICONS[
+                                                teams[lastMatchResult.teamBIndex]
+                                                  ?.iconIdx ??
+                                                  lastMatchResult.teamBIndex %
+                                                    TEAM_ICONS.length
+                                              ];
+                                            if (
+                                              fixedColors.enabled &&
+                                              fixedColors.teamB &&
+                                              lastMatchResult.teamBColor ===
+                                                fixedColors.teamB
+                                            ) {
+                                              const idx = SHIRT_COLORS.indexOf(
+                                                fixedColors.teamB,
+                                              );
+                                              if (idx !== -1)
+                                                IconB = TEAM_ICONS[idx];
+                                            } else if (
+                                              lastMatchResult.teamBColor &&
+                                              SHIRT_COLORS.indexOf(
+                                                lastMatchResult.teamBColor,
+                                              ) !== -1
+                                            ) {
+                                              const idx = SHIRT_COLORS.indexOf(
+                                                lastMatchResult.teamBColor,
+                                              );
+                                              if (idx !== -1)
+                                                IconB = TEAM_ICONS[idx];
+                                            }
+                                            return <IconB size={24} />;
+                                          })()}
+                                        </div>
+                                        <div className="text-3xl sm:text-4xl font-black text-white tabular-nums tracking-tighter leading-none mt-1">
+                                          {lastMatchResult.scoreB}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -12039,12 +12047,6 @@ function GroupApp({
                                   }`}
                                   style={{}}
                                 >
-                                  {/* Team Color Top Bar */}
-                                  <div
-                                    className="absolute top-0 left-0 right-0 h-1 z-10"
-                                    style={{ backgroundColor: teamColor }}
-                                  />
-
                                   {/* Status Top Right (Winner/Loser/Draw) */}
                                   {t.lastMatchStatus && (
                                     <div className="absolute top-3 right-3 flex items-center gap-1.5 z-20">
@@ -12782,7 +12784,7 @@ function GroupApp({
                                                     }
                                                   }
                                                 }}
-                                                className={`w-full flex items-center justify-start gap-1 p-1 rounded-sm transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
+                                                className={`w-full flex items-center justify-start gap-1.5 p-1.5 sm:p-2 rounded-xl transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
                                                   swappingPlayerId === pid ||
                                                   movingPlayers?.playerIds.includes(
                                                     pid,
@@ -12840,13 +12842,13 @@ function GroupApp({
                                                 }}
                                               >
                                                 <div
-                                                  className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 overflow-hidden border ${isCurrent ? "border-white/30 bg-white/10 text-white shadow-inner" : "border-black/20 dark:border-white/20 bg-black/10 dark:bg-white/10"}`}
+                                                  className={`w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full flex items-center justify-center shrink-0 overflow-hidden border ${isCurrent ? "border-white/30 bg-white/10 text-white shadow-inner" : "border-black/20 dark:border-white/20 bg-black/10 dark:bg-white/10"}`}
                                                 >
                                                   {p.isGoalkeeper &&
                                                   orgProSettings.allowFixedGoalkeeper !==
                                                     false ? (
                                                     <div
-                                                      className={`flex items-center justify-center shrink-0 rounded-full w-4 h-4 text-[7px] font-black leading-none ${isCurrent ? "text-white" : "text-black/50 dark:text-white/40"}`}
+                                                      className={`flex items-center justify-center shrink-0 rounded-full w-4.5 h-4.5 text-[8px] font-black leading-none ${isCurrent ? "text-white" : "text-black/50 dark:text-white/40"}`}
                                                     >
                                                       G
                                                     </div>
@@ -12861,14 +12863,14 @@ function GroupApp({
                                                       className={`flex items-center shrink-0 ${isCurrent ? "text-white" : "text-black/50 dark:text-white/40"}`}
                                                     >
                                                       <IoPersonOutline
-                                                        size={10}
+                                                        size={12}
                                                       />
                                                     </span>
                                                   )}
                                                 </div>
                                                 <div className="flex flex-col items-start overflow-hidden">
                                                   <span
-                                                    className={`text-[10px] font-bold tracking-tight capitalize truncate leading-none ${isCurrent ? "text-white" : "text-black/90 dark:text-white/90"}`}
+                                                    className={`text-[11px] font-bold tracking-tight capitalize truncate leading-none ${isCurrent ? "text-white" : "text-black/90 dark:text-white/90"}`}
                                                   >
                                                     {p.name.toLowerCase()}
                                                   </span>
@@ -12877,7 +12879,7 @@ function GroupApp({
                                                       (star) => (
                                                         <Star
                                                           key={`star-q-${p.id}-${star}`}
-                                                          size={6}
+                                                          size={7}
                                                           className={`${(p.stars || 3) >= star ? "fill-yellow-400 text-yellow-400" : "text-black/20 dark:text-white/20"}`}
                                                         />
                                                       ),
