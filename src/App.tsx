@@ -9777,16 +9777,8 @@ function GroupApp({
                         )}
 
                       {players.length > 0 && (
-                        <div className="w-full space-y-3 p-4 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-2xl border border-[#2ea625]/20 dark:border-[#59b823]/20 mb-4 shadow-sm">
-                          <div className="flex items-center justify-between px-1">
-                            <h3 className="text-[10px] font-black uppercase tracking-widest text-[#20661b] dark:text-[#59b823]">
-                              Acesso Rápido / Presença
-                            </h3>
-                            <span className="text-[10px] text-[#59b823] dark:text-[#75c628] font-bold">
-                              {players.filter((p) => p.isAvailable).length} confirmados
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-4 overflow-x-auto scrollbar-none pt-3 pb-2 px-1">
+                        <div className="w-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-2xl border border-[#2ea625]/20 dark:border-[#59b823]/20 mb-4 shadow-sm p-2.5">
+                          <div className="flex items-center gap-4 overflow-x-auto scrollbar-none [::-webkit-scrollbar]:hidden px-1 py-1">
                             {/* Add button */}
                             <button
                               onClick={() => {
@@ -13624,13 +13616,13 @@ function GroupApp({
                                   className={`p-3.5 sm:p-4 transition-all col-span-2 lg:col-span-1 order-1 lg:order-none overflow-hidden relative ${
                                     isPrintMode
                                       ? "bg-white border-zinc-300 border rounded-none"
-                                      : "bg-gradient-to-br from-zinc-100 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 rounded-2xl shadow-sm backdrop-blur-xl"
+                                      : "bg-gradient-to-br from-white to-zinc-50 dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-zinc-200 dark:border-white/10 rounded-2xl shadow-sm backdrop-blur-xl"
                                   }`}
                                 >
                                   {!isPrintMode && (
                                     <>
-                                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#dce3ee] dark:bg-[#34d399]/10 rounded-full blur-[40px] pointer-events-none" />
-                                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#34d399]/5 rounded-full blur-[40px] pointer-events-none" />
+                                      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 dark:bg-[#34d399]/10 rounded-full blur-[40px] pointer-events-none" />
+                                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-[40px] pointer-events-none" />
                                     </>
                                   )}
                                   <div className="flex flex-col gap-2 relative z-10 w-full">
@@ -13674,7 +13666,7 @@ function GroupApp({
                                       <div className="flex items-center gap-3.5 sm:gap-4 py-0.5">
                                         {/* Circular Gauge Graphic */}
                                         <div className="relative shrink-0 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16">
-                                          <div className="absolute inset-0 rounded-full bg-[#181d2a] dark:bg-[#121623] border border-black/10 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5">
+                                          <div className="absolute inset-0 rounded-full bg-emerald-500/10 dark:bg-[#121623] border border-emerald-500/20 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5">
                                             <svg viewBox="0 0 120 120" className="w-full h-full transform -rotate-90">
                                               <defs>
                                                 <linearGradient id="gauge-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -13690,7 +13682,7 @@ function GroupApp({
                                                 r="46"
                                                 stroke="currentColor"
                                                 strokeWidth="10"
-                                                className="text-black/10 dark:text-white/15"
+                                                className="text-emerald-500/20 dark:text-white/15"
                                                 fill="none"
                                               />
                                               {/* Animated Progress arc */}
@@ -13751,15 +13743,15 @@ function GroupApp({
                                       setIsEditingTotal(true);
                                     }
                                   }}
-                                  className={`p-4 transition-all order-2 lg:order-none overflow-hidden relative ${
+                                  className={`p-3.5 sm:p-4 transition-all order-2 lg:order-none overflow-hidden relative ${
                                     isPrintMode
                                       ? "bg-white border-zinc-300 border rounded-none text-black"
-                                      : "bg-gradient-to-br from-zinc-100 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 rounded-2xl cursor-pointer hover:opacity-90 shadow-sm backdrop-blur-xl"
+                                      : "bg-gradient-to-br from-white to-zinc-50 dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-zinc-200 dark:border-white/10 rounded-2xl cursor-pointer hover:opacity-90 shadow-sm backdrop-blur-xl"
                                   }`}
                                 >
                                   {!isPrintMode && (
                                     <>
-                                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#dce3ee] dark:bg-[#34d399]/10 rounded-full blur-[40px] pointer-events-none" />
+                                      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 dark:bg-[#34d399]/10 rounded-full blur-[40px] pointer-events-none" />
                                       <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#34d399]/5 rounded-full blur-[40px] pointer-events-none" />
                                       <div className="absolute inset-0 bg-gradient-to-br from-[#34d399]/5 to-transparent pointer-events-none" />
                                     </>
@@ -13887,15 +13879,15 @@ function GroupApp({
                                     }
                                     !isPrintMode && setShowExpenseModal(true);
                                   }}
-                                  className={`p-4 transition-all order-3 lg:order-none overflow-hidden relative ${
+                                  className={`p-3.5 sm:p-4 transition-all order-3 lg:order-none overflow-hidden relative ${
                                     isPrintMode
                                       ? "bg-white border-zinc-300 border rounded-none"
-                                      : "bg-gradient-to-br from-zinc-100 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 rounded-2xl cursor-pointer hover:opacity-90 shadow-sm backdrop-blur-xl"
+                                      : "bg-gradient-to-br from-white to-zinc-50 dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-zinc-200 dark:border-white/10 rounded-2xl cursor-pointer hover:opacity-90 shadow-sm backdrop-blur-xl"
                                   }`}
                                 >
                                   {!isPrintMode && (
                                     <>
-                                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#dce3ee] dark:bg-red-500/10 rounded-full blur-[40px] pointer-events-none" />
+                                      <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 dark:bg-red-500/10 rounded-full blur-[40px] pointer-events-none" />
                                       <div className="absolute bottom-0 left-0 w-32 h-32 bg-red-500/5 rounded-full blur-[40px] pointer-events-none" />
                                     </>
                                   )}
