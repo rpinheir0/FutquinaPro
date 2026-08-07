@@ -9567,12 +9567,12 @@ function GroupApp({
                       {firstSetupDone &&
                         players.filter((p) => sessionPlayerIds.includes(p.id))
                           .length > 0 && (
-                          <div className="flex flex-row items-center justify-between gap-4 flex-wrap pb-2 border-b border-black/5 dark:border-white/5">
+                          <div className="p-3 sm:p-3.5 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-row items-center justify-between gap-3 flex-wrap">
                             <div className="flex flex-col gap-0.5">
-                              <h3 className="text-sm font-black uppercase tracking-widest text-zinc-900 dark:text-white leading-none">
+                              <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white leading-none">
                                 ORDEM DE CHEGADA
                               </h3>
-                              <p className="text-[9px] font-medium text-black/60 dark:text-white/60 leading-none">
+                              <p className="text-[9px] font-medium text-emerald-100/80 leading-none">
                                 Controle de quem chegou para jogar
                               </p>
                             </div>
@@ -9650,7 +9650,7 @@ function GroupApp({
                                       return [...prevTeams, ...newAddedTeams];
                                     });
                                   }}
-                                  className="px-2.5 h-7 bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white text-[10px] font-black uppercase tracking-wider rounded-lg shadow-sm hover:bg-black/10 dark:hover:bg-white/20 transition-all active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
+                                  className="px-2.5 h-7 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[10px] font-black uppercase tracking-wider rounded-lg shadow-sm transition-all active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
                                 >
                                   <span>TODOS</span>
                                 </button>
@@ -9758,7 +9758,7 @@ function GroupApp({
 
                                     setTeamsTab("proximos");
                                   }}
-                                  className="px-2.5 h-7 bg-[#2ea625] dark:bg-[#59b823] text-white font-black uppercase tracking-wider text-[10px] rounded-lg shadow-sm hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
+                                  className="px-2.5 h-7 bg-[#2ea625] hover:brightness-110 border border-emerald-400/40 text-white font-black uppercase tracking-wider text-[10px] rounded-lg shadow-sm transition-all active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
                                 >
                                   <span>
                                     <CheckCircle2 size={13} className="text-white" />
