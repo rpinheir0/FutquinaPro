@@ -14749,12 +14749,23 @@ function GroupApp({
                           match.scoreA >= match.config.goalLimit ||
                           match.scoreB >= match.config.goalLimit
                         }
-                        className="w-full h-9 bg-[#2ea625] dark:bg-[#59b823] text-white font-black uppercase tracking-wider text-[10px] rounded-lg shadow-sm hover:opacity-90 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 px-4 cursor-pointer"
+                        className="relative overflow-hidden w-full h-9 bg-[#2ea625] dark:bg-[#59b823] text-white font-black uppercase tracking-wider text-[10px] rounded-xl shadow-sm hover:opacity-90 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 px-4 cursor-pointer"
                       >
-                        <span className="text-white shrink-0 flex items-center">
+                        <motion.div
+                          initial={{ x: "-100%" }}
+                          animate={{ x: "200%" }}
+                          transition={{
+                            repeat: Infinity,
+                            duration: 2,
+                            ease: "easeInOut",
+                            repeatDelay: 1.5,
+                          }}
+                          className="absolute inset-0 z-10 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] pointer-events-none"
+                        />
+                        <span className="text-white shrink-0 flex items-center z-20">
                           <IoIosFootball size={16} />
                         </span>
-                        <span>GOOL</span>
+                        <span className="z-20 text-white">GOOL</span>
                       </button>
                     )}
 
@@ -14878,13 +14889,24 @@ function GroupApp({
 
                           setShowPlayerActionsModal(null);
                         }}
-                        className="w-full h-9 mt-1.5 rounded-xl font-medium text-[10px] tracking-widest bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] text-white shadow-lg shadow-emerald-950/30 border border-emerald-500/30 hover:brightness-110 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                        className="relative overflow-hidden w-full h-9 mt-1.5 rounded-xl font-bold text-[10px] uppercase tracking-widest bg-gradient-to-br from-[#75c628]/20 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 text-black/80 dark:text-white/80 shadow-sm backdrop-blur-xl hover:opacity-90 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                       >
-                        <div className="flex items-center gap-2">
-                          <span className="flex items-center border border-white/60 rounded-full w-4 h-4 justify-center text-[9px] font-bold leading-none text-white bg-emerald-500/30">
+                        <motion.div
+                          initial={{ x: "-100%" }}
+                          animate={{ x: "200%" }}
+                          transition={{
+                            repeat: Infinity,
+                            duration: 2,
+                            ease: "easeInOut",
+                            repeatDelay: 1.5,
+                          }}
+                          className="absolute inset-0 z-10 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] pointer-events-none"
+                        />
+                        <div className="flex items-center gap-2 z-20">
+                          <span className="flex items-center border border-black/20 dark:border-white/40 rounded-full w-4 h-4 justify-center text-[9px] font-bold leading-none text-black/80 dark:text-white bg-emerald-500/20">
                             G
                           </span>
-                          <span className="tracking-widest">
+                          <span className="tracking-widest text-black/80 dark:text-white">
                             {players.find(
                               (p) => p.id === showPlayerActionsModal.playerId,
                             )?.isGoalkeeper
@@ -14894,7 +14916,7 @@ function GroupApp({
                         </div>
                       </button>
                     )}
-                  <div className="grid grid-cols-2 gap-2 mt-2">
+                  <div className="grid grid-cols-2 gap-2 mt-2 max-w-[240px] mx-auto">
                     {/* Substituir */}
                     {swappingPlayerId !== showPlayerActionsModal.playerId && (
                       <button
@@ -14907,7 +14929,7 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-[#0e2c0e]/10 dark:bg-[#1b5017]/30 hover:bg-[#1b5017]/20 dark:hover:bg-[#1b5017]/50 active:scale-95 text-[#1b5017] dark:text-emerald-400 border border-emerald-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-[#0e2c0e]/10 dark:bg-[#1b5017]/30 hover:bg-[#1b5017]/20 dark:hover:bg-[#1b5017]/50 active:scale-95 text-[#1b5017] dark:text-emerald-400 border border-emerald-600/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:rotate-180 transition-transform duration-500 shrink-0">
                           <GiCycle size={22} />
@@ -14933,7 +14955,7 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-slate-800/10 dark:bg-slate-800/40 hover:bg-slate-800/20 dark:hover:bg-slate-800/60 active:scale-95 text-slate-700 dark:text-slate-300 border border-slate-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-slate-800/10 dark:bg-slate-800/40 hover:bg-slate-800/20 dark:hover:bg-slate-800/60 active:scale-95 text-slate-700 dark:text-slate-300 border border-slate-600/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:translate-x-0.5 transition-transform shrink-0">
                           <GiPlayerNext size={22} />
@@ -14998,7 +15020,7 @@ function GroupApp({
 
                           setShowPlayerActionsModal(null);
                         }}
-                        className="py-2.5 px-2 bg-amber-950/10 dark:bg-amber-950/40 hover:bg-amber-950/20 dark:hover:bg-amber-950/60 active:scale-95 text-amber-800 dark:text-amber-300 border border-amber-700/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-amber-950/10 dark:bg-amber-950/40 hover:bg-amber-950/20 dark:hover:bg-amber-950/60 active:scale-95 text-amber-800 dark:text-amber-300 border border-amber-700/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <UserX size={22} className="group-hover:scale-110 transition-transform shrink-0" />
                         <span className="text-xs font-medium tracking-wide">Ausente</span>
@@ -15012,7 +15034,7 @@ function GroupApp({
                           setSwappingPlayerId(null);
                           setShowPlayerActionsModal(null);
                         }}
-                        className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="shrink-0">
                           <GiCancel size={22} />
@@ -15023,7 +15045,7 @@ function GroupApp({
 
                     <button
                       onClick={() => setShowPlayerActionsModal(null)}
-                      className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                      className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                     >
                       <span className="group-hover:rotate-90 transition-transform duration-300 shrink-0">
                         <GiCancel size={22} />
@@ -15126,7 +15148,7 @@ function GroupApp({
               <div className="p-4 bg-white dark:bg-transparent">
                 <div className="space-y-2.5">
                   {!showQueuePlayerModal.showMoveOptions ? (
-                    <div className="grid grid-cols-2 gap-1.5">
+                    <div className="grid grid-cols-2 gap-2 mt-2 max-w-[240px] mx-auto">
                       {orgProSettings.allowFixedGoalkeeper !== false &&
                         (!teams[showQueuePlayerModal.teamIndex]?.playerIds.some(
                           (pid) =>
@@ -15172,16 +15194,31 @@ function GroupApp({
 
                               setShowQueuePlayerModal(null);
                             }}
-                            className="col-span-2 w-full h-9 rounded-xl font-medium text-[10px] tracking-widest bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] text-white shadow-lg shadow-emerald-950/30 border border-emerald-500/30 hover:brightness-110 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                            className="relative overflow-hidden col-span-2 w-full h-9 rounded-xl font-bold text-[10px] uppercase tracking-widest bg-gradient-to-br from-[#75c628]/20 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 text-black/80 dark:text-white/80 shadow-sm backdrop-blur-xl hover:opacity-90 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
                           >
-                            <span className="flex items-center border border-white/60 rounded-full w-4 h-4 justify-center text-[9px] font-bold leading-none text-white bg-emerald-500/30">
-                              G
-                            </span>
-                            {players.find(
-                              (p) => p.id === showQueuePlayerModal.playerId,
-                            )?.isGoalkeeper
-                              ? "Desmarcar Goleiro"
-                              : "Marcar Goleiro"}
+                            <motion.div
+                              initial={{ x: "-100%" }}
+                              animate={{ x: "200%" }}
+                              transition={{
+                                repeat: Infinity,
+                                duration: 2,
+                                ease: "easeInOut",
+                                repeatDelay: 1.5,
+                              }}
+                              className="absolute inset-0 z-10 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] pointer-events-none"
+                            />
+                            <div className="flex items-center gap-2 z-20">
+                              <span className="flex items-center border border-black/20 dark:border-white/40 rounded-full w-4 h-4 justify-center text-[9px] font-bold leading-none text-black/80 dark:text-white bg-emerald-500/20">
+                                G
+                              </span>
+                              <span className="text-black/80 dark:text-white">
+                                {players.find(
+                                  (p) => p.id === showQueuePlayerModal.playerId,
+                                )?.isGoalkeeper
+                                  ? "Desmarcar Goleiro"
+                                  : "Marcar Goleiro"}
+                              </span>
+                            </div>
                           </button>
                         )}
                       <button
@@ -15194,7 +15231,7 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-[#0e2c0e]/10 dark:bg-[#1b5017]/30 hover:bg-[#1b5017]/20 dark:hover:bg-[#1b5017]/50 active:scale-95 text-[#1b5017] dark:text-emerald-400 border border-emerald-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-[#0e2c0e]/10 dark:bg-[#1b5017]/30 hover:bg-[#1b5017]/20 dark:hover:bg-[#1b5017]/50 active:scale-95 text-[#1b5017] dark:text-emerald-400 border border-emerald-600/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:rotate-180 transition-transform duration-500 shrink-0">
                           <GiCycle size={22} />
@@ -15216,7 +15253,7 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-slate-800/10 dark:bg-slate-800/40 hover:bg-slate-800/20 dark:hover:bg-slate-800/60 active:scale-95 text-slate-700 dark:text-slate-300 border border-slate-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-slate-800/10 dark:bg-slate-800/40 hover:bg-slate-800/20 dark:hover:bg-slate-800/60 active:scale-95 text-slate-700 dark:text-slate-300 border border-slate-600/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:translate-x-0.5 transition-transform shrink-0">
                           <GiPlayerNext size={22} />
@@ -15253,7 +15290,7 @@ function GroupApp({
                             type: "info",
                           });
                         }}
-                        className="py-2.5 px-2 bg-amber-950/10 dark:bg-amber-950/40 hover:bg-amber-950/20 dark:hover:bg-amber-950/60 active:scale-95 text-amber-800 dark:text-amber-300 border border-amber-700/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-amber-950/10 dark:bg-amber-950/40 hover:bg-amber-950/20 dark:hover:bg-amber-950/60 active:scale-95 text-amber-800 dark:text-amber-300 border border-amber-700/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <UserX size={22} className="group-hover:scale-110 transition-transform shrink-0" />
                         <span className="text-xs font-medium tracking-wide">Ausente</span>
@@ -15261,7 +15298,7 @@ function GroupApp({
 
                       <button
                         onClick={() => setShowQueuePlayerModal(null)}
-                        className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-2xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
+                        className="py-2.5 px-2 bg-zinc-800/10 dark:bg-zinc-800/40 hover:bg-zinc-800/20 dark:hover:bg-zinc-800/60 active:scale-95 text-zinc-700 dark:text-zinc-300 border border-zinc-600/30 rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all group cursor-pointer"
                       >
                         <span className="group-hover:rotate-90 transition-transform duration-300 shrink-0">
                           <GiCancel size={22} />
