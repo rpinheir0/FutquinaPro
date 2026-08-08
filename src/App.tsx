@@ -127,6 +127,7 @@ import {
   MdOutlinePlayForWork,
   MdDonutLarge,
   MdDataSaverOff,
+  MdDeleteSweep,
 } from "react-icons/md";
 import { CiSaveUp1, CiMemoPad, CiImport, CiStopwatch } from "react-icons/ci";
 import { TiMap } from "react-icons/ti";
@@ -235,6 +236,10 @@ import {
 } from "react-icons/pi";
 import { FaSquareWebAwesomeStroke, FaServer } from "react-icons/fa6";
 import { FiUploadCloud } from "react-icons/fi";
+import { TbEdit, TbTrash, TbPencil } from "react-icons/tb";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { AiOutlineDelete } from "react-icons/ai";
+import { MdDeleteOutline } from "react-icons/md";
 import { supabase } from "./lib/supabase";
 import { sounds } from "./lib/sounds";
 
@@ -8571,10 +8576,10 @@ function GroupApp({
                       </div>
                       <div className="flex items-center justify-between px-1 pt-1">
                         <div className="flex flex-col gap-0.5">
-                          <h2 className="text-[13px] font-black tracking-widest text-white">
+                          <h2 className="text-lg sm:text-xl font-normal font-roboto-flex tracking-tight text-white">
                             Painel de controle
                           </h2>
-                          <p className="text-[9px] font-medium text-white/60">
+                          <p className="text-[11px] font-medium text-white/60 font-roboto-flex">
                             Gerencie suas peladas e jogadores de forma simples
                           </p>
                         </div>
@@ -8583,12 +8588,7 @@ function GroupApp({
                           className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 border border-white/10 flex items-center justify-center cursor-pointer shrink-0 shadow-sm"
                           title="Restaurar Backup"
                         >
-                          <img
-                            src="/nuvem.svg"
-                            referrerPolicy="no-referrer"
-                            className="w-4 h-4 object-contain invert"
-                            alt="Restaurar Backup"
-                          />
+                          <FaServer size={16} />
                         </button>
                       </div>
 
@@ -8718,54 +8718,38 @@ function GroupApp({
                                   >
                                     {/* Circle emblem matching card background */}
                                     <div className="flex items-center gap-3 flex-1 min-w-0">
-                                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-500/10 dark:bg-[#121623] border border-emerald-500/20 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5 shrink-0 overflow-hidden relative">
-                                        {match.imageUrl ? (
-                                          <img
-                                            src={match.imageUrl}
-                                            className="w-full h-full object-cover rounded-full"
-                                            referrerPolicy="no-referrer"
+                                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-500/10 dark:bg-[#121623] border border-emerald-500/20 dark:border-white/10 shadow-inner flex items-center justify-center p-0.5 shrink-0 overflow-hidden relative">
+                                        <svg viewBox="0 0 120 120" className="w-full h-full transform -rotate-90 absolute inset-0">
+                                          <defs>
+                                            <linearGradient id={`gauge-match-${match.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                                              <stop offset="0%" stopColor="#2ea625" />
+                                              <stop offset="50%" stopColor="#34d399" />
+                                              <stop offset="100%" stopColor="#59b823" />
+                                            </linearGradient>
+                                          </defs>
+                                          <circle
+                                            cx="60"
+                                            cy="60"
+                                            r="46"
+                                            stroke="currentColor"
+                                            strokeWidth="10"
+                                            className="text-emerald-500/20 dark:text-white/15"
+                                            fill="none"
                                           />
-                                        ) : (
-                                          <>
-                                            <svg viewBox="0 0 120 120" className="w-full h-full transform -rotate-90 absolute inset-0">
-                                              <defs>
-                                                <linearGradient id={`gauge-match-${match.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                                                  <stop offset="0%" stopColor="#2ea625" />
-                                                  <stop offset="50%" stopColor="#34d399" />
-                                                  <stop offset="100%" stopColor="#59b823" />
-                                                </linearGradient>
-                                              </defs>
-                                              <circle
-                                                cx="60"
-                                                cy="60"
-                                                r="46"
-                                                stroke="currentColor"
-                                                strokeWidth="10"
-                                                className="text-emerald-500/20 dark:text-white/15"
-                                                fill="none"
-                                              />
-                                              <motion.circle
-                                                cx="60"
-                                                cy="60"
-                                                r="46"
-                                                stroke={`url(#gauge-match-${match.id})`}
-                                                strokeWidth="10"
-                                                strokeLinecap="round"
-                                                fill="none"
-                                                strokeDasharray={2 * Math.PI * 46}
-                                                initial={{ strokeDashoffset: 2 * Math.PI * 46 }}
-                                                animate={{ strokeDashoffset: 2 * Math.PI * 46 * 0.25 }}
-                                                transition={{ duration: 1.2, ease: "easeOut" }}
-                                              />
-                                            </svg>
-                                            <img
-                                              src="/logo%20oficial.png"
-                                              alt="Logo do aplicativo"
-                                              className="w-6 h-6 sm:w-7 sm:h-7 object-contain rounded-full relative z-10"
-                                              referrerPolicy="no-referrer"
-                                            />
-                                          </>
-                                        )}
+                                          <motion.circle
+                                            cx="60"
+                                            cy="60"
+                                            r="46"
+                                            stroke={`url(#gauge-match-${match.id})`}
+                                            strokeWidth="10"
+                                            strokeLinecap="round"
+                                            fill="none"
+                                            strokeDasharray={2 * Math.PI * 46}
+                                            initial={{ strokeDashoffset: 2 * Math.PI * 46 }}
+                                            animate={{ strokeDashoffset: 2 * Math.PI * 46 * 0.25 }}
+                                            transition={{ duration: 1.2, ease: "easeOut" }}
+                                          />
+                                        </svg>
                                       </div>
 
                                       {/* Text column left aligned */}
@@ -8780,7 +8764,7 @@ function GroupApp({
                                     </div>
 
                                     {/* Buttons Column */}
-                                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0" onClick={(e) => e.stopPropagation()}>
+                                    <div className="flex items-center gap-1 sm:gap-1.5 shrink-0" onClick={(e) => e.stopPropagation()}>
                                       <button
                                         onClick={(e) => {
                                           e.stopPropagation();
@@ -8801,20 +8785,20 @@ function GroupApp({
                                           setNewMatchDay(days[date.getDay()]);
                                           setShowScheduleModal(true);
                                         }}
-                                        className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center border border-white/5 hover:scale-105 active:scale-95 transition-all shadow-sm"
+                                        className="p-1 text-white/80 hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
                                         title="Editar"
                                       >
-                                        <Pencil size={14} />
+                                        <TbEdit size={20} />
                                       </button>
                                       <button
                                         onClick={(e) => {
                                           e.stopPropagation();
                                           setMatchToDelete(match);
                                         }}
-                                        className="w-8 h-8 rounded-full bg-[#fa5252]/10 hover:bg-[#fa5252]/20 text-[#ff6b6b] flex items-center justify-center border border-[#fa5252]/10 hover:scale-105 active:scale-95 transition-all shadow-sm"
+                                        className="p-1 text-[#ff6b6b] hover:text-[#ff8787] hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
                                         title="Excluir"
                                       >
-                                        <Trash2 size={14} />
+                                        <RiDeleteBinLine size={20} />
                                       </button>
                                     </div>
                                   </motion.div>
@@ -8890,8 +8874,8 @@ function GroupApp({
                           {/* Jogadores Stat */}
                           <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
                             <div className="flex items-center gap-2">
-                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
-                                <Users size={13} />
+                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
+                                <Users size={14} />
                               </div>
                               <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Jogadores</span>
                             </div>
@@ -8901,8 +8885,8 @@ function GroupApp({
                           {/* Caixa Stat */}
                           <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
                             <div className="flex items-center gap-2">
-                              <div className="p-1 rounded-lg bg-emerald-500/10 text-[#2ea625] dark:text-emerald-400">
-                                <Wallet size={13} />
+                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
+                                <Wallet size={14} />
                               </div>
                               <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Saldo</span>
                             </div>
@@ -8987,7 +8971,7 @@ function GroupApp({
                                 >
                                   {/* Left section containing photo */}
                                   <div className="relative flex items-center justify-center shrink-0">
-                                    <div className="w-12 h-12 rounded-full border border-emerald-500 overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center shadow-none dark:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#2ea625]/40 dark:border-emerald-500/40 overflow-hidden bg-emerald-500/10 dark:bg-emerald-950/40 flex items-center justify-center shadow-xs">
                                       {player.photo ? (
                                         <img
                                           src={player.photo}
@@ -8996,31 +8980,31 @@ function GroupApp({
                                           referrerPolicy="no-referrer"
                                         />
                                       ) : (
-                                        <span className="text-emerald-500 flex items-center justify-center">
-                                          <IoPersonOutline size={20} />
+                                        <span className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
+                                          <IoPersonOutline size={16} />
                                         </span>
                                       )}
                                     </div>
                                     
                                     {/* Extra indicators over avatar (optional) */}
                                     {player.isGoalkeeper && (
-                                      <span className="absolute -bottom-1 -right-1 bg-zinc-800 text-white dark:bg-zinc-700 p-1 rounded-full border border-emerald-500 text-[8px] flex items-center justify-center shadow-md">
+                                      <span className="absolute -bottom-0.5 -right-0.5 bg-zinc-800 text-white dark:bg-zinc-700 p-0.5 rounded-full border border-emerald-500 text-[7px] flex items-center justify-center shadow-xs">
                                         <span className="animate-spin-slow flex items-center justify-center">
-                                          <GiSoccerBall size={8} />
+                                          <GiSoccerBall size={7} />
                                         </span>
                                       </span>
                                     )}
                                     {orgProData[player.id] && !player.isGoalkeeper && (
-                                      <span className="absolute -top-1 -right-1 bg-yellow-500 text-white p-1 rounded-full border border-yellow-300 text-[8px] flex items-center justify-center shadow-md">
+                                      <span className="absolute -top-0.5 -right-0.5 bg-yellow-500 text-white p-0.5 rounded-full border border-yellow-300 text-[7px] flex items-center justify-center shadow-xs">
                                         <span className="animate-bounce flex items-center justify-center">
-                                          <GiCrown size={8} />
+                                          <GiCrown size={7} />
                                         </span>
                                       </span>
                                     )}
                                   </div>
 
                                   {/* Middle section containing name and position */}
-                                  <div className="flex flex-col flex-1 ml-3 text-left justify-center overflow-hidden">
+                                  <div className="flex flex-col flex-1 ml-2.5 text-left justify-center overflow-hidden">
                                     <div className="flex items-center gap-1.5">
                                       {editingPlayerId === player.id ? (
                                         <input
@@ -9055,6 +9039,30 @@ function GroupApp({
                                     <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 mt-0.5 leading-none">
                                       {player.isGoalkeeper ? "Goleiro" : "Jogador"}
                                     </span>
+
+                                    {/* Compact Animated Bar Graph with FutQuina green theme */}
+                                    <div className="w-full max-w-[110px] h-1.5 bg-zinc-200/80 dark:bg-emerald-950/60 border border-black/5 dark:border-emerald-500/10 rounded-full overflow-hidden mt-1 shadow-inner">
+                                      <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{
+                                          width: `${Math.min(
+                                            Math.max(
+                                              (((player.matchesPlayed || 0) + (player.goals || 0) + (player.assists || 0)) /
+                                                Math.max(
+                                                  ...visiblePlayers.map(
+                                                    (p) => (p.matchesPlayed || 0) + (p.goals || 0) + (p.assists || 0)
+                                                  ),
+                                                  1
+                                                )) * 100,
+                                              15
+                                            ),
+                                            100
+                                          )}%`,
+                                        }}
+                                        transition={{ duration: 1, ease: "easeOut" }}
+                                        className="h-full rounded-full bg-gradient-to-r from-[#133d10] via-[#2ea625] to-[#75c628]"
+                                      />
+                                    </div>
                                   </div>
 
                                   {/* Stats Row */}
@@ -9822,7 +9830,7 @@ function GroupApp({
                         )}
 
                       {players.length > 0 && (
-                        <div className="w-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-2xl border border-[#2ea625]/20 dark:border-[#59b823]/20 mb-4 shadow-sm p-2.5">
+                        <div className="w-full bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 rounded-2xl border border-black/10 dark:border-white/10 mb-4 shadow-sm p-2.5">
                           <div className="flex items-center gap-4 overflow-x-auto scrollbar-none [::-webkit-scrollbar]:hidden px-1 py-1">
                             {/* Add button */}
                             <button
