@@ -130,6 +130,7 @@ import {
   MdDonutLarge,
   MdDataSaverOff,
   MdDeleteSweep,
+  MdPerson4,
 } from "react-icons/md";
 import { CiSaveUp1, CiMemoPad, CiImport, CiStopwatch } from "react-icons/ci";
 import { TiMap } from "react-icons/ti";
@@ -10200,7 +10201,7 @@ function GroupApp({
                                       " flex items-center shrink-0"
                                     }
                                   >
-                                    <IoPersonOutline size={16} />
+                                    <MdPerson4 size={18} />
                                   </span>
                                 )}
                               </div>
