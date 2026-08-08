@@ -158,6 +158,10 @@ import {
   GiCycle,
   GiCancel,
   GiPlayerNext,
+  GiCornerFlag,
+  GiHolosphere,
+  GiCloudDownload,
+  GiFoldedPaper,
 } from "react-icons/gi";
 import {
   PiUsersBold,
@@ -229,6 +233,8 @@ import {
   PiCheckCircleFill,
   PiMapPinFill,
 } from "react-icons/pi";
+import { FaSquareWebAwesomeStroke, FaServer } from "react-icons/fa6";
+import { FiUploadCloud } from "react-icons/fi";
 import { supabase } from "./lib/supabase";
 import { sounds } from "./lib/sounds";
 
@@ -8379,12 +8385,9 @@ function GroupApp({
                           className="w-full flex items-center gap-4 p-4 hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all group cursor-pointer"
                         >
                           <div className="flex items-center gap-4 text-left w-full">
-                            <img
-                              src="/painel%20de%20controle.png"
-                              referrerPolicy="no-referrer"
-                              className="w-5 h-5 object-contain group-hover:scale-110 transition-transform shrink-0"
-                              alt="Painel de controle"
-                            />
+                            <div className="w-5 h-5 flex items-center justify-center shrink-0 text-zinc-900 dark:text-white group-hover:scale-110 transition-transform">
+                              <FaSquareWebAwesomeStroke size={20} />
+                            </div>
                             <div className="flex flex-col">
                               <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                                 Painel de controle
@@ -8405,12 +8408,9 @@ function GroupApp({
                         className="w-full flex items-center justify-between p-4 hover:bg-red-500/10 rounded-xl transition-all group cursor-pointer"
                       >
                         <div className="flex items-center gap-4 text-left w-full">
-                          <img
-                            src="/atualizar.png"
-                            referrerPolicy="no-referrer"
-                            className="w-5 h-5 object-contain group-hover:scale-110 transition-transform shrink-0"
-                            alt="Fim da pelada"
-                          />
+                          <div className="w-5 h-5 flex items-center justify-center shrink-0 text-zinc-900 dark:text-white group-hover:scale-110 transition-transform">
+                            <GiCornerFlag size={20} />
+                          </div>
                           <div className="flex flex-col">
                             <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Fim da pelada
@@ -8431,7 +8431,7 @@ function GroupApp({
                             {theme === "light" ? (
                               <Moon size={20} />
                             ) : (
-                              <Sun size={20} />
+                              <GiHolosphere size={20} />
                             )}
                           </div>
                           <div className="flex flex-col">
@@ -8455,12 +8455,9 @@ function GroupApp({
                         className="w-full flex items-center justify-between p-4 hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all group cursor-pointer"
                       >
                         <div className="flex items-center gap-4 text-left w-full">
-                          <img
-                            src="/backup.png"
-                            referrerPolicy="no-referrer"
-                            className="w-5 h-5 object-contain group-hover:scale-110 transition-transform shrink-0"
-                            alt="Backup"
-                          />
+                          <div className="w-5 h-5 flex items-center justify-center shrink-0 text-zinc-900 dark:text-white group-hover:scale-110 transition-transform">
+                            <FiUploadCloud size={20} />
+                          </div>
                           <div className="flex flex-col">
                             <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Backup
@@ -8480,12 +8477,9 @@ function GroupApp({
                         className="w-full flex items-center justify-between p-4 hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all group cursor-pointer"
                       >
                         <div className="flex items-center gap-4 text-left w-full">
-                          <img
-                            src="/nuvem.png"
-                            referrerPolicy="no-referrer"
-                            className="w-5 h-5 object-contain group-hover:scale-110 transition-transform shrink-0"
-                            alt="Restaurar Backup"
-                          />
+                          <div className="w-5 h-5 flex items-center justify-center shrink-0 text-zinc-900 dark:text-white group-hover:scale-110 transition-transform">
+                            <FaServer size={20} />
+                          </div>
                           <div className="flex flex-col">
                             <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Restaurar Backup
@@ -8505,12 +8499,9 @@ function GroupApp({
                         className="w-full flex items-center justify-between p-4 hover:bg-black/10 dark:hover:bg-white/10 rounded-xl transition-all group cursor-pointer"
                       >
                         <div className="flex items-center gap-4 text-left w-full">
-                          <img
-                            src="/guia%20inicial.png"
-                            referrerPolicy="no-referrer"
-                            className="w-5 h-5 object-contain group-hover:scale-110 transition-transform shrink-0"
-                            alt="Guia Inicial"
-                          />
+                          <div className="w-5 h-5 flex items-center justify-center shrink-0 text-zinc-900 dark:text-white group-hover:scale-110 transition-transform">
+                            <GiFoldedPaper size={20} />
+                          </div>
                           <div className="flex-1 flex flex-col">
                             <span className="text-[14px] font-medium text-zinc-900 dark:text-white tracking-wide">
                               Guia Inicial
@@ -8593,9 +8584,9 @@ function GroupApp({
                           title="Restaurar Backup"
                         >
                           <img
-                            src="/nuvem.png"
+                            src="/nuvem.svg"
                             referrerPolicy="no-referrer"
-                            className="w-4 h-4 object-contain"
+                            className="w-4 h-4 object-contain invert"
                             alt="Restaurar Backup"
                           />
                         </button>
@@ -17819,7 +17810,7 @@ function GroupApp({
 
               <div className="flex items-center justify-center mx-auto mb-2 relative z-10">
                 <img
-                  src="/atualizar.png"
+                  src="/atualizar.svg"
                   referrerPolicy="no-referrer"
                   className="w-10 h-10 object-contain"
                   alt="Fim da pelada"
