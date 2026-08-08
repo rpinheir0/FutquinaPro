@@ -100,6 +100,7 @@ import {
   IoCheckmarkCircleOutline,
   IoPeopleCircleOutline,
   IoLogoWhatsapp,
+  IoPersonCircleSharp,
 } from "react-icons/io5";
 import {
   BsArrowUpRightCircle,
@@ -9972,9 +9973,9 @@ function GroupApp({
                                           referrerPolicy="no-referrer"
                                         />
                                       ) : (
-                                        <User
-                                          className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 text-current opacity-80"
-                                        />
+                                        <span className="text-current opacity-80 flex items-center justify-center">
+                                          <IoPersonCircleSharp size={22} />
+                                        </span>
                                       )}
                                     </div>
                                   </div>
