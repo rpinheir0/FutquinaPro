@@ -9251,7 +9251,7 @@ function GroupApp({
                             <label className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black/60 dark:text-white/60 text-center leading-tight">
                               Tempo (Minutos)
                             </label>
-                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-[#0e2c0e]/10 via-[#1b5017]/20 to-[#2ea625]/10 dark:from-[#0e2c0e]/40 dark:via-[#1b5017]/50 dark:to-[#2ea625]/30 rounded-xl border border-emerald-500/30 p-1">
+                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800 rounded-xl border border-black/10 dark:border-white/10 p-1">
                               <input
                                 type="number"
                                 defaultValue={match.config.duration}
@@ -9266,7 +9266,7 @@ function GroupApp({
                             <label className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black/60 dark:text-white/60 text-center leading-tight">
                               Limite de Gols
                             </label>
-                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-[#0e2c0e]/10 via-[#1b5017]/20 to-[#2ea625]/10 dark:from-[#0e2c0e]/40 dark:via-[#1b5017]/50 dark:to-[#2ea625]/30 rounded-xl border border-emerald-500/30 p-1">
+                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800 rounded-xl border border-black/10 dark:border-white/10 p-1">
                               <input
                                 type="number"
                                 defaultValue={match.config.goalLimit}
@@ -9283,7 +9283,7 @@ function GroupApp({
                             <label className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-black/60 dark:text-white/60 text-center leading-tight">
                               Jogadores / Time
                             </label>
-                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-[#0e2c0e]/10 via-[#1b5017]/20 to-[#2ea625]/10 dark:from-[#0e2c0e]/40 dark:via-[#1b5017]/50 dark:to-[#2ea625]/30 rounded-xl border border-emerald-500/30 p-1">
+                            <div className="w-full flex items-center justify-center bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-800 rounded-xl border border-black/10 dark:border-white/10 p-1">
                               <input
                                 type="number"
                                 defaultValue={match.config.playersPerTeam}
@@ -10196,7 +10196,7 @@ function GroupApp({
                                   <span
                                     className={
                                       (p.isAvailable
-                                        ? "text-[#2ea625] dark:text-[#59b823]"
+                                        ? "text-black dark:text-white"
                                         : "text-black/50 dark:text-white/40") +
                                       " flex items-center shrink-0"
                                     }
