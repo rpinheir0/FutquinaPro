@@ -117,6 +117,7 @@ import {
   IoMdDoneAll,
   IoIosMenu,
   IoIosSave,
+  IoIosPersonAdd,
 } from "react-icons/io";
 import {
   PiUserCirclePlusThin,
@@ -8981,7 +8982,7 @@ function GroupApp({
                                         />
                                       ) : (
                                         <span className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
-                                          <IoPersonOutline size={16} />
+                                          <IoIosPersonAdd size={16} />
                                         </span>
                                       )}
                                     </div>
