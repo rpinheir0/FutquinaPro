@@ -108,6 +108,7 @@ import {
   BsPersonFillAdd,
   BsPersonAdd,
   BsChevronDoubleUp,
+  BsFillPenFill,
 } from "react-icons/bs";
 import {
   IoIosTrophy,
@@ -8792,7 +8793,7 @@ function GroupApp({
                                         className="p-1 text-white/80 hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
                                         title="Editar"
                                       >
-                                        <TbEdit size={20} />
+                                        <BsFillPenFill size={16} />
                                       </button>
                                       <button
                                         onClick={(e) => {
@@ -8824,7 +8825,10 @@ function GroupApp({
                       transition={{ duration: 0.2 }}
                       className="space-y-4"
                     >
-                      <div className="p-3 sm:p-3.5 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-col gap-0.5 my-2">
+                      <div
+                        className="px-3 sm:px-3.5 py-0 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-col gap-0.5 my-2"
+                        style={{ paddingTop: '0px', paddingBottom: '0px' }}
+                      >
                         <h2 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white leading-none">
                           GERENCIAMENTO
                         </h2>
@@ -8834,13 +8838,13 @@ function GroupApp({
                       </div>
 
                       <div className="space-y-2">
-                        <div className="bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-200 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 backdrop-blur-md p-2 rounded-2xl border border-black/10 dark:border-white/10 space-y-2 shadow-sm">
-                          <div className="flex flex-col sm:flex-row gap-2">
-                            <div className="flex-1 flex gap-2">
+                        <div className="bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 backdrop-blur-md p-1.5 sm:p-2 rounded-2xl border border-black/10 dark:border-white/10 shadow-xs">
+                          <div className="flex flex-col sm:flex-row gap-1.5">
+                            <div className="flex-1 flex gap-1.5">
                               <input
                                 type="text"
                                 placeholder="Nome do jogador..."
-                                className={`flex-1 px-3 sm:px-4 py-1.5 rounded-[14px] border border-black/5 dark:border-white/10 outline-none transition-all bg-white dark:bg-black/40 text-zinc-900 dark:text-white placeholder-black/40 dark:placeholder-white/40 focus:ring-2 focus:ring-[#2ea625]/50 text-xs font-medium shadow-inner h-[36px]`}
+                                className={`flex-1 px-3 py-1 rounded-xl border border-black/10 dark:border-white/10 outline-none transition-all bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white placeholder-black/40 dark:placeholder-white/40 focus:ring-2 focus:ring-[#2ea625]/50 text-xs font-medium shadow-inner h-[32px]`}
                                 onKeyDown={(e) => {
                                   if (e.key === "Enter") {
                                     addPlayer(e.currentTarget.value);
@@ -8850,10 +8854,10 @@ function GroupApp({
                               />
                               <button
                                 onClick={handleImportContacts}
-                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-zinc-700 dark:text-zinc-300 rounded-[14px] shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center border border-black/5 dark:border-white/10 shrink-0"
+                                className="w-[32px] h-[32px] bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-xl shadow-xs hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center border border-black/10 dark:border-white/10 shrink-0"
                                 title="Importar dos Contatos"
                               >
-                                <Contact size={16} strokeWidth={1.5} />
+                                <Contact size={15} strokeWidth={1.5} />
                               </button>
                               <button
                                 onClick={() => {
@@ -8865,9 +8869,9 @@ function GroupApp({
                                     input.value = "";
                                   }
                                 }}
-                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-zinc-700 dark:text-zinc-300 rounded-[14px] border border-black/5 dark:border-white/10 shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center shrink-0"
+                                className="w-[32px] h-[32px] bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-xl border border-black/10 dark:border-white/10 shadow-xs hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center shrink-0"
                               >
-                                <Plus size={18} strokeWidth={1.5} />
+                                <Plus size={16} strokeWidth={1.5} />
                               </button>
                             </div>
                           </div>
@@ -13351,14 +13355,14 @@ function GroupApp({
                             return (
                               <div
                                 key={`top-card-${player.id}`}
-                                className="bg-[#f0f0f0] dark:bg-emerald-950/20 dark:backdrop-blur-xs border border-black/10 dark:border-emerald-500/20 rounded-2xl flex flex-col justify-between overflow-hidden shadow-xs text-center"
+                                className="bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 border border-black/10 dark:border-white/10 rounded-2xl flex flex-col justify-between overflow-hidden shadow-xs text-center"
                               >
                                 {/* Top part */}
-                                <div className="p-1.5 sm:p-2.5 pb-1 flex flex-col items-center">
+                                <div className="p-1.5 sm:p-2 pb-1 flex flex-col items-center">
                                   {/* Avatar container with relative overlay */}
-                                  <div className="relative w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center">
+                                  <div className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center">
                                     {/* The avatar circle */}
-                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-white dark:border-emerald-500/30 shadow-xs relative bg-[#e2e8f0] dark:bg-emerald-900/30 flex items-center justify-center z-10 shrink-0">
+                                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-[#2ea625]/40 dark:border-emerald-500/40 shadow-xs relative bg-white dark:bg-zinc-800 flex items-center justify-center z-10 shrink-0">
                                       {player.photo ? (
                                         <img
                                           src={player.photo}
@@ -13367,36 +13371,36 @@ function GroupApp({
                                           referrerPolicy="no-referrer"
                                         />
                                       ) : (
-                                        <span className="text-zinc-600 dark:text-emerald-400/70 flex items-center justify-center">
-                                          <IoPersonOutline size={16} />
+                                        <span className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
+                                          <MdPerson size={15} />
                                         </span>
                                       )}
                                     </div>
                                   </div>
 
                                   {/* Position number under avatar */}
-                                  <span className="text-[9px] sm:text-[10px] font-bold text-zinc-400 dark:text-emerald-400/80 mt-0.5">
+                                  <span className="text-[9px] sm:text-[10px] font-black text-[#2ea625] dark:text-emerald-400 mt-0.5 leading-none">
                                     {place}
                                   </span>
 
                                   {/* Name */}
-                                  <h4 className="text-[9px] sm:text-[11px] font-black uppercase text-zinc-900 dark:text-white truncate max-w-full leading-none mt-0.5">
+                                  <h4 className="text-[9px] sm:text-[10px] font-black uppercase text-zinc-900 dark:text-white truncate max-w-full leading-tight mt-0.5">
                                     {player.name}
                                   </h4>
 
                                   {/* Country style label */}
-                                  <span className="text-[7px] sm:text-[8px] font-bold text-zinc-400 dark:text-emerald-200/60 uppercase tracking-wider mt-0.5">
+                                  <span className="text-[7px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mt-0.5 leading-none">
                                     {place === 1 ? "1º Lugar" : place === 2 ? "2º Lugar" : "3º Lugar"}
                                   </span>
                                 </div>
 
                                 {/* Bottom stats split into 2 sections */}
-                                <div className="border-t border-black/5 dark:border-emerald-500/10 grid grid-cols-2 bg-black/[0.01] dark:bg-emerald-950/40 text-center">
-                                  <div className="p-1 flex flex-col items-center justify-center border-r border-black/5 dark:border-emerald-500/10">
-                                    <span className="text-[10px] sm:text-xs font-black text-zinc-800 dark:text-white leading-none">
+                                <div className="border-t border-black/10 dark:border-white/10 grid grid-cols-2 bg-black/5 dark:bg-white/5 text-center">
+                                  <div className="p-1 flex flex-col items-center justify-center border-r border-black/10 dark:border-white/10">
+                                    <span className="text-[10px] sm:text-xs font-black text-zinc-900 dark:text-white leading-none">
                                       {player.goals || 0}
                                     </span>
-                                    <span className="text-[6px] sm:text-[7px] font-bold text-zinc-400 dark:text-emerald-300/60 uppercase tracking-widest mt-0.5">
+                                    <span className="text-[6px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mt-0.5">
                                       GOLS
                                     </span>
                                   </div>
@@ -13404,7 +13408,7 @@ function GroupApp({
                                     <span className="text-[10px] sm:text-xs font-black text-blue-500 dark:text-blue-400 leading-none">
                                       {player.assists || 0}
                                     </span>
-                                    <span className="text-[6px] sm:text-[7px] font-bold text-zinc-400 dark:text-emerald-300/60 uppercase tracking-widest mt-0.5">
+                                    <span className="text-[6px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mt-0.5">
                                       ASS
                                     </span>
                                   </div>
@@ -13428,79 +13432,79 @@ function GroupApp({
                               },
                             }}
                             key={player.id}
-                            className="flex items-center py-3 px-3 transition-colors rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:bg-white/10 shadow-sm"
+                            className="flex items-center py-1.5 px-2.5 sm:px-3 transition-colors rounded-2xl bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 border border-black/10 dark:border-white/10 shadow-xs"
                           >
-                            <div className="flex items-center gap-2 mr-3">
-                              <div className="w-5 text-sm font-black text-black/40 dark:text-white/40 text-center shrink-0">
+                            <div className="flex items-center gap-1.5 mr-2">
+                              <div className="w-4 text-xs font-bold text-black/50 dark:text-white/50 text-center shrink-0">
                                 {actualRank}
                               </div>
 
-                            <div className="relative shrink-0">
-                              <div
-                                className={`w-10 h-10 rounded-full overflow-hidden flex items-center justify-center bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 relative z-10`}
-                              >
-                                {player.photo ? (
-                                  <img
-                                    src={player.photo}
-                                    alt={player.name}
-                                    className="w-full h-full object-cover"
-                                  />
-                                ) : (
-                                  <span className="text-black/50 dark:text-white/40 flex items-center shrink-0">
-                                    <IoPersonOutline size={20} />
-                                  </span>
-                                )}
+                              <div className="relative shrink-0">
+                                <div
+                                  className={`w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-white dark:bg-zinc-800 border border-[#2ea625]/40 dark:border-emerald-500/40 relative z-10`}
+                                >
+                                  {player.photo ? (
+                                    <img
+                                      src={player.photo}
+                                      alt={player.name}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  ) : (
+                                    <span className="text-[#2ea625] dark:text-emerald-400 flex items-center shrink-0">
+                                      <MdPerson size={16} />
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          <div className="flex-1 text-xs text-zinc-900 dark:text-white tracking-tight truncate mr-4 font-normal capitalize flex flex-col gap-1 text-left">
-                            <span className="leading-none font-bold text-zinc-900 dark:text-white text-[13px]">
-                              {player.name.toLowerCase()}
-                            </span>
-                            <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-semibold leading-none mt-0.5">
-                              {player.isGoalkeeper ? "Goleiro" : "Jogador"}
-                            </span>
-                            <div className="w-full max-w-[120px] h-1.5 bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden mt-1.5 shadow-inner">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                animate={{
-                                  width: `${Math.min(
-                                    (rankingTab === "artilharia"
-                                      ? player.goals
-                                      : rankingTab === "assistencias"
-                                      ? player.assists
-                                      : player.stars || 3) /
+                            <div className="flex-1 text-xs text-zinc-900 dark:text-white tracking-tight truncate mr-2 font-normal capitalize flex flex-col text-left min-w-0">
+                              <span className="leading-tight font-bold text-zinc-900 dark:text-white text-xs sm:text-sm truncate">
+                                {player.name.toLowerCase()}
+                              </span>
+                              <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-medium leading-none mt-0.5">
+                                {player.isGoalkeeper ? "Goleiro" : "Jogador"}
+                              </span>
+                              <div className="w-full max-w-[90px] h-1 bg-zinc-300/80 dark:bg-emerald-950/60 border border-black/5 dark:border-emerald-500/10 rounded-full overflow-hidden mt-0.5 shadow-inner">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  animate={{
+                                    width: `${Math.min(
                                       (rankingTab === "artilharia"
-                                        ? Math.max(...sortedRankingPlayers.map((p) => p.goals), 1)
+                                        ? player.goals
                                         : rankingTab === "assistencias"
-                                        ? Math.max(...sortedRankingPlayers.map((p) => p.assists), 1)
-                                        : 5) *
-                                      100,
-                                    100
-                                  )}%`,
-                                }}
-                                transition={{ duration: 1, ease: "easeOut" }}
-                                className="h-full rounded-full bg-gradient-to-r from-green-600 via-green-500 to-lime-400"
-                              />
+                                        ? player.assists
+                                        : player.stars || 3) /
+                                        (rankingTab === "artilharia"
+                                          ? Math.max(...sortedRankingPlayers.map((p) => p.goals), 1)
+                                          : rankingTab === "assistencias"
+                                          ? Math.max(...sortedRankingPlayers.map((p) => p.assists), 1)
+                                          : 5) *
+                                        100,
+                                      100
+                                    )}%`,
+                                  }}
+                                  transition={{ duration: 1, ease: "easeOut" }}
+                                  className="h-full rounded-full bg-gradient-to-r from-green-600 via-green-500 to-lime-400"
+                                />
+                              </div>
                             </div>
-                          </div>
 
-                          <div
-                            className={`flex gap-4 sm:gap-8 shrink-0 ${rankingTab === "artilharia" ? "flex-row-reverse" : ""}`}
-                          >
                             <div
-                              className={`w-12 text-center text-sm font-black text-[#59b823] ${rankingTab === "assistencias" ? "opacity-0" : ""}`}
+                              className={`flex gap-3 sm:gap-6 shrink-0 ${rankingTab === "artilharia" ? "flex-row-reverse" : ""}`}
                             >
-                              {player.goals}
+                              <div
+                                className={`w-8 text-center text-xs sm:text-sm font-bold text-[#59b823] ${rankingTab === "assistencias" ? "opacity-0" : ""}`}
+                              >
+                                {player.goals}
+                              </div>
+                              <div
+                                className={`w-8 text-center text-xs sm:text-sm font-bold text-blue-400 ${rankingTab === "artilharia" ? "opacity-0" : ""}`}
+                              >
+                                {player.assists}
+                              </div>
                             </div>
-                            <div
-                              className={`w-12 text-center text-sm font-black text-blue-400 ${rankingTab === "artilharia" ? "opacity-0" : ""}`}
-                            >
-                              {player.assists}
-                            </div>
-                          </div>
-                        </motion.div>
+                          </motion.div>
                       )})}
                       {players.length === 0
                         ? Array.from({ length: 5 }).map((_, idx) => (
