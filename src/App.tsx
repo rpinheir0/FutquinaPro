@@ -10163,10 +10163,10 @@ function GroupApp({
                                   });
                                 }
                               }}
-                              className={`flex items-center gap-3 py-2 px-3 rounded-2xl border transition-all active:scale-[0.98] relative overflow-hidden ${
+                              className={`flex items-center gap-2.5 py-1.5 px-2.5 sm:px-3 rounded-2xl border transition-all active:scale-[0.98] relative overflow-hidden ${
                                 p.isAvailable
-                                  ? "bg-black/5 dark:bg-white/5 backdrop-blur-md border-black/10 dark:border-white/10 text-zinc-900 dark:text-white shadow-sm"
-                                  : "bg-black/5 dark:bg-white/5 border-black/5 dark:border-white/5 text-black/50 dark:text-white/40 opacity-60 hover:bg-black/10 dark:bg-white/10"
+                                  ? "bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 border-black/10 dark:border-white/10 text-zinc-900 dark:text-white shadow-xs"
+                                  : "bg-gradient-to-r from-zinc-200/50 via-zinc-100/50 to-zinc-300/50 dark:from-zinc-900/50 dark:via-zinc-800/50 dark:to-zinc-900/50 border-black/5 dark:border-white/5 text-black/50 dark:text-white/40 opacity-60 hover:bg-black/10 dark:hover:bg-white/10"
                               }`}
                             >
                               {p.isAvailable && (
@@ -10183,7 +10183,7 @@ function GroupApp({
                                 />
                               )}
                               <div
-                                className={`w-10 h-10 rounded-full bg-transparent flex items-center justify-center overflow-hidden border transition-colors ${
+                                className={`w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full bg-white dark:bg-zinc-800 flex items-center justify-center overflow-hidden border transition-colors shrink-0 ${
                                   p.isAvailable
                                     ? "border-[#2ea625] dark:border-[#59b823]"
                                     : "border-black/10 dark:border-white/10"
@@ -10205,20 +10205,20 @@ function GroupApp({
                                       " flex items-center shrink-0"
                                     }
                                   >
-                                    <MdPerson size={18} />
+                                    <MdPerson size={16} />
                                   </span>
                                 )}
                               </div>
-                              <div className="flex-1 text-left flex flex-col justify-center">
+                              <div className="flex-1 text-left flex flex-col justify-center min-w-0">
                                 <div
-                                  className={`text-sm font-normal tracking-tight capitalize leading-none ${p.isAvailable ? "text-zinc-900 dark:text-white" : "text-black/60 dark:text-white/50"}`}
+                                  className={`text-xs sm:text-sm font-bold tracking-tight capitalize leading-none truncate ${p.isAvailable ? "text-zinc-900 dark:text-white" : "text-black/60 dark:text-white/50"}`}
                                 >
                                   {p.name.toLowerCase()}
                                 </div>
                               </div>
                               {p.isAvailable && (
-                                <div className="bg-[#59b823] rounded-full flex items-center justify-center w-5 h-5 shrink-0">
-                                  <Check size={12} strokeWidth={3} className="text-white" />
+                                <div className="bg-[#59b823] rounded-full flex items-center justify-center w-4.5 h-4.5 sm:w-5 sm:h-5 shrink-0">
+                                  <Check size={11} strokeWidth={3} className="text-white" />
                                 </div>
                               )}
                             </button>
