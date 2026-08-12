@@ -106,6 +106,7 @@ import {
   BsArrowUpRightCircle,
   BsClockHistory,
   BsPersonFillAdd,
+  BsPersonAdd,
   BsChevronDoubleUp,
 } from "react-icons/bs";
 import {
@@ -130,7 +131,7 @@ import {
   MdDonutLarge,
   MdDataSaverOff,
   MdDeleteSweep,
-  MdPerson4,
+  MdPerson,
 } from "react-icons/md";
 import { CiSaveUp1, CiMemoPad, CiImport, CiStopwatch } from "react-icons/ci";
 import { TiMap } from "react-icons/ti";
@@ -8849,7 +8850,7 @@ function GroupApp({
                               />
                               <button
                                 onClick={handleImportContacts}
-                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-white rounded-[14px] shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center border border-black/5 dark:border-white/10 shrink-0"
+                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-zinc-700 dark:text-zinc-300 rounded-[14px] shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center border border-black/5 dark:border-white/10 shrink-0"
                                 title="Importar dos Contatos"
                               >
                                 <Contact size={16} strokeWidth={1.5} />
@@ -8864,7 +8865,7 @@ function GroupApp({
                                     input.value = "";
                                   }
                                 }}
-                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-[#2ea625] dark:text-white rounded-[14px] border border-black/5 dark:border-white/10 shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center shrink-0"
+                                className="w-[36px] h-[36px] bg-white dark:bg-black/40 text-zinc-700 dark:text-zinc-300 rounded-[14px] border border-black/5 dark:border-white/10 shadow-inner hover:bg-black/5 dark:hover:bg-white/10 transition-all active:scale-95 flex items-center justify-center shrink-0"
                               >
                                 <Plus size={18} strokeWidth={1.5} />
                               </button>
@@ -8878,7 +8879,7 @@ function GroupApp({
                           <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
                             <div className="flex items-center gap-2">
                               <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
-                                <Users size={14} />
+                                <BsPersonAdd size={14} />
                               </div>
                               <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Jogadores</span>
                             </div>
@@ -8965,7 +8966,7 @@ function GroupApp({
                                 <motion.div
                                   layout
                                   key={`player-list-dash-switch-${player.id}`}
-                                  className="bg-white dark:bg-[#12151c] border border-black/5 dark:border-white/5 rounded-2xl flex flex-row items-center overflow-hidden shadow-sm relative cursor-pointer hover:scale-[1.02] active:scale-95 transition-all text-zinc-900 dark:text-white p-3 w-full mx-auto"
+                                  className="bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 border border-black/10 dark:border-white/10 rounded-2xl flex flex-row items-center overflow-hidden shadow-xs relative cursor-pointer hover:scale-[1.01] active:scale-95 transition-all text-zinc-900 dark:text-white py-1.5 px-2.5 sm:px-3 w-full mx-auto"
                                   onClick={() => {
                                     if (editingPlayerId !== player.id) {
                                       setPlayerManagementModal(player);
@@ -8974,7 +8975,7 @@ function GroupApp({
                                 >
                                   {/* Left section containing photo */}
                                   <div className="relative flex items-center justify-center shrink-0">
-                                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#2ea625]/40 dark:border-emerald-500/40 overflow-hidden bg-emerald-500/10 dark:bg-emerald-950/40 flex items-center justify-center shadow-xs">
+                                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#2ea625]/40 dark:border-emerald-500/40 overflow-hidden bg-white dark:bg-zinc-800 flex items-center justify-center shadow-xs">
                                       {player.photo ? (
                                         <img
                                           src={player.photo}
@@ -8984,30 +8985,30 @@ function GroupApp({
                                         />
                                       ) : (
                                         <span className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
-                                          <IoIosPersonAdd size={16} />
+                                          <IoIosPersonAdd size={15} />
                                         </span>
                                       )}
                                     </div>
                                     
                                     {/* Extra indicators over avatar (optional) */}
                                     {player.isGoalkeeper && (
-                                      <span className="absolute -bottom-0.5 -right-0.5 bg-zinc-800 text-white dark:bg-zinc-700 p-0.5 rounded-full border border-emerald-500 text-[7px] flex items-center justify-center shadow-xs">
+                                      <span className="absolute -bottom-0.5 -right-0.5 bg-zinc-800 text-white dark:bg-zinc-700 p-0.5 rounded-full border border-emerald-500 text-[6px] flex items-center justify-center shadow-xs">
                                         <span className="animate-spin-slow flex items-center justify-center">
-                                          <GiSoccerBall size={7} />
+                                          <GiSoccerBall size={6} />
                                         </span>
                                       </span>
                                     )}
                                     {orgProData[player.id] && !player.isGoalkeeper && (
-                                      <span className="absolute -top-0.5 -right-0.5 bg-yellow-500 text-white p-0.5 rounded-full border border-yellow-300 text-[7px] flex items-center justify-center shadow-xs">
+                                      <span className="absolute -top-0.5 -right-0.5 bg-yellow-500 text-white p-0.5 rounded-full border border-yellow-300 text-[6px] flex items-center justify-center shadow-xs">
                                         <span className="animate-bounce flex items-center justify-center">
-                                          <GiCrown size={7} />
+                                          <GiCrown size={6} />
                                         </span>
                                       </span>
                                     )}
                                   </div>
 
                                   {/* Middle section containing name and position */}
-                                  <div className="flex flex-col flex-1 ml-2.5 text-left justify-center overflow-hidden">
+                                  <div className="flex flex-col flex-1 ml-2 text-left justify-center overflow-hidden">
                                     <div className="flex items-center gap-1.5">
                                       {editingPlayerId === player.id ? (
                                         <input
@@ -9032,19 +9033,19 @@ function GroupApp({
                                           }
                                         />
                                       ) : (
-                                        <h4 className="text-sm font-semibold capitalize text-zinc-900 dark:text-white truncate max-w-[140px] leading-tight">
+                                        <h4 className="text-xs sm:text-sm font-bold capitalize text-zinc-900 dark:text-white truncate max-w-[130px] leading-tight">
                                           {player.name.toLowerCase()}
                                         </h4>
                                       )}
                                     </div>
 
                                     {/* Position Tag / Subtitle */}
-                                    <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400 mt-0.5 leading-none">
+                                    <span className="text-[9px] font-medium text-emerald-600 dark:text-emerald-400 mt-0.5 leading-none">
                                       {player.isGoalkeeper ? "Goleiro" : "Jogador"}
                                     </span>
 
                                     {/* Compact Animated Bar Graph with FutQuina green theme */}
-                                    <div className="w-full max-w-[110px] h-1.5 bg-zinc-200/80 dark:bg-emerald-950/60 border border-black/5 dark:border-emerald-500/10 rounded-full overflow-hidden mt-1 shadow-inner">
+                                    <div className="w-full max-w-[90px] h-1 bg-zinc-300/80 dark:bg-emerald-950/60 border border-black/5 dark:border-emerald-500/10 rounded-full overflow-hidden mt-0.5 shadow-inner">
                                       <motion.div
                                         initial={{ width: 0 }}
                                         animate={{
@@ -9069,18 +9070,18 @@ function GroupApp({
                                   </div>
 
                                   {/* Stats Row */}
-                                  <div className="flex items-center gap-2 sm:gap-4 shrink-0 pr-1 ml-2">
-                                    <div className="flex flex-col items-center min-w-[28px]">
+                                  <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pr-1 ml-2">
+                                    <div className="flex flex-col items-center min-w-[24px]">
                                       <span className="text-xs font-bold text-zinc-900 dark:text-white leading-none">{player.matchesPlayed || 0}</span>
-                                      <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Jogos</span>
+                                      <span className="text-[7px] text-zinc-600 dark:text-zinc-400 mt-0.5 leading-none uppercase font-bold tracking-wider">Jogos</span>
                                     </div>
-                                    <div className="flex flex-col items-center min-w-[28px]">
+                                    <div className="flex flex-col items-center min-w-[24px]">
                                       <span className="text-xs font-bold text-zinc-900 dark:text-white leading-none">{player.goals || 0}</span>
-                                      <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Gols</span>
+                                      <span className="text-[7px] text-zinc-600 dark:text-zinc-400 mt-0.5 leading-none uppercase font-bold tracking-wider">Gols</span>
                                     </div>
-                                    <div className="flex flex-col items-center min-w-[28px]">
+                                    <div className="flex flex-col items-center min-w-[24px]">
                                       <span className="text-xs font-bold text-zinc-900 dark:text-white leading-none">{player.assists || 0}</span>
-                                      <span className="text-[8px] text-zinc-500 dark:text-zinc-400 mt-1 leading-none uppercase font-semibold tracking-wider">Assist.</span>
+                                      <span className="text-[7px] text-zinc-600 dark:text-zinc-400 mt-0.5 leading-none uppercase font-bold tracking-wider">Assist.</span>
                                     </div>
                                   </div>
 
@@ -9833,7 +9834,10 @@ function GroupApp({
                         )}
 
                       {players.length > 0 && (
-                        <div className="w-full bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 rounded-2xl border border-black/10 dark:border-white/10 mb-4 shadow-sm p-2.5">
+                        <div
+                          className="w-full bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 rounded-2xl border border-black/10 dark:border-white/10 mb-4 shadow-sm p-2.5"
+                          style={{ paddingTop: '15px', paddingRight: '10px', paddingBottom: '7px' }}
+                        >
                           <div className="flex items-center gap-4 overflow-x-auto scrollbar-none [::-webkit-scrollbar]:hidden px-1 py-1">
                             {/* Add button */}
                             <button
@@ -9975,7 +9979,7 @@ function GroupApp({
                                         />
                                       ) : (
                                         <span className="text-current opacity-80 flex items-center justify-center">
-                                          <IoPersonCircleSharp size={22} />
+                                          <IoPersonCircleSharp size={30} />
                                         </span>
                                       )}
                                     </div>
@@ -10201,7 +10205,7 @@ function GroupApp({
                                       " flex items-center shrink-0"
                                     }
                                   >
-                                    <MdPerson4 size={18} />
+                                    <MdPerson size={18} />
                                   </span>
                                 )}
                               </div>
