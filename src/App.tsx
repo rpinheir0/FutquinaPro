@@ -8825,13 +8825,10 @@ function GroupApp({
                       transition={{ duration: 0.2 }}
                       className="space-y-4"
                     >
-                      <div
-                        className="px-3 sm:px-3.5 py-0 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-col gap-0.5 my-2"
-                        style={{ paddingTop: '0px', paddingBottom: '0px' }}
-                      >
-                        <h2 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white leading-none">
+                      <div className="p-3 sm:p-3.5 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-col gap-0.5 my-2">
+                        <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white leading-none">
                           GERENCIAMENTO
-                        </h2>
+                        </h3>
                         <p className="text-[9px] font-medium text-emerald-100/80 leading-none">
                           Adicione e gerencie os jogadores da pelada
                         </p>
@@ -10259,24 +10256,24 @@ function GroupApp({
                             <>
                               <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto mb-2 space-y-3 bg-black/5 dark:bg-white/5 p-3 sm:p-4 rounded-2xl border border-black/10 dark:border-white/10 shadow-sm backdrop-blur-sm mt-4 animate-pulse relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-25deg] pointer-events-none" />
-                                <div className="w-full p-3 sm:p-4 bg-gradient-to-r from-emerald-950/40 via-emerald-900/30 to-emerald-950/40 dark:from-emerald-950/60 dark:via-emerald-900/50 dark:to-emerald-950/60 rounded-2xl border border-emerald-500/20 shadow-md flex flex-col items-center justify-center space-y-2">
-                                  <p className="text-[10px] sm:text-xs font-black text-emerald-500/40 uppercase tracking-widest">
+                                <div className="w-full p-3 sm:p-4 bg-gradient-to-r from-[#0e2c0e] via-[#1b5017] to-[#2ea625] rounded-2xl border border-emerald-500/30 shadow-md flex flex-col items-center justify-center space-y-2">
+                                  <p className="text-[10px] sm:text-xs font-black text-emerald-100/60 uppercase tracking-widest">
                                     Última Partida
                                   </p>
                                   <div className="flex items-center justify-between gap-4 px-2 py-1 w-full">
                                     <div className="flex-1 flex flex-col items-center text-center space-y-1">
-                                      <div className="w-10 h-10 rounded-full bg-emerald-500/20 shrink-0 border border-emerald-500/10" />
-                                      <div className="w-10 h-8 bg-emerald-500/20 rounded-lg mt-2" />
+                                      <div className="w-10 h-10 rounded-full bg-white/15 shrink-0 border border-white/10" />
+                                      <div className="w-10 h-8 bg-white/20 rounded-xl mt-2" />
                                     </div>
-                                    <div className="text-xs font-black text-emerald-500/30 uppercase tracking-widest">
+                                    <div className="text-xs font-black text-emerald-200/50 uppercase tracking-widest">
                                       vs
                                     </div>
                                     <div className="flex-1 flex flex-col items-center text-center space-y-1">
-                                      <div className="w-10 h-10 rounded-full bg-emerald-500/20 shrink-0 border border-emerald-500/10" />
-                                      <div className="w-10 h-8 bg-emerald-500/20 rounded-lg mt-2" />
+                                      <div className="w-10 h-10 rounded-full bg-white/15 shrink-0 border border-white/10" />
+                                      <div className="w-10 h-8 bg-white/20 rounded-xl mt-2" />
                                     </div>
                                   </div>
-                                  <div className="w-full h-10 bg-emerald-500/10 rounded-xl border border-emerald-500/10 mt-2" />
+                                  <div className="w-full h-10 bg-white/10 rounded-xl border border-white/5 mt-2" />
                                 </div>
                               </div>
                               <button
