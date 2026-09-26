@@ -8659,23 +8659,23 @@ function GroupApp({
                         <div className="space-y-4">
                           {scheduledMatches.length === 0 && (
                             <div className="relative w-full max-w-sm mx-auto h-[180px]">
-                              <div className="absolute inset-0 rounded-2xl flex flex-col p-4 bg-gradient-to-br from-[#75c628]/20 to-white dark:from-[#25660e]/40 dark:to-[#111625]/90 border border-black/10 dark:border-white/10 backdrop-blur-xl overflow-hidden animate-pulse">
+                              <div className="absolute inset-0 rounded-2xl flex flex-col p-4 bg-gradient-to-br from-zinc-200/40 via-zinc-100/30 to-zinc-300/30 dark:from-zinc-900/40 dark:via-zinc-950/40 dark:to-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-xl overflow-hidden animate-pulse">
                                 <div className="flex justify-between items-center mb-2.5 w-full">
                                   <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-full bg-black/10 dark:bg-white/10" />
-                                    <div className="w-24 h-3 bg-black/10 dark:bg-white/10 rounded-full" />
+                                    <div className="w-7 h-7 rounded-full bg-zinc-200/60 dark:bg-zinc-800/60" />
+                                    <div className="w-24 h-3 bg-zinc-200/60 dark:bg-zinc-800/60 rounded-full" />
                                   </div>
-                                  <div className="w-7 h-7 rounded-full bg-black/10 dark:bg-white/10" />
+                                  <div className="w-7 h-7 rounded-full bg-zinc-200/60 dark:bg-zinc-800/60" />
                                 </div>
                                 <div className="text-center mb-2.5 flex flex-col items-center mt-4">
-                                  <div className="w-20 h-2 bg-black/10 dark:bg-white/10 rounded-full mb-4" />
-                                  <div className="w-32 h-6 bg-black/10 dark:bg-white/10 rounded-full mb-3" />
-                                  <div className="w-24 h-3 bg-black/10 dark:bg-white/10 rounded-full" />
+                                  <div className="w-20 h-2 bg-zinc-200/40 dark:bg-zinc-800/40 rounded-full mb-4" />
+                                  <div className="w-32 h-6 bg-zinc-200/60 dark:bg-zinc-800/60 rounded-full mb-3" />
+                                  <div className="w-24 h-3 bg-zinc-200/40 dark:bg-zinc-800/40 rounded-full" />
                                 </div>
-                                <div className="bg-black/5 dark:bg-white/5 rounded-xl p-2.5 border border-black/10 dark:border-white/10 mt-auto mb-2.5 h-[65px]" />
+                                <div className="bg-zinc-200/20 dark:bg-zinc-900/40 rounded-xl p-2.5 border border-zinc-200/30 dark:border-zinc-800/30 mt-auto mb-2.5 h-[65px]" />
                                 <div className="flex gap-1.5 w-full">
-                                  <div className="w-8 h-8 rounded-full bg-black/10 dark:bg-white/10" />
-                                  <div className="flex-1 h-8 rounded-xl bg-black/10 dark:bg-white/10" />
+                                  <div className="w-8 h-8 rounded-full bg-zinc-200/60 dark:bg-zinc-800/60" />
+                                  <div className="flex-1 h-8 rounded-xl bg-zinc-200/60 dark:bg-zinc-800/60" />
                                 </div>
                               </div>
                             </div>
@@ -8942,16 +8942,38 @@ function GroupApp({
                         <section className="w-full relative pt-2">
 
                           {players.length === 0 ? (
-                            <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                              {Array.from({ length: 9 }).map((_, idx) => (
+                            <div className="flex flex-col gap-2">
+                              {Array.from({ length: 6 }).map((_, idx) => (
                                 <div
                                   key={`skeleton-${idx}`}
-                                  className="relative flex flex-col justify-center items-center rounded-xl border border-[#2ea625]/20 dark:border-[#59b823]/20 bg-[#2ea625]/5 dark:bg-[#59b823]/5 backdrop-blur-md shadow-sm animate-pulse overflow-hidden min-h-[135px] sm:min-h-[165px] w-full max-w-[150px] mx-auto"
+                                  className="bg-gradient-to-r from-zinc-200/50 via-zinc-100/50 to-zinc-300/50 dark:from-zinc-900/50 dark:via-zinc-800/50 dark:to-zinc-900/50 border border-black/5 dark:border-white/5 rounded-2xl flex flex-row items-center overflow-hidden shadow-xs relative py-1.5 px-2.5 sm:px-3 w-full mx-auto animate-pulse"
                                 >
-                                  <div className="p-3.5 sm:p-5 flex flex-col items-center justify-center w-full">
-                                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 mb-2" />
-                                    <div className="h-2 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-full w-2/3 mb-1" />
-                                    <div className="h-1.5 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-full w-1/2" />
+                                  {/* Left section containing photo placeholder */}
+                                  <div className="relative flex items-center justify-center shrink-0">
+                                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-zinc-300/60 dark:bg-zinc-700/60 shrink-0" />
+                                  </div>
+
+                                  {/* Middle section containing name, position, progress bar placeholder */}
+                                  <div className="flex flex-col flex-1 ml-2 text-left justify-center overflow-hidden">
+                                    <div className="h-3 bg-zinc-300/60 dark:bg-zinc-700/60 rounded-full w-24 mb-1.5" />
+                                    <div className="h-2 bg-zinc-200/50 dark:bg-zinc-800/50 rounded-full w-12 mb-1.5" />
+                                    <div className="w-full max-w-[90px] h-1 bg-zinc-300/40 dark:bg-zinc-800/40 rounded-full overflow-hidden" />
+                                  </div>
+
+                                  {/* Stats Row placeholder */}
+                                  <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pr-1 ml-2">
+                                    <div className="flex flex-col items-center min-w-[24px]">
+                                      <div className="h-3 w-4 bg-zinc-300/60 dark:bg-zinc-700/60 rounded-sm mb-1" />
+                                      <div className="h-1.5 w-6 bg-zinc-200/40 dark:bg-zinc-800/40 rounded-sm" />
+                                    </div>
+                                    <div className="flex flex-col items-center min-w-[24px]">
+                                      <div className="h-3 w-4 bg-zinc-300/60 dark:bg-zinc-700/60 rounded-sm mb-1" />
+                                      <div className="h-1.5 w-6 bg-zinc-200/40 dark:bg-zinc-800/40 rounded-sm" />
+                                    </div>
+                                    <div className="flex flex-col items-center min-w-[24px]">
+                                      <div className="h-3 w-4 bg-zinc-300/60 dark:bg-zinc-700/60 rounded-sm mb-1" />
+                                      <div className="h-1.5 w-6 bg-zinc-200/40 dark:bg-zinc-800/40 rounded-sm" />
+                                    </div>
                                   </div>
                                 </div>
                               ))}
@@ -10026,18 +10048,15 @@ function GroupApp({
                       {players.length === 0 || sessionPlayerIds.length === 0 ? (
                         <div className="w-full flex flex-col gap-8 pb-8">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-                            {Array.from({ length: 5 }).map((_, idx) => (
+                            {Array.from({ length: 6 }).map((_, idx) => (
                               <div
                                 key={`skel-arrival-${idx}`}
-                                className="h-16 flex items-center justify-between p-3 rounded-2xl border border-[#2ea625]/20 dark:border-[#59b823]/20 bg-[#2ea625]/5 dark:bg-[#59b823]/5 backdrop-blur-md shadow-sm relative overflow-hidden animate-pulse"
+                                className="flex items-center gap-2.5 py-1.5 px-2.5 sm:px-3 rounded-2xl border bg-gradient-to-r from-zinc-200/40 via-zinc-100/30 to-zinc-300/40 dark:from-zinc-900/40 dark:via-zinc-850/30 dark:to-zinc-900/40 border-black/5 dark:border-white/5 relative overflow-hidden animate-pulse shadow-xs"
                               >
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-25deg]" />
-                                <div className="flex items-center gap-3 w-full">
-                                  <div className="w-10 h-10 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 shrink-0" />
-                                  <div className="flex-1 flex flex-col gap-1.5">
-                                    <div className="w-24 h-3 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-full" />
-                                    <div className="w-16 h-2 bg-[#2ea625]/5 dark:bg-[#59b823]/5 rounded-full" />
-                                  </div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 dark:via-white/5 to-transparent skew-x-[-25deg] pointer-events-none" />
+                                <div className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full bg-zinc-200/80 dark:bg-zinc-800 shrink-0 border border-black/5 dark:border-white/5" />
+                                <div className="flex-1 text-left flex flex-col justify-center min-w-0">
+                                  <div className="w-24 h-3 bg-zinc-300 dark:bg-zinc-800 rounded-md" />
                                 </div>
                               </div>
                             ))}
@@ -10238,22 +10257,27 @@ function GroupApp({
                         <div className="min-h-[450px] flex flex-col items-center justify-center gap-8 w-full">
                           {players.filter((p) => p.isAvailable).length === 0 ? (
                             <>
-                              <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto mb-2 space-y-4 bg-[#2ea625]/5 dark:bg-[#59b823]/5 p-6 rounded-xl border border-[#2ea625]/20 dark:border-[#59b823]/20 shadow-sm backdrop-blur-sm animate-pulse mt-4">
-                                <div className="w-24 h-2 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-full mb-2" />
-                                <div className="flex items-center justify-between gap-4 px-2 py-2 w-full">
-                                  <div className="flex-1 flex flex-col items-center text-center space-y-1">
-                                    <div className="w-10 h-10 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 shrink-0" />
-                                    <div className="w-12 h-10 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-md mt-2" />
+                              <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto mb-2 space-y-3 bg-black/5 dark:bg-white/5 p-3 sm:p-4 rounded-2xl border border-black/10 dark:border-white/10 shadow-sm backdrop-blur-sm mt-4 animate-pulse relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-25deg] pointer-events-none" />
+                                <div className="w-full p-3 sm:p-4 bg-gradient-to-r from-emerald-950/40 via-emerald-900/30 to-emerald-950/40 dark:from-emerald-950/60 dark:via-emerald-900/50 dark:to-emerald-950/60 rounded-2xl border border-emerald-500/20 shadow-md flex flex-col items-center justify-center space-y-2">
+                                  <p className="text-[10px] sm:text-xs font-black text-emerald-500/40 uppercase tracking-widest">
+                                    Última Partida
+                                  </p>
+                                  <div className="flex items-center justify-between gap-4 px-2 py-1 w-full">
+                                    <div className="flex-1 flex flex-col items-center text-center space-y-1">
+                                      <div className="w-10 h-10 rounded-full bg-emerald-500/20 shrink-0 border border-emerald-500/10" />
+                                      <div className="w-10 h-8 bg-emerald-500/20 rounded-lg mt-2" />
+                                    </div>
+                                    <div className="text-xs font-black text-emerald-500/30 uppercase tracking-widest">
+                                      vs
+                                    </div>
+                                    <div className="flex-1 flex flex-col items-center text-center space-y-1">
+                                      <div className="w-10 h-10 rounded-full bg-emerald-500/20 shrink-0 border border-emerald-500/10" />
+                                      <div className="w-10 h-8 bg-emerald-500/20 rounded-lg mt-2" />
+                                    </div>
                                   </div>
-                                  <div className="text-sm font-black text-[#2ea625]/30 dark:text-[#59b823]/30 uppercase tracking-widest">
-                                    vs
-                                  </div>
-                                  <div className="flex-1 flex flex-col items-center text-center space-y-1">
-                                    <div className="w-10 h-10 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 shrink-0" />
-                                    <div className="w-12 h-10 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-md mt-2" />
-                                  </div>
+                                  <div className="w-full h-10 bg-emerald-500/10 rounded-xl border border-emerald-500/10 mt-2" />
                                 </div>
-                                <div className="w-full h-12 bg-[#2ea625]/5 dark:bg-[#59b823]/5 rounded-lg border border-[#2ea625]/10 dark:border-[#59b823]/10 mt-4" />
                               </div>
                               <button
                                 onClick={() => {
@@ -11832,22 +11856,37 @@ function GroupApp({
                               {Array.from({ length: 2 }).map((_, idx) => (
                                 <div
                                   key={`skel-team-${idx}`}
-                                  className="p-4 rounded-2xl border transition-all relative min-h-[110px] flex flex-col justify-center overflow-hidden shadow-sm opacity-60 border-[#2ea625]/20 dark:border-[#59b823]/20 bg-[#2ea625]/5 dark:bg-[#59b823]/5 backdrop-blur-md animate-pulse"
+                                  className="p-2.5 sm:p-3 rounded-2xl border transition-all relative min-h-0 flex flex-col justify-center overflow-hidden shadow-sm border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-md animate-pulse animate-duration-1000"
                                 >
-                                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#2ea625]/10 dark:bg-[#59b823]/10" />
-                                  <div className="absolute top-2 left-2 w-8 h-8 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10" />
-                                  <div className="ml-10 flex flex-col gap-2">
-                                    <div className="flex gap-2">
-                                      {Array.from({ length: 5 }).map(
-                                        (_, pIdx) => (
-                                          <div
-                                            key={`skel-player-${idx}-${pIdx}`}
-                                            className="w-8 h-8 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10"
-                                          />
-                                        ),
-                                      )}
-                                    </div>
-                                    <div className="w-32 h-3 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-full mt-2" />
+                                  {/* Jersey Icon Placeholder */}
+                                  <div className="absolute top-2 left-2 w-8 h-8 rounded-full bg-zinc-200/80 dark:bg-zinc-850 border border-black/5 dark:border-white/5 shrink-0 flex items-center justify-center">
+                                    <div className="w-4 h-4 bg-zinc-300 dark:bg-zinc-700 rounded-full" />
+                                  </div>
+
+                                  {/* Team Title Placeholder */}
+                                  <div className="pl-10 pr-2 pt-1 pb-2 flex items-center justify-between">
+                                    <div className="w-16 h-3.5 bg-zinc-300 dark:bg-zinc-800 rounded-md" />
+                                    <div className="w-8 h-3 bg-zinc-200/60 dark:bg-zinc-800/40 rounded-md" />
+                                  </div>
+
+                                  {/* Vertical stack of player list rows matching real items */}
+                                  <div className="flex flex-col gap-1.5 mt-2">
+                                    {Array.from({ length: match.config.playersPerTeam || 5 }).map((_, pIdx) => (
+                                      <div
+                                        key={`skel-player-${idx}-${pIdx}`}
+                                        className="w-full flex items-center justify-start gap-1.5 p-1.5 sm:p-2 rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 shadow-xs"
+                                      >
+                                        <div className="w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-zinc-200 dark:bg-zinc-800 border border-black/5 dark:border-white/5 shrink-0" />
+                                        <div className="flex flex-col gap-1.5 items-start">
+                                          <div className="w-20 h-2.5 bg-zinc-300 dark:bg-zinc-800 rounded-sm" />
+                                          <div className="flex gap-0.5">
+                                            {Array.from({ length: 3 }).map((_, s) => (
+                                              <div key={s} className="w-1.5 h-1.5 bg-yellow-400/30 rounded-full" />
+                                            ))}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
                                 </div>
                               ))}
@@ -13510,13 +13549,13 @@ function GroupApp({
                         ? Array.from({ length: 5 }).map((_, idx) => (
                             <div
                               key={`skel-ranking-${idx}`}
-                              className="flex items-center py-3 px-3 rounded-2xl bg-[#2ea625]/5 dark:bg-[#59b823]/5 border border-[#2ea625]/20 dark:border-[#59b823]/20 animate-pulse w-full mt-2"
+                              className="flex items-center py-2.5 px-3 rounded-xl bg-zinc-100/30 dark:bg-zinc-900/30 border border-zinc-200/50 dark:border-zinc-800/50 animate-pulse w-full mt-2 shadow-sm"
                             >
-                              <div className="w-8 text-sm font-black text-[#2ea625]/30 dark:text-[#59b823]/30 text-center shrink-0"></div>
-                              <div className="w-10 h-10 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 shrink-0 border border-[#2ea625]/10 dark:border-[#59b823]/10 mr-4 shadow-sm ml-2"></div>
+                              <div className="w-8 text-sm font-black text-zinc-300 dark:text-zinc-700 text-center shrink-0"></div>
+                              <div className="w-10 h-10 rounded-full bg-zinc-200 dark:bg-zinc-800/80 shrink-0 border border-zinc-300/30 dark:border-zinc-700/30 mr-4 shadow-sm ml-2"></div>
                               <div className="flex flex-col gap-2 flex-1">
-                                <div className="h-3 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-2xl w-3/5 shadow-sm"></div>
-                                <div className="h-2 bg-[#2ea625]/10 dark:bg-[#59b823]/10 rounded-2xl w-1/4 shadow-sm"></div>
+                                <div className="h-3 bg-zinc-200 dark:bg-zinc-800/80 rounded-full w-3/5"></div>
+                                <div className="h-2 bg-zinc-200/60 dark:bg-zinc-800/50 rounded-full w-1/4"></div>
                               </div>
                             </div>
                           ))
