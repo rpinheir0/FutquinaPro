@@ -9170,7 +9170,7 @@ function GroupApp({
                 transition={{ duration: 0.2 }}
                 className="px-2 sm:px-4 pb-6 pt-4 space-y-4 flex-1 bg-transparent flex flex-col text-zinc-900 dark:text-white"
               >
-                <div id="teams-list-section" className="w-full space-y-4">
+                <div id="teams-list-section" className="w-full max-w-md mx-auto space-y-4">
                   {!selectedMatchId ? (
                     <div className="flex flex-col items-center justify-center py-24 px-4 text-center">
                       <div className="w-16 h-16 rounded-full bg-black/5 flex items-center justify-center mb-6">
