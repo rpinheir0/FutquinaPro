@@ -13667,7 +13667,7 @@ function GroupApp({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className={`space-y-4 ${isPrintMode ? "space-y-0 bg-white text-black min-h-screen" : ""}`}
+                className={`space-y-4 w-full ${isPrintMode ? "space-y-0 bg-white text-black min-h-screen" : "max-w-md mx-auto px-2"}`}
               >
                 {financeSubScreen === "balanco" &&
                   (() => {
@@ -13717,7 +13717,7 @@ function GroupApp({
                         )}
 
                         <div
-                          className={`px-2 sm:px-4 space-y-4 w-full sm:w-[98%] max-w-7xl mx-auto`}
+                          className={`space-y-4 w-full ${isPrintMode ? "px-2 sm:px-4 sm:w-[98%] max-w-7xl mx-auto" : "max-w-md mx-auto"}`}
                         >
                           {/* Summary Cards */}
                           {!isPrintPaymentsOnly && (
