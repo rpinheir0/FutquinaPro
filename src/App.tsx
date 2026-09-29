@@ -8574,30 +8574,37 @@ function GroupApp({
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="w-full max-w-md flex flex-col space-y-3.5 bg-gradient-to-br from-[#144011] via-[#1b5017] to-[#0e2c0e] p-4 sm:p-5 rounded-[28px] shadow-xl border border-white/10 my-auto"
+                      className="w-full max-w-md flex flex-col space-y-3.5 my-auto"
                     >
-                      <div className="py-1.5 px-3 bg-gradient-to-r from-[#0e2c0e] via-[#133d10] to-[#0e2c0e] rounded-xl border border-emerald-500/20 shadow-sm flex items-center justify-center mb-0.5">
-                        <FutQuinaLogo size="md" titleColorClass="text-white" />
-                      </div>
-                      <div className="flex items-center justify-between px-1 pt-1">
-                        <div className="flex flex-col gap-0.5">
-                          <h2 className="text-lg sm:text-xl font-normal font-roboto-flex tracking-tight text-white">
-                            Painel de controle
-                          </h2>
-                          <p className="text-[11px] font-medium text-white/60 font-roboto-flex">
-                            Gerencie suas peladas e jogadores de forma simples
-                          </p>
+                      {/* FutQuina Logo Banner */}
+                      <FutQuinaLogo
+                        size="md"
+                        titleColorClass="text-zinc-500 dark:text-white"
+                        className="justify-center mb-2"
+                      />
+
+                      {/* Main Green Card Container */}
+                      <div className="w-full flex flex-col space-y-3.5 bg-gradient-to-br from-[#144011] via-[#1b5017] to-[#0e2c0e] p-4 sm:p-5 rounded-[28px] shadow-xl border border-white/10">
+                        <div className="flex items-center justify-between px-1 pt-1">
+                          <div className="flex flex-col gap-0.5">
+                            <h2 className="text-lg sm:text-xl font-normal font-roboto-flex tracking-tight text-white">
+                              Painel de controle
+                            </h2>
+                            <p className="text-[11px] font-medium text-white/60 font-roboto-flex">
+                              Gerencie suas peladas e jogadores de forma simples
+                            </p>
+                          </div>
+                          <button
+                            onClick={handleRestore}
+                            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 border border-white/10 flex items-center justify-center cursor-pointer shrink-0 shadow-sm"
+                            title="Restaurar Backup"
+                          >
+                            <FaServer size={16} />
+                          </button>
                         </div>
-                        <button
-                          onClick={handleRestore}
-                          className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 border border-white/10 flex items-center justify-center cursor-pointer shrink-0 shadow-sm"
-                          title="Restaurar Backup"
-                        >
-                          <FaServer size={16} />
-                        </button>
                       </div>
 
-                      {/* CTA Banner */}
+                      {/* CTA Banner (Outside green title card) */}
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -8644,8 +8651,9 @@ function GroupApp({
                           </div>
                         </div>
                       </motion.div>
+
                       {/* Matches Section */}
-                      <div className="space-y-4">
+                      <div className="space-y-4 pt-1">
                         <motion.div
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -8714,7 +8722,7 @@ function GroupApp({
                                     key={match.id}
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="relative overflow-hidden rounded-2xl bg-black/20 border border-white/10 shadow-sm backdrop-blur-md p-2 sm:p-2.5 flex items-center justify-between cursor-pointer hover:bg-black/30 transition-all duration-200"
+                                    className="relative overflow-hidden rounded-2xl bg-zinc-200/60 dark:bg-black/20 border border-zinc-300/50 dark:border-white/10 shadow-sm backdrop-blur-md p-2 sm:p-2.5 flex items-center justify-between cursor-pointer hover:bg-zinc-300/60 dark:hover:bg-black/30 transition-all duration-200"
                                     onClick={() => {
                                       setSelectedMatchId(match.id);
                                       setCurrentScreen("players");
@@ -8759,10 +8767,10 @@ function GroupApp({
 
                                       {/* Text column left aligned */}
                                       <div className="flex flex-col text-left min-w-0">
-                                        <h4 className="text-white text-[14px] sm:text-[15px] font-extrabold tracking-tight leading-none truncate capitalize">
+                                        <h4 className="text-zinc-800 dark:text-white text-[14px] sm:text-[15px] font-extrabold tracking-tight leading-none truncate capitalize">
                                           {match.name || "Perna de Pau"}
                                         </h4>
-                                        <p className="text-[7.5px] sm:text-[8.5px] font-bold tracking-tight text-zinc-300 mt-1 uppercase leading-snug">
+                                        <p className="text-[7.5px] sm:text-[8.5px] font-bold tracking-tight text-zinc-500 dark:text-zinc-300 mt-1 uppercase leading-snug">
                                           {formatMatchDateImageStyle(match.date, match.time)}
                                         </p>
                                       </div>
@@ -8790,7 +8798,7 @@ function GroupApp({
                                           setNewMatchDay(days[date.getDay()]);
                                           setShowScheduleModal(true);
                                         }}
-                                        className="p-1 text-white/80 hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
+                                        className="p-1 text-zinc-600 hover:text-zinc-900 dark:text-white/80 dark:hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
                                         title="Editar"
                                       >
                                         <BsFillPenFill size={16} />
@@ -8800,7 +8808,7 @@ function GroupApp({
                                           e.stopPropagation();
                                           setMatchToDelete(match);
                                         }}
-                                        className="p-1 text-[#ff6b6b] hover:text-[#ff8787] hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
+                                        className="p-1 text-[#e15252] hover:text-[#f26363] dark:text-[#ff6b6b] dark:hover:text-[#ff8787] hover:scale-110 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
                                         title="Excluir"
                                       >
                                         <RiDeleteBinLine size={20} />
