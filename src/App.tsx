@@ -3748,6 +3748,24 @@ function GroupApp({
     }
   }, [autoCompleteTeams, groupId]);
 
+  const [enableTieBreakerModal, setEnableTieBreakerModal] = useState<boolean>(
+    () => {
+      const saved = safeLocalStorage.getItem(
+        `futquina_enable_tiebreaker_${groupId}`,
+      );
+      return saved !== null ? JSON.parse(saved) : true;
+    },
+  );
+
+  useEffect(() => {
+    if (groupId) {
+      safeLocalStorage.setItem(
+        `futquina_enable_tiebreaker_${groupId}`,
+        JSON.stringify(enableTieBreakerModal),
+      );
+    }
+  }, [enableTieBreakerModal, groupId]);
+
   useEffect(() => {
     // Only run auto-complete if enabled and there are players to assign
     const availableSessionPlayersList = players
@@ -6675,27 +6693,29 @@ function GroupApp({
 
     // Check for draw to initiate tie breaker
     if (scoreA === scoreB) {
-      setTieBreaker({
-        showSelection: true,
-        type: "none",
-        penalties: {
-          teamA: (teams[teamAIndex]?.playerIds || []).map((pid) => ({
-            playerId: pid,
-            success: null,
-          })),
-          teamB: (teams[teamBIndex]?.playerIds || []).map((pid) => ({
-            playerId: pid,
-            success: null,
-          })),
-          isFinished: false,
-          winnerId: null,
-        },
-        lottery: {
-          isSpinning: false,
-          winnerId: null,
-        },
-      });
-      return;
+      if (enableTieBreakerModal) {
+        setTieBreaker({
+          showSelection: true,
+          type: "none",
+          penalties: {
+            teamA: (teams[teamAIndex]?.playerIds || []).map((pid) => ({
+              playerId: pid,
+              success: null,
+            })),
+            teamB: (teams[teamBIndex]?.playerIds || []).map((pid) => ({
+              playerId: pid,
+              success: null,
+            })),
+            isFinished: false,
+            winnerId: null,
+          },
+          lottery: {
+            isSpinning: false,
+            winnerId: null,
+          },
+        });
+        return;
+      }
     }
 
     finalizeMatch(scoreA, scoreB, teamAIndex, teamBIndex);
@@ -9506,6 +9526,45 @@ function GroupApp({
                           >
                             <div
                               className={`w-3 sm:w-4 h-3 sm:h-4 rounded-full transition-transform ${autoCompleteTeams ? "translate-x-5 sm:translate-x-6 bg-white" : "translate-x-0 bg-white"} shadow-sm`}
+                            />
+                          </button>
+                        </div>
+
+                        {/* Div com o botão para ativar ou desativar a janela de desempate em [confronto] */}
+                        <div className="p-3 sm:p-3.5 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 shadow-xl flex items-center justify-between">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 border border-[#2ea625]/30 flex items-center justify-center text-[#2ea625] dark:text-[#59b823] shrink-0">
+                              <Swords size={18} />
+                            </div>
+                            <div className="flex flex-col pr-2">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight text-zinc-900 dark:text-white leading-tight">
+                                  Janela de desempate
+                                </span>
+                              </div>
+                              <p className="text-[9px] sm:text-[10px] text-black/60 dark:text-white/50 font-bold mt-0.5 leading-tight">
+                                Abre a janela de pênaltis e sorteio em empates. Se desativar, finaliza o empate automaticamente.
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const nextVal = !enableTieBreakerModal;
+                              setEnableTieBreakerModal(nextVal);
+                              setToast({
+                                message: nextVal
+                                  ? "Janela de desempate ativada"
+                                  : "Janela de desempate desativada (finalização automática)",
+                                type: "info",
+                              });
+                              setTimeout(() => setToast(null), 3000);
+                            }}
+                            className={`w-10 sm:w-12 h-5 sm:h-6 rounded-full p-1 transition-all relative shrink-0 cursor-pointer ${enableTieBreakerModal ? "bg-[#2ea625] dark:bg-[#59b823]" : "bg-black/10 dark:bg-white/10"}`}
+                            title="Janela de desempate em confrontos"
+                          >
+                            <div
+                              className={`w-3 sm:w-4 h-3 sm:h-4 rounded-full transition-transform ${enableTieBreakerModal ? "translate-x-5 sm:translate-x-6 bg-white" : "translate-x-0 bg-white"} shadow-sm`}
                             />
                           </button>
                         </div>
