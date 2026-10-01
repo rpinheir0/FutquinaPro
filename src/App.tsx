@@ -168,7 +168,9 @@ import {
   GiHolosphere,
   GiCloudDownload,
   GiFoldedPaper,
+  GiDuality,
 } from "react-icons/gi";
+import { HiMiniQueueList } from "react-icons/hi2";
 import {
   PiUsersBold,
   PiUsers,
@@ -9519,12 +9521,12 @@ function GroupApp({
                         {/* Div com o botão de Subir Automático de [Próximos] */}
                         <div className="p-3 sm:p-3.5 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 shadow-xl flex items-center justify-between">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 border border-[#2ea625]/30 flex items-center justify-center text-[#2ea625] dark:text-[#59b823] shrink-0">
-                              <CiSaveUp1 size={20} />
+                            <div className="text-[#2ea625] dark:text-[#59b823] flex items-center justify-center shrink-0">
+                              <HiMiniQueueList size={22} />
                             </div>
                             <div className="flex flex-col pr-2">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight text-zinc-900 dark:text-white leading-tight">
+                                <span className="text-[10px] sm:text-[11px] font-black tracking-tight text-zinc-900 dark:text-white leading-tight">
                                   Subir automático
                                 </span>
                               </div>
@@ -9555,12 +9557,12 @@ function GroupApp({
                         {/* Div com o botão para ativar ou desativar a janela de desempate em [confronto] */}
                         <div className="p-3 sm:p-3.5 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 shadow-xl flex items-center justify-between">
                           <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 border border-[#2ea625]/30 flex items-center justify-center text-[#2ea625] dark:text-[#59b823] shrink-0">
-                              <Swords size={18} />
+                            <div className="text-[#2ea625] dark:text-[#59b823] flex items-center justify-center shrink-0">
+                              <GiDuality size={22} />
                             </div>
                             <div className="flex flex-col pr-2">
                               <div className="flex items-center gap-1.5">
-                                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight text-zinc-900 dark:text-white leading-tight">
+                                <span className="text-[10px] sm:text-[11px] font-black tracking-tight text-zinc-900 dark:text-white leading-tight">
                                   Janela de desempate
                                 </span>
                               </div>
