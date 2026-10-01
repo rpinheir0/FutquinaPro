@@ -8883,27 +8883,40 @@ function GroupApp({
                         </div>
 
                         {/* Stats Jogadores & Saldo acima do botão Configurar Partida */}
-                        <div className="grid grid-cols-2 gap-2 relative z-10 mt-2 mb-2">
+                        <div className="grid grid-cols-3 gap-1.5 sm:gap-2 relative z-10 mt-2 mb-2">
                           {/* Jogadores Stat */}
-                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
-                            <div className="flex items-center gap-2">
-                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
+                          <div className="bg-emerald-500/5 dark:bg-emerald-950/30 border border-emerald-500/15 dark:border-emerald-500/20 rounded-[18px] px-2 py-2 sm:px-3 sm:py-2.5 flex items-center justify-between shadow-xs backdrop-blur-xs">
+                            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
                                 <BsPersonAdd size={14} />
                               </div>
-                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Jogadores</span>
+                              <span className="text-[8px] sm:text-[9px] font-extrabold text-zinc-700 dark:text-emerald-200/70 uppercase tracking-wider truncate">Jogadores</span>
                             </div>
-                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">{visiblePlayers.length}</span>
+                            <span className="text-[11px] sm:text-[12px] font-black text-zinc-900 dark:text-white shrink-0 ml-1.5">{visiblePlayers.length}</span>
+                          </div>
+
+                          {/* Presença Stat */}
+                          <div className="bg-emerald-500/5 dark:bg-emerald-950/30 border border-emerald-500/15 dark:border-emerald-500/20 rounded-[18px] px-2 py-2 sm:px-3 sm:py-2.5 flex items-center justify-between shadow-xs backdrop-blur-xs">
+                            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
+                                <PiCheckCircleBold size={14} />
+                              </div>
+                              <span className="text-[8px] sm:text-[9px] font-extrabold text-zinc-700 dark:text-emerald-200/70 uppercase tracking-wider truncate">Presença</span>
+                            </div>
+                            <span className="text-[11px] sm:text-[12px] font-black text-zinc-900 dark:text-white shrink-0 ml-1.5">
+                              {visiblePlayers.filter((p) => p.isAvailable).length}
+                            </span>
                           </div>
 
                           {/* Caixa Stat */}
-                          <div className="bg-emerald-950/5 dark:bg-emerald-950/40 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center justify-between shadow-xs backdrop-blur-xs">
-                            <div className="flex items-center gap-2">
-                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
+                          <div className="bg-emerald-500/5 dark:bg-emerald-950/30 border border-emerald-500/15 dark:border-emerald-500/20 rounded-[18px] px-2 py-2 sm:px-3 sm:py-2.5 flex items-center justify-between shadow-xs backdrop-blur-xs">
+                            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
                                 <Wallet size={14} />
                               </div>
-                              <span className="text-[9px] font-black text-zinc-600 dark:text-emerald-200/70 uppercase tracking-wider">Saldo</span>
+                              <span className="text-[8px] sm:text-[9px] font-extrabold text-zinc-700 dark:text-emerald-200/70 uppercase tracking-wider truncate">Saldo</span>
                             </div>
-                            <span className="text-[12px] font-black text-zinc-900 dark:text-white">R$ {currentNetBalance}</span>
+                            <span className="text-[11px] sm:text-[12px] font-black text-zinc-900 dark:text-white shrink-0 ml-1.5">R$ {currentNetBalance}</span>
                           </div>
                         </div>
 
