@@ -13525,17 +13525,57 @@ function GroupApp({
                         <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4">
                           {sortedRankingPlayers.slice(0, 3).map((player, index) => {
                             const place = index + 1;
+                            const isGold = place === 1;
+                            const isSilver = place === 2;
+                            const isBronze = place === 3;
+
+                            const cardBgClass = isGold
+                              ? "bg-gradient-to-b from-amber-100 via-yellow-50 to-amber-200/90 dark:from-[#352709] dark:via-[#221905] dark:to-[#3e2e0a] border-2 border-amber-400/80 dark:border-amber-400/60 shadow-md shadow-amber-500/20"
+                              : isSilver
+                              ? "bg-gradient-to-b from-slate-200 via-zinc-100 to-slate-300 dark:from-slate-900/95 dark:via-zinc-800/90 dark:to-slate-800/90 border-2 border-slate-300 dark:border-slate-400/70 shadow-md shadow-slate-400/20"
+                              : "bg-gradient-to-b from-[#fae2d2] via-[#fff1eb] to-[#f4cfb8] dark:from-[#3c2014] dark:via-[#28150c] dark:to-[#442517] border-2 border-[#d97746]/70 dark:border-[#d97746]/60 shadow-md shadow-orange-700/20";
+
+                            const avatarBorderClass = isGold
+                              ? "border-2 border-amber-400 dark:border-amber-400"
+                              : isSilver
+                              ? "border-2 border-slate-300 dark:border-slate-400"
+                              : "border-2 border-[#d97746] dark:border-[#d97746]";
+
+                            const posNumberColor = isGold
+                              ? "text-amber-600 dark:text-amber-400"
+                              : isSilver
+                              ? "text-slate-600 dark:text-slate-300"
+                              : "text-[#b45326] dark:text-[#f08c58]";
+
+                            const placeLabelColor = isGold
+                              ? "text-amber-700 dark:text-amber-400"
+                              : isSilver
+                              ? "text-slate-600 dark:text-slate-300"
+                              : "text-[#b45326] dark:text-[#f08c58]";
+
+                            const bottomStatsClass = isGold
+                              ? "border-t border-amber-400/40 dark:border-amber-400/30 grid grid-cols-2 bg-amber-400/10 dark:bg-amber-400/10 text-center"
+                              : isSilver
+                              ? "border-t border-slate-300/40 dark:border-slate-500/30 grid grid-cols-2 bg-slate-200/40 dark:bg-slate-700/20 text-center"
+                              : "border-t border-[#d97746]/30 dark:border-[#d97746]/25 grid grid-cols-2 bg-[#d97746]/10 dark:bg-[#d97746]/10 text-center";
+
+                            const dividerClass = isGold
+                              ? "border-r border-amber-400/40 dark:border-amber-400/30"
+                              : isSilver
+                              ? "border-r border-slate-300/40 dark:border-slate-500/30"
+                              : "border-r border-[#d97746]/30 dark:border-[#d97746]/25";
+
                             return (
                               <div
                                 key={`top-card-${player.id}`}
-                                className="bg-gradient-to-r from-zinc-200 via-zinc-100 to-zinc-300 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 border border-black/10 dark:border-white/10 rounded-2xl flex flex-col justify-between overflow-hidden shadow-xs text-center"
+                                className={`${cardBgClass} rounded-2xl flex flex-col justify-between overflow-hidden text-center`}
                               >
                                 {/* Top part */}
                                 <div className="p-1.5 sm:p-2 pb-1 flex flex-col items-center">
                                   {/* Avatar container with relative overlay */}
                                   <div className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center">
                                     {/* The avatar circle */}
-                                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-[#2ea625]/40 dark:border-emerald-500/40 shadow-xs relative bg-white dark:bg-zinc-800 flex items-center justify-center z-10 shrink-0">
+                                    <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden ${avatarBorderClass} shadow-xs relative bg-white dark:bg-zinc-800 flex items-center justify-center z-10 shrink-0`}>
                                       {player.photo ? (
                                         <img
                                           src={player.photo}
@@ -13544,7 +13584,7 @@ function GroupApp({
                                           referrerPolicy="no-referrer"
                                         />
                                       ) : (
-                                        <span className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center">
+                                        <span className={`${posNumberColor} flex items-center justify-center`}>
                                           <MdPerson size={15} />
                                         </span>
                                       )}
@@ -13552,7 +13592,7 @@ function GroupApp({
                                   </div>
 
                                   {/* Position number under avatar */}
-                                  <span className="text-[9px] sm:text-[10px] font-black text-[#2ea625] dark:text-emerald-400 mt-0.5 leading-none">
+                                  <span className={`text-[9px] sm:text-[10px] font-black ${posNumberColor} mt-0.5 leading-none`}>
                                     {place}
                                   </span>
 
@@ -13562,14 +13602,14 @@ function GroupApp({
                                   </h4>
 
                                   {/* Country style label */}
-                                  <span className="text-[7px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mt-0.5 leading-none">
+                                  <span className={`text-[7px] font-bold ${placeLabelColor} uppercase tracking-wider mt-0.5 leading-none`}>
                                     {place === 1 ? "1º Lugar" : place === 2 ? "2º Lugar" : "3º Lugar"}
                                   </span>
                                 </div>
 
                                 {/* Bottom stats split into 2 sections */}
-                                <div className="border-t border-black/10 dark:border-white/10 grid grid-cols-2 bg-black/5 dark:bg-white/5 text-center">
-                                  <div className="p-1 flex flex-col items-center justify-center border-r border-black/10 dark:border-white/10">
+                                <div className={bottomStatsClass}>
+                                  <div className={`p-1 flex flex-col items-center justify-center ${dividerClass}`}>
                                     <span className="text-[10px] sm:text-xs font-black text-zinc-900 dark:text-white leading-none">
                                       {player.goals || 0}
                                     </span>
@@ -17554,25 +17594,23 @@ function GroupApp({
               className="w-full max-w-[320px] rounded-[24px] overflow-hidden shadow-2xl bg-[#f1f5f9] dark:bg-[#0b0e17]/95 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white backdrop-blur-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-[#59b823]/10 dark:bg-[#75c628]/10 text-[#59b823] dark:text-[#75c628] flex items-center justify-center mx-auto mb-6 shadow-sm border border-[#59b823]/20">
-                  <CiSaveUp1 size={36} />
+              <div className="p-5 sm:p-6 text-center">
+                <div className="flex justify-center mb-2.5 text-[#2ea625] dark:text-[#59b823]">
+                  <HiMiniQueueList size={34} />
                 </div>
-                <h2 className="text-sm font-black text-center mb-2 uppercase tracking-widest text-zinc-900 dark:text-white">
+                <h2 className="text-xs sm:text-[13px] font-black text-center mb-1.5 uppercase tracking-wider text-zinc-900 dark:text-white">
                   Subida Automática
                 </h2>
-                <p className="text-center text-zinc-600 dark:text-zinc-400 mb-8 text-[12px] leading-relaxed font-medium">
-                  Os jogadores subirão na fila automaticamente
-                  <br />
-                  nos times.
+                <p className="text-center text-zinc-600 dark:text-zinc-400 mb-4 text-[11px] sm:text-[12px] leading-relaxed font-medium">
+                  Os jogadores subirão na fila automaticamente nos times.
                 </p>
 
                 <div className="flex justify-center">
                   <button
                     onClick={() => setShowAutoCompleteModal(false)}
-                    className="w-full h-12 bg-gradient-to-r from-[#59b823] via-[#75c628] to-[#25660e] text-zinc-900 dark:text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-lg shadow-emerald-500/20 hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2"
+                    className="w-full h-10 bg-gradient-to-r from-[#59b823] via-[#75c628] to-[#25660e] text-zinc-900 dark:text-white font-black uppercase tracking-widest text-[11px] rounded-xl shadow-lg shadow-emerald-500/20 hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
                   >
-                    <CheckCircle2 size={16} className="text-zinc-900 dark:text-white" />
+                    <CheckCircle2 size={15} className="text-zinc-900 dark:text-white" />
                     <span>OK</span>
                   </button>
                 </div>
