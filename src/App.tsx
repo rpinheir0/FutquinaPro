@@ -4392,6 +4392,7 @@ function GroupApp({
   const [showResetAppConfirm, setShowResetAppConfirm] = useState(false);
   const [showResetStatsConfirm, setShowResetStatsConfirm] = useState(false);
   const [showAutoCompleteModal, setShowAutoCompleteModal] = useState(false);
+  const [showDisableAutoCompleteConfirm, setShowDisableAutoCompleteConfirm] = useState(false);
   const [showGlobalSettings, setShowGlobalSettings] = useState(false);
   const [showGoalAnimation, setShowGoalAnimation] = useState<{
     scorerName: string;
@@ -9473,6 +9474,42 @@ function GroupApp({
                           </div>
                         </div>
 
+                        {/* Div com o botão de Subir Automático de [Próximos] */}
+                        <div className="p-3 sm:p-3.5 bg-black/5 dark:bg-white/5 backdrop-blur-xl rounded-2xl border border-black/10 dark:border-white/10 shadow-xl flex items-center justify-between">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 rounded-full bg-[#2ea625]/10 dark:bg-[#59b823]/10 border border-[#2ea625]/30 flex items-center justify-center text-[#2ea625] dark:text-[#59b823] shrink-0">
+                              <CiSaveUp1 size={20} />
+                            </div>
+                            <div className="flex flex-col pr-2">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-tight text-zinc-900 dark:text-white leading-tight">
+                                  Subir automático
+                                </span>
+                              </div>
+                              <p className="text-[9px] sm:text-[10px] text-black/60 dark:text-white/50 font-bold mt-0.5 leading-tight">
+                                Os jogadores sobem na fila automaticamente nos times.
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (autoCompleteTeams) {
+                                setShowDisableAutoCompleteConfirm(true);
+                              } else {
+                                setAutoCompleteTeams(true);
+                                setShowAutoCompleteModal(true);
+                              }
+                            }}
+                            className={`w-10 sm:w-12 h-5 sm:h-6 rounded-full p-1 transition-all relative shrink-0 cursor-pointer ${autoCompleteTeams ? "bg-[#2ea625] dark:bg-[#59b823]" : "bg-black/10 dark:bg-white/10"}`}
+                            title="Subir automaticamente"
+                          >
+                            <div
+                              className={`w-3 sm:w-4 h-3 sm:h-4 rounded-full transition-transform ${autoCompleteTeams ? "translate-x-5 sm:translate-x-6 bg-white" : "translate-x-0 bg-white"} shadow-sm`}
+                            />
+                          </button>
+                        </div>
+
                         <button
                           onClick={() => {
                             const duration =
@@ -11765,15 +11802,11 @@ function GroupApp({
                           <div className="flex items-center pl-2">
                             <button
                               onClick={() => {
-                                const newState = !autoCompleteTeams;
-                                setAutoCompleteTeams(newState);
-                                if (newState) {
-                                  setShowAutoCompleteModal(true);
+                                if (autoCompleteTeams) {
+                                  setShowDisableAutoCompleteConfirm(true);
                                 } else {
-                                  setToast({
-                                    message: "Subida automática desativada",
-                                    type: "info",
-                                  });
+                                  setAutoCompleteTeams(true);
+                                  setShowAutoCompleteModal(true);
                                 }
                               }}
                               className={`w-9 h-5 rounded-full p-0.5 transition-all duration-300 relative shrink-0 ${autoCompleteTeams ? "bg-[#2ea625] dark:bg-[#59b823]" : "bg-black/20 dark:bg-white/20"}`}
@@ -17458,6 +17491,60 @@ function GroupApp({
                   >
                     <CheckCircle2 size={16} className="text-zinc-900 dark:text-white" />
                     <span>OK</span>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Disable Auto Complete Confirmation Modal */}
+        {showDisableAutoCompleteConfirm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/85 dark:bg-[#060814]/92 backdrop-blur-sm z-[300] flex items-center justify-center p-4"
+            onClick={() => setShowDisableAutoCompleteConfirm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 30, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 30, opacity: 0 }}
+              className="w-full max-w-[340px] rounded-[24px] overflow-hidden shadow-2xl bg-[#f1f5f9] dark:bg-[#0b0e17]/95 border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white backdrop-blur-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-5 sm:p-6 text-center">
+                <div className="flex justify-center mb-2.5">
+                  <AlertTriangle size={32} className="text-amber-500 shrink-0" />
+                </div>
+                <h2 className="text-xs sm:text-[13px] font-black text-center mb-1.5 uppercase tracking-wider text-zinc-900 dark:text-white">
+                  Desativar Subida Automática?
+                </h2>
+                <p className="text-center text-zinc-600 dark:text-zinc-400 mb-5 text-[11px] sm:text-[12px] leading-relaxed font-medium">
+                  Tem certeza que deseja desligar? Com a subida automática desativada, você precisará <span className="font-bold text-zinc-900 dark:text-zinc-100">subir os jogadores manualmente</span> nos times.
+                </p>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setShowDisableAutoCompleteConfirm(false)}
+                    className="flex-1 h-10 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/15 text-zinc-700 dark:text-zinc-300 font-black uppercase tracking-wider text-[11px] rounded-xl transition-all active:scale-95 cursor-pointer"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={() => {
+                      setAutoCompleteTeams(false);
+                      setShowDisableAutoCompleteConfirm(false);
+                      setToast({
+                        message: "Subida automática desativada",
+                        type: "info",
+                      });
+                      setTimeout(() => setToast(null), 3000);
+                    }}
+                    className="flex-1 h-10 bg-red-600 hover:bg-red-700 text-white font-black uppercase tracking-wider text-[11px] rounded-xl shadow-lg shadow-red-600/20 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
+                  >
+                    Desativar
                   </button>
                 </div>
               </div>
