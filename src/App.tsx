@@ -6715,6 +6715,11 @@ function GroupApp({
           },
         });
         return;
+      } else {
+        // Quando a janela de desempate for desativada:
+        // os times que empataram em [confronto] vão para o fim da fila em [Próximos]
+        handleBothLeaveMatch("A");
+        return;
       }
     }
 
@@ -6875,7 +6880,7 @@ function GroupApp({
     finalizeMatch(scoreA, scoreB, teamAIndex, teamBIndex, winnerIndex);
   };
 
-  const handleBothLeaveMatch = (firstToQueue: "A" | "B") => {
+  function handleBothLeaveMatch(firstToQueue: "A" | "B" = "A") {
     const scoreA = match.scoreA;
     const scoreB = match.scoreB;
     const teamAIndex = match.teamAIndex;
@@ -7005,10 +7010,13 @@ function GroupApp({
 
     setTieBreaker((prev) => ({ ...prev, showSelection: false }));
     setToast({
-      message: "Ambos os times foram para o fim da fila.",
-      type: "success",
+      message: "Empate: ambos os times foram para o fim da fila em Próximos.",
+      type: "info",
     });
-  };
+    setTimeout(() => setToast(null), 3000);
+    setTeamsTab("proximos");
+    playWhistle();
+  }
 
   const togglePayment = (playerId: string, field: string, amount: number) => {
     setPayments((prev) => {
@@ -8903,41 +8911,45 @@ function GroupApp({
                           </div>
                         </div>
 
-                        {/* Stats Jogadores & Saldo acima do botão Configurar Partida */}
-                        <div className="grid grid-cols-3 gap-1.5 sm:gap-2 relative z-10 mt-2 mb-2">
+                        {/* Stats Jogadores, Presença & Saldo acima do botão Configurar Partida */}
+                        <div className="flex items-center justify-between px-1 sm:px-3 py-1 relative z-10 mt-1 mb-1">
                           {/* Jogadores Stat */}
-                          <div className="bg-emerald-500/5 dark:bg-emerald-950/30 border border-emerald-500/15 dark:border-emerald-500/20 rounded-[18px] px-2 py-2 sm:px-3 sm:py-2.5 flex items-center justify-between shadow-xs backdrop-blur-xs">
-                            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
-                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
-                                <BsPersonAdd size={14} />
-                              </div>
-                              <span className="text-[8px] sm:text-[9px] font-extrabold text-zinc-700 dark:text-emerald-200/70 uppercase tracking-wider truncate">Jogadores</span>
+                          <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
+                            <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
+                              <BsPersonAdd size={14} />
                             </div>
-                            <span className="text-[11px] sm:text-[12px] font-black text-zinc-900 dark:text-white shrink-0 ml-1.5">{visiblePlayers.length}</span>
+                            <span className="text-[8px] sm:text-[9px] font-black text-zinc-600 dark:text-zinc-400 uppercase tracking-wider truncate">
+                              Jogadores
+                            </span>
+                            <span className="text-[10px] sm:text-[11px] font-black text-zinc-900 dark:text-white shrink-0">
+                              {visiblePlayers.length}
+                            </span>
                           </div>
 
                           {/* Presença Stat */}
-                          <div className="bg-emerald-500/5 dark:bg-emerald-950/30 border border-emerald-500/15 dark:border-emerald-500/20 rounded-[18px] px-2 py-2 sm:px-3 sm:py-2.5 flex items-center justify-between shadow-xs backdrop-blur-xs">
-                            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
-                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
-                                <PiCheckCircleBold size={14} />
-                              </div>
-                              <span className="text-[8px] sm:text-[9px] font-extrabold text-zinc-700 dark:text-emerald-200/70 uppercase tracking-wider truncate">Presença</span>
+                          <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
+                            <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
+                              <PiCheckCircleBold size={14} />
                             </div>
-                            <span className="text-[11px] sm:text-[12px] font-black text-zinc-900 dark:text-white shrink-0 ml-1.5">
+                            <span className="text-[8px] sm:text-[9px] font-black text-zinc-600 dark:text-zinc-400 uppercase tracking-wider truncate">
+                              Presença
+                            </span>
+                            <span className="text-[10px] sm:text-[11px] font-black text-zinc-900 dark:text-white shrink-0">
                               {visiblePlayers.filter((p) => p.isAvailable).length}
                             </span>
                           </div>
 
                           {/* Caixa Stat */}
-                          <div className="bg-emerald-500/5 dark:bg-emerald-950/30 border border-emerald-500/15 dark:border-emerald-500/20 rounded-[18px] px-2 py-2 sm:px-3 sm:py-2.5 flex items-center justify-between shadow-xs backdrop-blur-xs">
-                            <div className="flex items-center gap-1 sm:gap-2 min-w-0">
-                              <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
-                                <Wallet size={14} />
-                              </div>
-                              <span className="text-[8px] sm:text-[9px] font-extrabold text-zinc-700 dark:text-emerald-200/70 uppercase tracking-wider truncate">Saldo</span>
+                          <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
+                            <div className="text-[#2ea625] dark:text-emerald-400 flex items-center justify-center shrink-0">
+                              <Wallet size={14} />
                             </div>
-                            <span className="text-[11px] sm:text-[12px] font-black text-zinc-900 dark:text-white shrink-0 ml-1.5">R$ {currentNetBalance}</span>
+                            <span className="text-[8px] sm:text-[9px] font-black text-zinc-600 dark:text-zinc-400 uppercase tracking-wider truncate">
+                              Saldo
+                            </span>
+                            <span className="text-[10px] sm:text-[11px] font-black text-zinc-900 dark:text-white shrink-0">
+                              R$ {currentNetBalance}
+                            </span>
                           </div>
                         </div>
 
@@ -9016,6 +9028,16 @@ function GroupApp({
                                   </div>
                                 </div>
                               ))}
+
+                              {/* Texto orientando o usuário a criar jogador enquanto os placeholders estiverem vazios */}
+                              <div className="text-center py-4 px-4 mt-1 flex flex-col items-center justify-center gap-1 pb-12">
+                                <p className="text-xs sm:text-[13px] font-bold text-zinc-700 dark:text-zinc-200">
+                                  Cadastre os jogadores da pelada
+                                </p>
+                                <p className="text-[10px] sm:text-[11px] font-medium text-black/60 dark:text-white/50">
+                                  Digite o nome do jogador no campo acima e clique em <span className="font-bold text-[#2ea625] dark:text-[#59b823]">+</span> para começar a montar seus times.
+                                </p>
+                              </div>
                             </div>
                           ) : visiblePlayers.length === 0 ? (
                             <div className="min-h-[450px] flex flex-col items-center justify-center gap-8 w-full">
@@ -9543,7 +9565,7 @@ function GroupApp({
                                 </span>
                               </div>
                               <p className="text-[9px] sm:text-[10px] text-black/60 dark:text-white/50 font-bold mt-0.5 leading-tight">
-                                Abre a janela de pênaltis e sorteio em empates. Se desativar, finaliza o empate automaticamente.
+                                Abre a janela de pênaltis e sorteio em empates. Se desativar, os times empatados vão para o fim da fila em Próximos.
                               </p>
                             </div>
                           </div>
@@ -9555,7 +9577,7 @@ function GroupApp({
                               setToast({
                                 message: nextVal
                                   ? "Janela de desempate ativada"
-                                  : "Janela de desempate desativada (finalização automática)",
+                                  : "Janela de desempate desativada (times empatados vão para o fim da fila)",
                                 type: "info",
                               });
                               setTimeout(() => setToast(null), 3000);
